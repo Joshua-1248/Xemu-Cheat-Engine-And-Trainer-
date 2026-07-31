@@ -1,0 +1,4 @@
+//game=Suffering, The
+//serial=MW-021
+//titleid=4D570015
+//kind=cheats

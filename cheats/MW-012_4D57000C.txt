@@ -1,0 +1,4 @@
+//game=Mortal Kombat: Deadly Alliance
+//serial=MW-012
+//titleid=4D57000C
+//kind=cheats

@@ -1,0 +1,17 @@
+//game=Halo: Combat Evolved
+//serial=MS-004
+//titleid=4D530004
+//kind=cheats
+
+//group=Infinite
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\Shields] {
+  2010F908 3F800000
+}
+
+//enabled=1
+[Infinite\Shields (Alternate)] {
+  2010F908 7F7FFFFF
+}

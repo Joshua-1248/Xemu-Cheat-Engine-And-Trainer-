@@ -1,0 +1,4 @@
+//game=Big Bumpin'
+//serial=MS-210
+//titleid=4D5300D2
+//kind=cheats

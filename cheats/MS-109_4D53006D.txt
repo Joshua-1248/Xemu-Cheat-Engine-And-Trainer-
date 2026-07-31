@@ -1,0 +1,4 @@
+//game=Jade Empire
+//serial=MS-109
+//titleid=4D53006D
+//kind=cheats

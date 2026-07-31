@@ -1,0 +1,4 @@
+//game=Suffering, The: Ties That Bind
+//serial=MW-044
+//titleid=4D57002C
+//kind=cheats

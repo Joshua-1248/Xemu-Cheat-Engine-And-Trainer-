@@ -1,0 +1,4 @@
+//game=SoulCalibur II
+//serial=NM-003
+//titleid=4E4D0003
+//kind=cheats

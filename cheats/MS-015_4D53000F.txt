@@ -1,0 +1,4 @@
+//game=Rallisport Challenge
+//serial=MS-015
+//titleid=4D53000F
+//kind=cheats

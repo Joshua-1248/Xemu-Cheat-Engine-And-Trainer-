@@ -1,0 +1,4 @@
+//game=Kill Switch
+//serial=NM-011
+//titleid=4E4D000B
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Maximum Chase
+//serial=MS-046
+//titleid=4D53002E
+//kind=cheats

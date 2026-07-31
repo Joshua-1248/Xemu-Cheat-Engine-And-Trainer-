@@ -1,0 +1,4 @@
+//game=Oddworld: Munch's Oddysee
+//serial=MS-001
+//titleid=4D530001
+//kind=cheats

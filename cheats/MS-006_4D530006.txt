@@ -1,0 +1,4 @@
+//game=NFL Fever 2002
+//serial=MS-006
+//titleid=4D530006
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Quantum Redshift
+//serial=MS-021
+//titleid=4D530015
+//kind=cheats

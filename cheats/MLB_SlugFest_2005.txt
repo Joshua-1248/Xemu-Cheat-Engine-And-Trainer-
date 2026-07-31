@@ -1,0 +1,4 @@
+//game=MLB SlugFest 2005
+//serial=
+//titleid=
+//kind=cheats

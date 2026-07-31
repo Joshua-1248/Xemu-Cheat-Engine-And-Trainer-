@@ -1,0 +1,4 @@
+//game=Project Gotham Racing
+//serial=MS-003
+//titleid=4D530003
+//kind=cheats

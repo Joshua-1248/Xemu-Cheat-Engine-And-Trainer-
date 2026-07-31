@@ -1,0 +1,4 @@
+//game=Fable
+//serial=MS-013
+//titleid=4D53000D
+//kind=cheats

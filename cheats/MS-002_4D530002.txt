@@ -1,0 +1,4 @@
+//game=Fuzion Frenzy
+//serial=MS-002
+//titleid=4D530002
+//kind=cheats

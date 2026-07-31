@@ -1,0 +1,4 @@
+//game=Psi-Ops: The Mindgate Conspiracy
+//serial=MW-022
+//titleid=4D570016
+//kind=cheats

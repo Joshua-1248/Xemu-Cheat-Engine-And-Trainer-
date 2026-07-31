@@ -1,0 +1,4 @@
+//game=Counter-Strike
+//serial=MS-054
+//titleid=4D530036
+//kind=cheats

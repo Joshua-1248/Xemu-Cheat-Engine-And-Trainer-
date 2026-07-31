@@ -1,0 +1,4 @@
+//game=Unreal Championship 2: The Liandri Conflict
+//serial=MW-033
+//titleid=4D570021
+//kind=cheats

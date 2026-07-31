@@ -1,0 +1,4 @@
+//game=Area 51
+//serial=MW-005
+//titleid=4D570005
+//kind=cheats

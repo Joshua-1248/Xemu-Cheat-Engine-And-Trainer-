@@ -1,0 +1,4 @@
+//game=Amped: Freestyle Snowboarding
+//serial=MS-005
+//titleid=4D530005
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Kung Fu Chaos
+//serial=MS-049
+//titleid=4D530031
+//kind=cheats

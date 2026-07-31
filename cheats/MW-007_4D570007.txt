@@ -1,0 +1,4 @@
+//game=Freaky Flyers
+//serial=MW-007
+//titleid=4D570007
+//kind=cheats

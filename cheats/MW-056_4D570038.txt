@@ -1,0 +1,4 @@
+//game=MLB SlugFest 2006
+//serial=MW-056
+//titleid=4D570038
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=NHL Hitz Pro
+//serial=MW-026
+//titleid=4D57001A
+//kind=cheats

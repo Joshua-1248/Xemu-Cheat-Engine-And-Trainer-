@@ -1,0 +1,4 @@
+//game=Fire Blade
+//serial=MW-018
+//titleid=4D570012
+//kind=cheats

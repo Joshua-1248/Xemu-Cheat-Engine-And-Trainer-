@@ -1,0 +1,4 @@
+//game=Dead to Rights
+//serial=NM-005
+//titleid=4E4D0005
+//kind=cheats

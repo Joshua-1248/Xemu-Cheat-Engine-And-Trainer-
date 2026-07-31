@@ -1,0 +1,4 @@
+//game=Kakuto Chojin
+//serial=MS-012
+//titleid=4D53000C
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=NBA Inside Drive 2002
+//serial=MS-017
+//titleid=4D530011
+//kind=cheats

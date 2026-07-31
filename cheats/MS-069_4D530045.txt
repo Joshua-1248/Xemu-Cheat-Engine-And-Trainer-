@@ -1,0 +1,4 @@
+//game=NBA Inside Drive 2003
+//serial=MS-069
+//titleid=4D530045
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Shenmue II
+//serial=MS-050
+//titleid=4D530032
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Project Gotham Racing 2
+//serial=MS-075
+//titleid=4D53004B
+//kind=cheats

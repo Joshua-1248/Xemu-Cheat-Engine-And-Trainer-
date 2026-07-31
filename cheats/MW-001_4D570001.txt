@@ -1,0 +1,4 @@
+//game=NFL Blitz 2002
+//serial=MW-001
+//titleid=4D570001
+//kind=cheats

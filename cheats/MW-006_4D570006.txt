@@ -1,0 +1,4 @@
+//game=Defender
+//serial=MW-006
+//titleid=4D570006
+//kind=cheats

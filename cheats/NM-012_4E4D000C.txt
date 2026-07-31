@@ -1,0 +1,4 @@
+//game=Spawn: Armageddon
+//serial=NM-012
+//titleid=4E4D000C
+//kind=cheats

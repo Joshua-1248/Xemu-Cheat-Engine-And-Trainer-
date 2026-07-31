@@ -1,0 +1,4 @@
+//game=Xbox Music Mixer
+//serial=MS-090
+//titleid=4D53005A
+//kind=cheats

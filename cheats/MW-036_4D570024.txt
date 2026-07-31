@@ -1,0 +1,4 @@
+//game=NARC
+//serial=MW-036
+//titleid=4D570024
+//kind=cheats

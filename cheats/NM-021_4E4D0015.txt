@@ -1,0 +1,4 @@
+//game=Dead to Rights II
+//serial=NM-021
+//titleid=4E4D0015
+//kind=cheats

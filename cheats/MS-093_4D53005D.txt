@@ -1,0 +1,4 @@
+//game=Links 2004
+//serial=MS-093
+//titleid=4D53005D
+//kind=cheats

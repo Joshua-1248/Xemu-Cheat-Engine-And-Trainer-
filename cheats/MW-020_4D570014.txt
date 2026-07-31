@@ -1,0 +1,4 @@
+//game=NFL Blitz Pro
+//serial=MW-020
+//titleid=4D570014
+//kind=cheats

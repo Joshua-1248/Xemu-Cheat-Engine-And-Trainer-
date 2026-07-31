@@ -1,0 +1,4 @@
+//game=Crimson Skies: High Road to Revenge
+//serial=MS-033
+//titleid=4D530021
+//kind=cheats

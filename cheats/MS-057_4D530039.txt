@@ -1,0 +1,4 @@
+//game=Rallisport Challenge 2
+//serial=MS-057
+//titleid=4D530039
+//kind=cheats
