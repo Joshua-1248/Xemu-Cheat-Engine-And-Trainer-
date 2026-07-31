@@ -1,0 +1,4 @@
+//game=America's Army: Rise of a Soldier
+//serial=US-067
+//titleid=55530043
+//kind=cheats

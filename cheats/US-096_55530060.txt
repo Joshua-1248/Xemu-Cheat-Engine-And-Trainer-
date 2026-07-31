@@ -1,0 +1,4 @@
+//game=Far Cry Instincts: Evolution
+//serial=US-096
+//titleid=55530060
+//kind=cheats

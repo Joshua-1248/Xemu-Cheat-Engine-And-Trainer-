@@ -1,0 +1,4 @@
+//game=XIII
+//serial=US-009
+//titleid=55530009
+//kind=cheats

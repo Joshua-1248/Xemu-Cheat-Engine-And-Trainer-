@@ -1,0 +1,4 @@
+//game=Dukes of Hazzard, The: Return of the General Lee
+//serial=US-058
+//titleid=5553003A
+//kind=cheats

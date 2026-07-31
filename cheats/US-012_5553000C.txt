@@ -1,0 +1,4 @@
+//game=Tom Clancy's Splinter Cell
+//serial=US-012
+//titleid=5553000C
+//kind=cheats

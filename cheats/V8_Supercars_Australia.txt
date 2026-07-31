@@ -1,0 +1,4 @@
+//game=V8 Supercars Australia
+//serial=
+//titleid=
+//kind=cheats

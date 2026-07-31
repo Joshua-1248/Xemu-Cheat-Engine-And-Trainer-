@@ -1,0 +1,4 @@
+//game=Thing, The
+//serial=VU-013
+//titleid=5655000D
+//kind=cheats

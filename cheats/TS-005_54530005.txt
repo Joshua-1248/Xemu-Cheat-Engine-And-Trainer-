@@ -1,0 +1,4 @@
+//game=RoboCop
+//serial=TS-005
+//titleid=54530005
+//kind=cheats

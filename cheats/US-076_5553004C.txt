@@ -1,0 +1,4 @@
+//game=Peter Jackson's King Kong: The Official Game of the Movie
+//serial=US-076
+//titleid=5553004C
+//kind=cheats

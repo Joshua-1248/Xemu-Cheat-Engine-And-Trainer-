@@ -1,0 +1,4 @@
+//game=Ratatouille
+//serial=TQ-265
+//titleid=54510109
+//kind=cheats

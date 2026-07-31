@@ -1,0 +1,4 @@
+//game=Ghost Recon 2
+//serial=US-005
+//titleid=55530005
+//kind=cheats

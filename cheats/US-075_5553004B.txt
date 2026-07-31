@@ -1,0 +1,4 @@
+//game=Cold Fear
+//serial=US-075
+//titleid=5553004B
+//kind=cheats

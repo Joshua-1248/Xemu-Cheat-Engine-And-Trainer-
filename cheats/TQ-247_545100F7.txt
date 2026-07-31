@@ -1,0 +1,4 @@
+//game=Scooby-Doo! Unmasked
+//serial=TQ-247
+//titleid=545100F7
+//kind=cheats

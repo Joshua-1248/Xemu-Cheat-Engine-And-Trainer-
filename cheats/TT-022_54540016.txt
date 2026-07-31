@@ -1,0 +1,4 @@
+//game=Virtual Pool: Tournament Edition
+//serial=TT-022
+//titleid=54540016
+//kind=cheats

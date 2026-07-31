@@ -1,0 +1,4 @@
+//game=Wings of War
+//serial=TT-024
+//titleid=54540018
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=NHL 2K7
+//serial=TT-173
+//titleid=545400AD
+//kind=cheats

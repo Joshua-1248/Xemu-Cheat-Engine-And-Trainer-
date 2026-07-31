@@ -1,0 +1,4 @@
+//game=Serious Sam
+//serial=TT-004
+//titleid=54540004
+//kind=cheats

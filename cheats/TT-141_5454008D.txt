@@ -1,0 +1,4 @@
+//game=NHL 2K6
+//serial=TT-141
+//titleid=5454008D
+//kind=cheats

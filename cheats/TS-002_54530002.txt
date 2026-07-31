@@ -1,0 +1,4 @@
+//game=Barbarian
+//serial=TS-002
+//titleid=54530002
+//kind=cheats

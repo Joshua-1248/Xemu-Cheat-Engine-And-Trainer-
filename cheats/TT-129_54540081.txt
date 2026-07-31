@@ -1,0 +1,4 @@
+//game=Charlie and the Chocolate Factory
+//serial=TT-129
+//titleid=54540081
+//kind=cheats

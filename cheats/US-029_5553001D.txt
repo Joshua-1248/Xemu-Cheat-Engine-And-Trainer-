@@ -1,0 +1,4 @@
+//game=Prince of Persia: The Sands of Time
+//serial=US-029
+//titleid=5553001D
+//kind=cheats

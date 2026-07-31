@@ -1,0 +1,4 @@
+//game=Tom Clancy's Rainbow Six 3
+//serial=US-019
+//titleid=55530013
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Max Payne 2: The Fall of Max Payne
+//serial=TT-012
+//titleid=5454000C
+//kind=cheats

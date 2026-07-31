@@ -1,0 +1,4 @@
+//game=Crouching Tiger, Hidden Dragon
+//serial=US-032
+//titleid=55530020
+//kind=cheats

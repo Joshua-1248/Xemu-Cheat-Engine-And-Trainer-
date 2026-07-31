@@ -1,0 +1,4 @@
+//game=Tom Clancy's Rainbow Six 3 - Black Arrow
+//serial=US-055
+//titleid=55530037
+//kind=cheats

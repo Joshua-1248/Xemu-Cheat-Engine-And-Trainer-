@@ -1,0 +1,4 @@
+//game=Spy vs. Spy
+//serial=TT-124
+//titleid=5454007C
+//kind=cheats

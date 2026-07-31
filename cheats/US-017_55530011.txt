@@ -1,0 +1,4 @@
+//game=Myst III: Exile
+//serial=US-017
+//titleid=55530011
+//kind=cheats

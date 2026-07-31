@@ -1,0 +1,4 @@
+//game=Tom Clancy's Splinter Cell: Pandora Tomorrow
+//serial=US-025
+//titleid=55530019
+//kind=cheats

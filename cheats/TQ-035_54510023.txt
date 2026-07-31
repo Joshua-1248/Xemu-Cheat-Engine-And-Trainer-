@@ -1,0 +1,4 @@
+//game=Sphinx and the Cursed Mummy
+//serial=TQ-035
+//titleid=54510023
+//kind=cheats

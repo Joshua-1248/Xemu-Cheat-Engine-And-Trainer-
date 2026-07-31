@@ -1,0 +1,4 @@
+//game=Classified: The Sentinel Crisis
+//serial=TT-125
+//titleid=5454007D
+//kind=cheats

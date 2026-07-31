@@ -1,0 +1,4 @@
+//game=Mafia
+//serial=TT-009
+//titleid=54540009
+//kind=cheats

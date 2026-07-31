@@ -1,0 +1,4 @@
+//game=Largo Winch: Empire Under Threat
+//serial=US-011
+//titleid=5553000B
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=WWE WrestleMania 21
+//serial=TQ-036
+//titleid=54510024
+//kind=cheats

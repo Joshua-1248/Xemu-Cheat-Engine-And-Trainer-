@@ -1,0 +1,4 @@
+//game=Ghost Recon
+//serial=US-006
+//titleid=55530006
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Army Men: Sarge's War
+//serial=TT-020
+//titleid=54540014
+//kind=cheats

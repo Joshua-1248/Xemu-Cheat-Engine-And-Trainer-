@@ -1,0 +1,4 @@
+//game=Cars
+//serial=TQ-242
+//titleid=545100F2
+//kind=cheats

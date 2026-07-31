@@ -1,0 +1,4 @@
+//game=Motocross Mania 3
+//serial=TT-021
+//titleid=54540015
+//kind=cheats

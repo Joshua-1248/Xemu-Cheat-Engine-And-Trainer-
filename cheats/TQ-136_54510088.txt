@@ -1,0 +1,4 @@
+//game=MotoGP 3
+//serial=TQ-136
+//titleid=54510088
+//kind=cheats

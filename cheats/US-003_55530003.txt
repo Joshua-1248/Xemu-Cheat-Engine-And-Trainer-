@@ -1,0 +1,4 @@
+//game=Rayman Arena
+//serial=US-003
+//titleid=55530003
+//kind=cheats

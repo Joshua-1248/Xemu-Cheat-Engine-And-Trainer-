@@ -1,0 +1,4 @@
+//game=Far Cry Instincts
+//serial=US-008
+//titleid=55530008
+//kind=cheats

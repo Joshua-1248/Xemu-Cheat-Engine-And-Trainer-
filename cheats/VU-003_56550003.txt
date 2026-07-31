@@ -1,0 +1,4 @@
+//game=Crash Bandicoot: The Wrath of Cortex
+//serial=VU-003
+//titleid=56550003
+//kind=cheats

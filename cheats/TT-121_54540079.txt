@@ -1,0 +1,4 @@
+//game=Midnight Club 3: DUB Edition
+//serial=TT-121
+//titleid=54540079
+//kind=cheats

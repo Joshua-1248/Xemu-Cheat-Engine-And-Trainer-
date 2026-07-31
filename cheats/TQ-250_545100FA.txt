@@ -1,0 +1,4 @@
+//game=SpongeBob SquarePants: Lights, Camera, Pants!
+//serial=TQ-250
+//titleid=545100FA
+//kind=cheats

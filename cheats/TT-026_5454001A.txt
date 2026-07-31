@@ -1,0 +1,4 @@
+//game=Red Dead Revolver
+//serial=TT-026
+//titleid=5454001A
+//kind=cheats

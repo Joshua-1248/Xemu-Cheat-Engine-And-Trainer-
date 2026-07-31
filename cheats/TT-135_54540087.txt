@@ -1,0 +1,4 @@
+//game=World Poker Tour
+//serial=TT-135
+//titleid=54540087
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Tom Clancy's Splinter Cell: Double Agent
+//serial=US-094
+//titleid=5553005E
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Rocky Legends
+//serial=US-052
+//titleid=55530034
+//kind=cheats
