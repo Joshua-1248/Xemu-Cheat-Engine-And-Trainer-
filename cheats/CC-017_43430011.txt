@@ -1,0 +1,4 @@
+//game=Mega Man Anniversary Collection
+//serial=CC-017
+//titleid=43430011
+//kind=cheats

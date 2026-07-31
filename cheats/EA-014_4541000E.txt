@@ -1,0 +1,4 @@
+//game=Harry Potter and the Chamber of Secrets
+//serial=EA-014
+//titleid=4541000E
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Second Sight
+//serial=CM-071
+//titleid=434D0047
+//kind=cheats

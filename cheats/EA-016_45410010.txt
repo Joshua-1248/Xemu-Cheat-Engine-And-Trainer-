@@ -1,0 +1,4 @@
+//game=Lord of the Rings, The: The Two Towers
+//serial=EA-016
+//titleid=45410010
+//kind=cheats

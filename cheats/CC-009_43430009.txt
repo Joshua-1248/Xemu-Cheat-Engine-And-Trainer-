@@ -1,0 +1,4 @@
+//game=Steel Battalion: Line of Contact
+//serial=CC-009
+//titleid=43430009
+//kind=cheats

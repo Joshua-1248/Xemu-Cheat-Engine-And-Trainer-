@@ -1,0 +1,4 @@
+//game=Cel Damage
+//serial=EA-017
+//titleid=45410011
+//kind=cheats

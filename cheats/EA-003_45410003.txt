@@ -1,0 +1,4 @@
+//game=NBA Live 2002
+//serial=EA-003
+//titleid=45410003
+//kind=cheats

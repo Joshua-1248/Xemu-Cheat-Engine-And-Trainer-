@@ -1,0 +1,4 @@
+//game=Mike Tyson Heavyweight Boxing
+//serial=CM-003
+//titleid=434D0003
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Doom 3
+//serial=
+//titleid=
+//kind=cheats

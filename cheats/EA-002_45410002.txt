@@ -1,0 +1,4 @@
+//game=NASCAR Thunder 2002
+//serial=EA-002
+//titleid=45410002
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Harry Potter and the Sorcerer's Stone
+//serial=EA-055
+//titleid=45410037
+//kind=cheats

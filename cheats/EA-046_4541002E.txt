@@ -1,0 +1,4 @@
+//game=Freedom Fighters
+//serial=EA-046
+//titleid=4541002E
+//kind=cheats

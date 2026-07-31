@@ -1,0 +1,4 @@
+//game=Simpsons, The: Road Rage
+//serial=EA-019
+//titleid=45410013
+//kind=cheats

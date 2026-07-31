@@ -1,0 +1,4 @@
+//game=Kabuki Warriors
+//serial=CV-001
+//titleid=43560001
+//kind=cheats

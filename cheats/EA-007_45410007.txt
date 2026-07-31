@@ -1,0 +1,4 @@
+//game=F1 2001
+//serial=EA-007
+//titleid=45410007
+//kind=cheats

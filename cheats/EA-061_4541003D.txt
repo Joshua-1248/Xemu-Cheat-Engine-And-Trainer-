@@ -1,0 +1,4 @@
+//game=Harry Potter: Quidditch World Cup
+//serial=EA-061
+//titleid=4541003D
+//kind=cheats

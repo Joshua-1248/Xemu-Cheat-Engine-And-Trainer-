@@ -1,0 +1,4 @@
+//game=Bionicle
+//serial=EA-057
+//titleid=45410039
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=UFC: Tapout
+//serial=CV-002
+//titleid=43560002
+//kind=cheats

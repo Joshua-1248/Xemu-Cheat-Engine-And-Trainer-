@@ -1,0 +1,4 @@
+//game=Fight Night Round 2
+//serial=EA-085
+//titleid=45410055
+//kind=cheats

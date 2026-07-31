@@ -1,0 +1,4 @@
+//game=Capcom vs. SNK 2 EO
+//serial=CC-008
+//titleid=43430008
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Dead or Alive 2 Ultimate
+//serial=
+//titleid=
+//kind=cheats

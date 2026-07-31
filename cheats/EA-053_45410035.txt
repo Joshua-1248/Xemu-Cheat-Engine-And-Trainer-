@@ -1,0 +1,4 @@
+//game=NCAA Football 2004
+//serial=EA-053
+//titleid=45410035
+//kind=cheats

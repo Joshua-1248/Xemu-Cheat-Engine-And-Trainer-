@@ -1,0 +1,4 @@
+//game=Lord of the Rings, The: The Return of the King
+//serial=EA-062
+//titleid=4541003E
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Tiger Woods PGA Tour 2003
+//serial=EA-033
+//titleid=45410021
+//kind=cheats

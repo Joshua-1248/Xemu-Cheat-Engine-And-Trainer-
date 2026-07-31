@@ -1,0 +1,4 @@
+//game=Madden NFL 2005
+//serial=EA-077
+//titleid=4541004D
+//kind=cheats

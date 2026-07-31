@@ -1,0 +1,4 @@
+//game=FIFA Soccer 2004
+//serial=EA-059
+//titleid=4541003B
+//kind=cheats

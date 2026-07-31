@@ -1,0 +1,4 @@
+//game=NASCAR Thunder 2003
+//serial=EA-027
+//titleid=4541001B
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=MVP Baseball 2004
+//serial=EA-069
+//titleid=45410045
+//kind=cheats

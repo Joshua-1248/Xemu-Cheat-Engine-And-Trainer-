@@ -1,0 +1,4 @@
+//game=007 - Everything or Nothing
+//serial=EA-066
+//titleid=45410042
+//kind=cheats

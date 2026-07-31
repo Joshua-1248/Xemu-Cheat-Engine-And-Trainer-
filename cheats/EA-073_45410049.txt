@@ -1,0 +1,4 @@
+//game=Def Jam: Fight for NY
+//serial=EA-073
+//titleid=45410049
+//kind=cheats

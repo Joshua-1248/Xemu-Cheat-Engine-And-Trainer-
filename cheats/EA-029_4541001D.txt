@@ -1,0 +1,4 @@
+//game=NCAA Football 2003
+//serial=EA-029
+//titleid=4541001D
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=LMA Manager 2004
+//serial=CM-015
+//titleid=434D000F
+//kind=cheats

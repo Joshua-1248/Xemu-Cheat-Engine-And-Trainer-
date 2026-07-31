@@ -1,0 +1,4 @@
+//game=Pro Race Driver
+//serial=CM-002
+//titleid=434D0002
+//kind=cheats

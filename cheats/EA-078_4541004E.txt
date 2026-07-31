@@ -1,0 +1,4 @@
+//game=FIFA Soccer 2005
+//serial=EA-078
+//titleid=4541004E
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Need for Speed: Underground
+//serial=EA-071
+//titleid=45410047
+//kind=cheats

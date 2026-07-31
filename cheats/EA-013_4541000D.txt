@@ -1,0 +1,41 @@
+//game=007 - Agent Under Fire
+//serial=EA-013
+//titleid=4541000D
+//kind=cheats
+
+//group=Unlock
+
+//enabled=1
+; Author: Josh_7774
+[Unlock\All Gold Rewards] {
+  402E558C 000C0001
+  00000001 00000000
+}
+
+//enabled=1
+; Author: Josh_7774
+[Unlock\All Platinum Rewards] {
+  402E555C 000C0001
+  00000001 00000000
+}
+
+//group=Main
+
+//enabled=1
+; Author: Josh_7774
+[Main\Hold Y To Moon Jump] {
+  D0381D89 010000FF
+  702A8278 43960000
+  00020002 00000278
+  00000090 00000000
+}
+
+//group=Main\Infinite
+
+//enabled=0
+; Author: Josh_7774
+[Main\Infinite\Health] {
+  00000000 00000000
+}
+
+//group=Driving/On-Rails

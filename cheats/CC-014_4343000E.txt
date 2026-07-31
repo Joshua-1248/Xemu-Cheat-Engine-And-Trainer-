@@ -1,0 +1,4 @@
+//game=Auto Modellista
+//serial=CC-014
+//titleid=4343000E
+//kind=cheats

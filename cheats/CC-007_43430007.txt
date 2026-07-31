@@ -1,0 +1,4 @@
+//game=Marvel vs. Capcom 2
+//serial=CC-007
+//titleid=43430007
+//kind=cheats

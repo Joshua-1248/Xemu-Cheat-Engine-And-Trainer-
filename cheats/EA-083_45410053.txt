@@ -1,0 +1,4 @@
+//game=NASCAR 2005: Chase for the Cup
+//serial=EA-083
+//titleid=45410053
+//kind=cheats

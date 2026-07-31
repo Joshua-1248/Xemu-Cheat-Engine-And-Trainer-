@@ -1,0 +1,4 @@
+//game=Prisoner of War
+//serial=CM-008
+//titleid=434D0008
+//kind=cheats

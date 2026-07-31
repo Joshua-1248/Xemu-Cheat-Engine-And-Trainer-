@@ -1,0 +1,4 @@
+//game=Ty the Tasmanian Tiger
+//serial=EA-041
+//titleid=45410029
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=MVP Baseball 2005
+//serial=EA-086
+//titleid=45410056
+//kind=cheats

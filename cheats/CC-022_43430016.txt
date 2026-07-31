@@ -1,0 +1,4 @@
+//game=Darkwatch
+//serial=CC-022
+//titleid=43430016
+//kind=cheats

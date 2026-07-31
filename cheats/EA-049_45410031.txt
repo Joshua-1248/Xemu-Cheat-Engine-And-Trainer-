@@ -1,0 +1,4 @@
+//game=NASCAR Thunder 2004
+//serial=EA-049
+//titleid=45410031
+//kind=cheats

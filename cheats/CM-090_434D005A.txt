@@ -1,0 +1,4 @@
+//game=Operation Flashpoint: Elite
+//serial=CM-090
+//titleid=434D005A
+//kind=cheats

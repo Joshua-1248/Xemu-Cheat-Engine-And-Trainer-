@@ -1,0 +1,4 @@
+//game=Tiger Woods PGA Tour 2004
+//serial=EA-058
+//titleid=4541003A
+//kind=cheats

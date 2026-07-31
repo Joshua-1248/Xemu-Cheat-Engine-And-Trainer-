@@ -1,0 +1,4 @@
+//game=F1 2002
+//serial=EA-020
+//titleid=45410014
+//kind=cheats

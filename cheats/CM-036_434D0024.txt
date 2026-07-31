@@ -1,0 +1,4 @@
+//game=IndyCar Series 2005
+//serial=CM-036
+//titleid=434D0024
+//kind=cheats
