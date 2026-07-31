@@ -1,0 +1,4 @@
+//game=King Kong
+//serial=
+//titleid=
+//kind=patches

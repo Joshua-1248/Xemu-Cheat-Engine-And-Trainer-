@@ -1,0 +1,4 @@
+//game=Castlevania: Curse of Darkness
+//serial=KN-045
+//titleid=4B4E002D
+//kind=patches

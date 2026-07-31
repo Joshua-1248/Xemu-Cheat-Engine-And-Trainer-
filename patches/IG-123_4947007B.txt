@@ -1,0 +1,4 @@
+//game=Indigo Prophecy
+//serial=IG-123
+//titleid=4947007B
+//kind=patches

@@ -1,0 +1,4 @@
+//game=GunMetal
+//serial=MJ-003
+//titleid=4D4A0003
+//kind=patches

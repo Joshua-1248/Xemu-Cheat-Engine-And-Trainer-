@@ -1,0 +1,4 @@
+//game=Driver: Parallel Lines
+//serial=IG-127
+//titleid=4947007F
+//kind=patches

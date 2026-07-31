@@ -1,0 +1,4 @@
+//game=Chicago Enforcer
+//serial=KB-005
+//titleid=4B420005
+//kind=patches

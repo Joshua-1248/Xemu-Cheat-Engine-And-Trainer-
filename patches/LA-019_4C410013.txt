@@ -1,0 +1,4 @@
+//game=Star Wars: Republic Commando
+//serial=LA-019
+//titleid=4C410013
+//kind=patches

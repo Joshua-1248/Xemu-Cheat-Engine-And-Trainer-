@@ -1,0 +1,4 @@
+//game=Star Wars: Battlefront
+//serial=LA-017
+//titleid=4C410011
+//kind=patches

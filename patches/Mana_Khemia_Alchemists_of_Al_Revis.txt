@@ -1,0 +1,4 @@
+//game=Mana Khemia: Alchemists of Al-Revis
+//serial=
+//titleid=
+//kind=patches

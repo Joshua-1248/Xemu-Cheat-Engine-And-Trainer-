@@ -1,0 +1,4 @@
+//game=Neighbors from Hell
+//serial=JW-002
+//titleid=4A570002
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Unreal Championship
+//serial=IG-036
+//titleid=49470024
+//kind=patches

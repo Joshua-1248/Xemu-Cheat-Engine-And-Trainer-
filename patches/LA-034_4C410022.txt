@@ -1,0 +1,4 @@
+//game=Thrillville
+//serial=LA-034
+//titleid=4C410022
+//kind=patches

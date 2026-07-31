@@ -1,0 +1,4 @@
+//game=Egg Mania: Eggstreme Madness
+//serial=KB-002
+//titleid=4B420002
+//kind=patches

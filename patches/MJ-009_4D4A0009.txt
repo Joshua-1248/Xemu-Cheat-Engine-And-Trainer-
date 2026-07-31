@@ -1,0 +1,4 @@
+//game=Advent Rising
+//serial=MJ-009
+//titleid=4D4A0009
+//kind=patches

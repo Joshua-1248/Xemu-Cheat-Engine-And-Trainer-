@@ -1,0 +1,4 @@
+//game=Mega Man X7
+//serial=
+//titleid=
+//kind=patches

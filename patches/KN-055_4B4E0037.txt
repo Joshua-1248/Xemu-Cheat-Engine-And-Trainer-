@@ -1,0 +1,4 @@
+//game=Dance Dance Revolution Ultramix 4
+//serial=KN-055
+//titleid=4B4E0037
+//kind=patches

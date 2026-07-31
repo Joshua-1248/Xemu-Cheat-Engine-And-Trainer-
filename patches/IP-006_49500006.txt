@@ -1,0 +1,4 @@
+//game=Run Like Hell
+//serial=IP-006
+//titleid=49500006
+//kind=patches

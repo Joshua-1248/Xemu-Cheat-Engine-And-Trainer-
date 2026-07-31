@@ -1,0 +1,4 @@
+//game=Yager
+//serial=KB-006
+//titleid=4B420006
+//kind=patches

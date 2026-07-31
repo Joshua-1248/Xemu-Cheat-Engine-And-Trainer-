@@ -1,0 +1,4 @@
+//game=Star Wars: Starfighter Special Edition
+//serial=LA-002
+//titleid=4C410002
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Star Wars: Obi-Wan
+//serial=LA-001
+//titleid=4C410001
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Still Life
+//serial=MI-011
+//titleid=4D49000B
+//kind=patches

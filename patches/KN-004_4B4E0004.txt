@@ -1,0 +1,4 @@
+//game=Silent Hill 2: Restless Dreams
+//serial=KN-004
+//titleid=4B4E0004
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Star Wars: Battlefront II
+//serial=LA-026
+//titleid=4C41001A
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Forgotten Realms: Demon Stone
+//serial=IG-116
+//titleid=49470074
+//kind=patches

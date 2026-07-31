@@ -1,0 +1,4 @@
+//game=Yetisports Arctic Adventure
+//serial=JW-004
+//titleid=4A570004
+//kind=patches

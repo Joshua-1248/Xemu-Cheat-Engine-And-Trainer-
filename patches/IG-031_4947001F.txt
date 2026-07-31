@@ -1,0 +1,4 @@
+//game=Mission: Impossible - Operation Surma
+//serial=IG-031
+//titleid=4947001F
+//kind=patches

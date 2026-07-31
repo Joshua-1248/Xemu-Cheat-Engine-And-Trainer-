@@ -1,0 +1,4 @@
+//game=Stake: Fortune Fighters
+//serial=MD-004
+//titleid=4D440004
+//kind=patches

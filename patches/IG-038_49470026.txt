@@ -1,0 +1,4 @@
+//game=Terminator, The: Dawn of Fate
+//serial=IG-038
+//titleid=49470026
+//kind=patches

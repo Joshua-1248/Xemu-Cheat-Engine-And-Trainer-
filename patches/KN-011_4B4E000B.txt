@@ -1,0 +1,4 @@
+//game=ESPN International Winter Sports 2002
+//serial=KN-011
+//titleid=4B4E000B
+//kind=patches

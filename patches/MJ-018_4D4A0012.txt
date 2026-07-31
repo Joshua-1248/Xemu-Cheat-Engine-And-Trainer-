@@ -1,0 +1,4 @@
+//game=Psychonauts
+//serial=MJ-018
+//titleid=4D4A0012
+//kind=patches

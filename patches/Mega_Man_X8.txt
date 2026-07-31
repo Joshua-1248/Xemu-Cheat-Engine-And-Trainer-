@@ -1,0 +1,4 @@
+//game=Mega Man X8
+//serial=
+//titleid=
+//kind=patches

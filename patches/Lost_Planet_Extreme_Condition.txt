@@ -1,0 +1,4 @@
+//game=Lost Planet: Extreme Condition
+//serial=
+//titleid=
+//kind=patches

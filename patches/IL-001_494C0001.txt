@@ -1,0 +1,4 @@
+//game=Metal Dungeon
+//serial=IL-001
+//titleid=494C0001
+//kind=patches

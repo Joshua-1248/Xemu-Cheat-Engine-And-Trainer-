@@ -1,0 +1,4 @@
+//game=World Soccer Winning Eleven 8 International
+//serial=KN-039
+//titleid=4B4E0027
+//kind=patches

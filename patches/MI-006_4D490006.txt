@@ -1,0 +1,4 @@
+//game=Syberia
+//serial=MI-006
+//titleid=4D490006
+//kind=patches

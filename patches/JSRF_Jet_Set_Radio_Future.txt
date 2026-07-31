@@ -1,0 +1,4 @@
+//game=JSRF: Jet Set Radio Future
+//serial=
+//titleid=
+//kind=patches

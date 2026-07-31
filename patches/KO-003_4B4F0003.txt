@@ -1,0 +1,4 @@
+//game=Dynasty Warriors 3
+//serial=KO-003
+//titleid=4B4F0003
+//kind=patches

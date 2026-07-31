@@ -1,0 +1,4 @@
+//game=Atari Anthology
+//serial=IG-121
+//titleid=49470079
+//kind=patches

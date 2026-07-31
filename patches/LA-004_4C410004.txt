@@ -1,0 +1,4 @@
+//game=Star Wars: The Clone Wars
+//serial=LA-004
+//titleid=4C410004
+//kind=patches
