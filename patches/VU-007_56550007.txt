@@ -1,0 +1,4 @@
+//game=Hunter: The Reckoning
+//serial=VU-007
+//titleid=56550007
+//kind=patches

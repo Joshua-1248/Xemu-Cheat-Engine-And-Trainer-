@@ -1,0 +1,4 @@
+//game=Family Guy Video Game!
+//serial=TT-176
+//titleid=545400B0
+//kind=patches

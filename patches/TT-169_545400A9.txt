@@ -1,0 +1,4 @@
+//game=Torino 2006
+//serial=TT-169
+//titleid=545400A9
+//kind=patches

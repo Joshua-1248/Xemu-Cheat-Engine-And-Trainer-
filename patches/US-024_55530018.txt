@@ -1,0 +1,4 @@
+//game=Beyond Good & Evil
+//serial=US-024
+//titleid=55530018
+//kind=patches

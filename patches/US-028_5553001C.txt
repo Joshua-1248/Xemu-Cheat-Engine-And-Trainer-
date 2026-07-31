@@ -1,0 +1,4 @@
+//game=Batman: Rise of Sin Tzu
+//serial=US-028
+//titleid=5553001C
+//kind=patches

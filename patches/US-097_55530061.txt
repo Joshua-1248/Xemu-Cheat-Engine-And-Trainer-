@@ -1,0 +1,4 @@
+//game=Open Season
+//serial=US-097
+//titleid=55530061
+//kind=patches

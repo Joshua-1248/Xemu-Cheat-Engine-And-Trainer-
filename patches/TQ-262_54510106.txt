@@ -1,0 +1,4 @@
+//game=Destroy All Humans! 2
+//serial=TQ-262
+//titleid=54510106
+//kind=patches

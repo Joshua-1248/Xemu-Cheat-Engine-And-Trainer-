@@ -1,0 +1,4 @@
+//game=Pure Pinball
+//serial=TT-017
+//titleid=54540011
+//kind=patches

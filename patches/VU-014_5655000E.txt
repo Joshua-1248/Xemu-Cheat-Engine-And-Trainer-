@@ -1,0 +1,4 @@
+//game=Enclave
+//serial=VU-014
+//titleid=5655000E
+//kind=patches

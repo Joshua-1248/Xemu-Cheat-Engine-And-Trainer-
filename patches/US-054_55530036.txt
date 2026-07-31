@@ -1,0 +1,4 @@
+//game=187: Ride or Die
+//serial=US-054
+//titleid=55530036
+//kind=patches

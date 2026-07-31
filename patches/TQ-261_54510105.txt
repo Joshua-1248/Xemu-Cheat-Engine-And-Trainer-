@@ -1,0 +1,4 @@
+//game=Avatar: The Last Airbender
+//serial=TQ-261
+//titleid=54510105
+//kind=patches

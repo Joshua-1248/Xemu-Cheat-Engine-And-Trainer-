@@ -1,0 +1,4 @@
+//game=Rayman 3: Hoodlum Havoc
+//serial=US-002
+//titleid=55530002
+//kind=patches

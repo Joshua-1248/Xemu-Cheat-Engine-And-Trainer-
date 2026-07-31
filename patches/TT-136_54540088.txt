@@ -1,0 +1,4 @@
+//game=Army Men: Major Malfunction
+//serial=TT-136
+//titleid=54540088
+//kind=patches

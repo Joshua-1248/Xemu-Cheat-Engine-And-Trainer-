@@ -1,0 +1,4 @@
+//game=Evil Dead: Regeneration
+//serial=TQ-037
+//titleid=54510025
+//kind=patches

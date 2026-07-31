@@ -1,0 +1,4 @@
+//game=Ghost Recon: Advanced Warfighter
+//serial=US-084
+//titleid=55530054
+//kind=patches

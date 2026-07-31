@@ -1,0 +1,4 @@
+//game=Futurama
+//serial=VU-008
+//titleid=56550008
+//kind=patches

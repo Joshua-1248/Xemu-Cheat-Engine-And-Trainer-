@@ -1,0 +1,4 @@
+//game=Grand Theft Auto: San Andreas
+//serial=TT-163
+//titleid=545400A3
+//kind=patches

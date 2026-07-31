@@ -1,0 +1,4 @@
+//game=Warriors, The
+//serial=TT-155
+//titleid=5454009B
+//kind=patches

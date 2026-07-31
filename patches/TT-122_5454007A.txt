@@ -1,0 +1,4 @@
+//game=Scaler
+//serial=TT-122
+//titleid=5454007A
+//kind=patches

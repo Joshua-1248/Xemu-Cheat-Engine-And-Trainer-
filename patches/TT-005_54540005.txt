@@ -1,0 +1,4 @@
+//game=Conflict: Desert Storm
+//serial=TT-005
+//titleid=54540005
+//kind=patches

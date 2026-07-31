@@ -1,0 +1,4 @@
+//game=Buffy the Vampire Slayer: Chaos Bleeds
+//serial=VU-005
+//titleid=56550005
+//kind=patches

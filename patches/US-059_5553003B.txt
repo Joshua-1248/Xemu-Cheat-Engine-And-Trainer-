@@ -1,0 +1,4 @@
+//game=Prince of Persia: Warrior Within
+//serial=US-059
+//titleid=5553003B
+//kind=patches

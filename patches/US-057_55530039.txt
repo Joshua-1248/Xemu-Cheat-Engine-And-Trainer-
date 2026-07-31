@@ -1,0 +1,4 @@
+//game=Chessmaster
+//serial=US-057
+//titleid=55530039
+//kind=patches

@@ -1,0 +1,4 @@
+//game=State of Emergency
+//serial=TT-006
+//titleid=54540006
+//kind=patches

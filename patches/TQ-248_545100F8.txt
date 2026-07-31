@@ -1,0 +1,4 @@
+//game=Full Spectrum Warrior: Ten Hammers
+//serial=TQ-248
+//titleid=545100F8
+//kind=patches

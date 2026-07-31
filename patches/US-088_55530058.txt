@@ -1,0 +1,4 @@
+//game=Prince of Persia: The Two Thrones
+//serial=US-088
+//titleid=55530058
+//kind=patches

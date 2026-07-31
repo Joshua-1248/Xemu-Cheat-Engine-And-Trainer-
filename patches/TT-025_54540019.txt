@@ -1,0 +1,4 @@
+//game=Manhunt
+//serial=TT-025
+//titleid=54540019
+//kind=patches

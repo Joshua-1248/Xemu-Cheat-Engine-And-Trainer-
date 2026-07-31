@@ -1,0 +1,4 @@
+//game=Rocky
+//serial=US-020
+//titleid=55530014
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Tom Clancy's Rainbow Six: Lockdown
+//serial=US-072
+//titleid=55530048
+//kind=patches

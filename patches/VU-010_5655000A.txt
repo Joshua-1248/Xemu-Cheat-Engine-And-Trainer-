@@ -1,0 +1,4 @@
+//game=Metal Arms: Glitch in the System
+//serial=VU-010
+//titleid=5655000A
+//kind=patches

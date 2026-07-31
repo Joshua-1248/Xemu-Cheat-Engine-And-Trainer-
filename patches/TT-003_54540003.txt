@@ -1,0 +1,4 @@
+//game=Max Payne
+//serial=TT-003
+//titleid=54540003
+//kind=patches

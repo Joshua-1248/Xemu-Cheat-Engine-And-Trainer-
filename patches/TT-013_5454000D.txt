@@ -1,0 +1,4 @@
+//game=Serious Sam II
+//serial=TT-013
+//titleid=5454000D
+//kind=patches

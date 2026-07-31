@@ -1,0 +1,4 @@
+//game=Destroy All Humans!
+//serial=TQ-038
+//titleid=54510026
+//kind=patches

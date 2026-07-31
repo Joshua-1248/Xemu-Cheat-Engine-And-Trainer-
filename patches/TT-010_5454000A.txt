@@ -1,0 +1,4 @@
+//game=Vietcong: Purple Haze
+//serial=TT-010
+//titleid=5454000A
+//kind=patches

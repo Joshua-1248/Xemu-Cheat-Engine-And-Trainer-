@@ -1,0 +1,4 @@
+//game=Murakumo: Renegade Mech Pursuit
+//serial=US-022
+//titleid=55530016
+//kind=patches

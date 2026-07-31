@@ -1,0 +1,4 @@
+//game=Shattered Union
+//serial=TT-131
+//titleid=54540083
+//kind=patches

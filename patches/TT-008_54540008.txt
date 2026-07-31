@@ -1,0 +1,4 @@
+//game=Midnight Club II
+//serial=TT-008
+//titleid=54540008
+//kind=patches

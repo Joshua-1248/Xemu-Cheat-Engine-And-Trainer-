@@ -1,0 +1,4 @@
+//game=CSI: Crime Scene Investigation
+//serial=US-063
+//titleid=5553003F
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Battlestar Galactica
+//serial=VU-015
+//titleid=5655000F
+//kind=patches

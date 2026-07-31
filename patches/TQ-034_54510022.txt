@@ -1,0 +1,4 @@
+//game=Full Spectrum Warrior
+//serial=TQ-034
+//titleid=54510022
+//kind=patches

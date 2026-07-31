@@ -1,0 +1,4 @@
+//game=Grand Theft Auto III
+//serial=TT-014
+//titleid=5454000E
+//kind=patches
