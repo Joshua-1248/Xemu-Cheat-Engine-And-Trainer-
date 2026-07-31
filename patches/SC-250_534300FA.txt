@@ -1,0 +1,4 @@
+//game=Hitman: Blood Money
+//serial=SC-250
+//titleid=534300FA
+//kind=patches

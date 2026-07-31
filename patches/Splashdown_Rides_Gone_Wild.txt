@@ -1,0 +1,4 @@
+//game=Splashdown: Rides Gone Wild
+//serial=
+//titleid=
+//kind=patches

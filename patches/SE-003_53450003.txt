@@ -1,0 +1,4 @@
+//game=Sega GT 2002
+//serial=SE-003
+//titleid=53450003
+//kind=patches

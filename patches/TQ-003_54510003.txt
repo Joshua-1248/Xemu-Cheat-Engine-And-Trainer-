@@ -1,0 +1,4 @@
+//game=MX 2002 featuring Ricky Carmichael
+//serial=TQ-003
+//titleid=54510003
+//kind=patches

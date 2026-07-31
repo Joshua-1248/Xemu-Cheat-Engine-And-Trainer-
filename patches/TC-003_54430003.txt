@@ -1,0 +1,4 @@
+//game=Ninja Gaiden
+//serial=TC-003
+//titleid=54430003
+//kind=patches

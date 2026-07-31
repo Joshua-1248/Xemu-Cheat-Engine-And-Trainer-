@@ -1,0 +1,4 @@
+//game=Punisher, The
+//serial=TQ-024
+//titleid=54510018
+//kind=patches

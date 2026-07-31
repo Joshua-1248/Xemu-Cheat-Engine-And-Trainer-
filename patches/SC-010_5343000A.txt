@@ -1,0 +1,4 @@
+//game=Conflict: Vietnam
+//serial=SC-010
+//titleid=5343000A
+//kind=patches

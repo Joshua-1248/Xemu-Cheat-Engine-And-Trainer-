@@ -1,0 +1,4 @@
+//game=Spartan: Total Warrior
+//serial=SE-139
+//titleid=5345008B
+//kind=patches

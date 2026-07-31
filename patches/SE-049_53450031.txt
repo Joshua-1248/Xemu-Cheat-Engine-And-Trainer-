@@ -1,0 +1,4 @@
+//game=ESPN NBA 2K5
+//serial=SE-049
+//titleid=53450031
+//kind=patches

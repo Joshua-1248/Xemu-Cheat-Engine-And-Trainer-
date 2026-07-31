@@ -1,0 +1,4 @@
+//game=NHL 2K3
+//serial=SE-023
+//titleid=53450017
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Iron Phoenix
+//serial=SA-003
+//titleid=53410003
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Combat Elite: WWII Paratroopers
+//serial=SP-001
+//titleid=53500001
+//kind=patches

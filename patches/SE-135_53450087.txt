@@ -1,0 +1,4 @@
+//game=Sonic Riders
+//serial=SE-135
+//titleid=53450087
+//kind=patches

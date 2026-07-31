@@ -1,0 +1,4 @@
+//game=Tom Clancy's Ghost Recon: Advanced Warfighter
+//serial=
+//titleid=
+//kind=patches

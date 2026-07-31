@@ -1,0 +1,4 @@
+//game=World Snooker Championship 2005
+//serial=SE-129
+//titleid=53450081
+//kind=patches

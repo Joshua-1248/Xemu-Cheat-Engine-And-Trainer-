@@ -1,0 +1,4 @@
+//game=Sega Soccer Slam
+//serial=SE-020
+//titleid=53450014
+//kind=patches

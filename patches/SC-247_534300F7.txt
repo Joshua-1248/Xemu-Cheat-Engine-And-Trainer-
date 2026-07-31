@@ -1,0 +1,4 @@
+//game=Urban Chaos: Riot Response
+//serial=SC-247
+//titleid=534300F7
+//kind=patches

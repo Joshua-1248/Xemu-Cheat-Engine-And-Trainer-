@@ -1,0 +1,4 @@
+//game=Panzer Dragoon Orta
+//serial=SE-007
+//titleid=53450007
+//kind=patches

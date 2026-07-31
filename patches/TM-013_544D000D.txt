@@ -1,0 +1,4 @@
+//game=Haunted Mansion, The
+//serial=TM-013
+//titleid=544D000D
+//kind=patches

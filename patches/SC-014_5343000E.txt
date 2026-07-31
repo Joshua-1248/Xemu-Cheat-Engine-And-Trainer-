@@ -1,0 +1,4 @@
+//game=Rogue Trooper
+//serial=SC-014
+//titleid=5343000E
+//kind=patches

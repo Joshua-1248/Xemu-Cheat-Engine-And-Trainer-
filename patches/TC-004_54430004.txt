@@ -1,0 +1,4 @@
+//game=Fatal Frame
+//serial=TC-004
+//titleid=54430004
+//kind=patches

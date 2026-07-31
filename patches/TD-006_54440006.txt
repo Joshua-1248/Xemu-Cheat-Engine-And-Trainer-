@@ -1,0 +1,4 @@
+//game=High Heat Major League Baseball 2004
+//serial=TD-006
+//titleid=54440006
+//kind=patches

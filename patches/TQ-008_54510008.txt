@@ -1,0 +1,4 @@
+//game=MotoGP
+//serial=TQ-008
+//titleid=54510008
+//kind=patches

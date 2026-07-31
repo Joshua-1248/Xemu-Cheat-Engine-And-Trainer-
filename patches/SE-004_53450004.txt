@@ -1,0 +1,4 @@
+//game=Crazy Taxi 3: High Roller
+//serial=SE-004
+//titleid=53450004
+//kind=patches

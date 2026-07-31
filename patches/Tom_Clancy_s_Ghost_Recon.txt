@@ -1,0 +1,4 @@
+//game=Tom Clancy's Ghost Recon
+//serial=
+//titleid=
+//kind=patches

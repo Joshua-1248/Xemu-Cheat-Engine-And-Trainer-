@@ -1,0 +1,4 @@
+//game=Sims, The 2: Pets
+//serial=
+//titleid=
+//kind=patches

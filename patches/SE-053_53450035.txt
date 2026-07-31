@@ -1,0 +1,4 @@
+//game=Worms Forts: Under Siege
+//serial=SE-053
+//titleid=53450035
+//kind=patches

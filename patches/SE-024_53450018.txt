@@ -1,0 +1,4 @@
+//game=NCAA College Basketball 2K3
+//serial=SE-024
+//titleid=53450018
+//kind=patches

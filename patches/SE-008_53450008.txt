@@ -1,0 +1,4 @@
+//game=House of the Dead III, The
+//serial=SE-008
+//titleid=53450008
+//kind=patches

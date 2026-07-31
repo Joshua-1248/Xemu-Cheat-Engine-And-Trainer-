@@ -1,0 +1,4 @@
+//game=SpongeBob SquarePants: Battle for Bikini Bottom
+//serial=TQ-026
+//titleid=5451001A
+//kind=patches

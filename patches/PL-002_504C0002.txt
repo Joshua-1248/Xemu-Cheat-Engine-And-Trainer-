@@ -1,0 +1,4 @@
+//game=Kingdom Under Fire: The Crusaders
+//serial=PL-002
+//titleid=504C0002
+//kind=patches

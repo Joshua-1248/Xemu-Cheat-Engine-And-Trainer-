@@ -1,0 +1,4 @@
+//game=ESPN NFL 2K5
+//serial=SE-048
+//titleid=53450030
+//kind=patches

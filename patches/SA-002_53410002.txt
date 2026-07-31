@@ -1,0 +1,4 @@
+//game=Guilty Gear X2 Reload: The Midnight Carnival
+//serial=SA-002
+//titleid=53410002
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Metal Slug 5
+//serial=SN-008
+//titleid=534E0008
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Dinotopia: The Sunstone Odyssey
+//serial=TM-015
+//titleid=544D000F
+//kind=patches

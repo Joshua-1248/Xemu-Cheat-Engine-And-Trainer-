@@ -1,0 +1,4 @@
+//game=Evil Dead: A Fistful of Boomstick
+//serial=TQ-011
+//titleid=5451000B
+//kind=patches

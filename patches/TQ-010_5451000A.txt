@@ -1,0 +1,4 @@
+//game=Tetris Worlds
+//serial=TQ-010
+//titleid=5451000A
+//kind=patches

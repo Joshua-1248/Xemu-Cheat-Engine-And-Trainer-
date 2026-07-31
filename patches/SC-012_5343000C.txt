@@ -1,0 +1,4 @@
+//game=Conflict: Global Terror
+//serial=SC-012
+//titleid=5343000C
+//kind=patches

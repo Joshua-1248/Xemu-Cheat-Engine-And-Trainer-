@@ -1,0 +1,4 @@
+//game=Aquaman: Battle for Atlantis
+//serial=TM-003
+//titleid=544D0003
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Sonic Heroes
+//serial=SE-043
+//titleid=5345002B
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Scooby-Doo! Mystery Mayhem
+//serial=TQ-014
+//titleid=5451000E
+//kind=patches

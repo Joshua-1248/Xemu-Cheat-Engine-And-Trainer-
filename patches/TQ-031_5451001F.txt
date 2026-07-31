@@ -1,0 +1,4 @@
+//game=Scooby-Doo! Night of 100 Frights
+//serial=TQ-031
+//titleid=5451001F
+//kind=patches
