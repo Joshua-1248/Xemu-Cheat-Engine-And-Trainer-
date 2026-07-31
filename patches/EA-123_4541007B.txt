@@ -1,0 +1,4 @@
+//game=Need for Speed: Most Wanted
+//serial=EA-123
+//titleid=4541007B
+//kind=patches

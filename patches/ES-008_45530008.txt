@@ -1,0 +1,4 @@
+//game=Commandos 2: Men of Courage
+//serial=ES-008
+//titleid=45530008
+//kind=patches

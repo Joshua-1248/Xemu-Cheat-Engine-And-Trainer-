@@ -1,0 +1,4 @@
+//game=TimeSplitters: Future Perfect
+//serial=EA-102
+//titleid=45410066
+//kind=patches

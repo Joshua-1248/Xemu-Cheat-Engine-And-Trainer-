@@ -1,0 +1,4 @@
+//game=Lord of the Rings, The: The Third Age
+//serial=EA-095
+//titleid=4541005F
+//kind=patches

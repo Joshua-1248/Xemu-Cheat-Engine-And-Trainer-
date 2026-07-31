@@ -1,0 +1,4 @@
+//game=Hitman 2: Silent Assassin
+//serial=ES-009
+//titleid=45530009
+//kind=patches

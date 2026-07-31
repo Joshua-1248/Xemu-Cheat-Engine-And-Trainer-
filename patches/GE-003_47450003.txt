@@ -1,0 +1,4 @@
+//game=Phantom Crash
+//serial=GE-003
+//titleid=47450003
+//kind=patches

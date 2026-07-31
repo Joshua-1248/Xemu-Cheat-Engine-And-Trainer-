@@ -1,0 +1,4 @@
+//game=Rugby League
+//serial=HE-001
+//titleid=48450001
+//kind=patches

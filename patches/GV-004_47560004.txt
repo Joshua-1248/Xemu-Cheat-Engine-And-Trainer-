@@ -1,0 +1,4 @@
+//game=Land of the Dead: Road to Fiddler's Green
+//serial=GV-004
+//titleid=47560004
+//kind=patches

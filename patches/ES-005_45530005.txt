@@ -1,0 +1,4 @@
+//game=Deus Ex: Invisible War
+//serial=ES-005
+//titleid=45530005
+//kind=patches

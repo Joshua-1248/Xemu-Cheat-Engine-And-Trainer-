@@ -1,0 +1,4 @@
+//game=Hunter: The Reckoning - Wayward
+//serial=
+//titleid=
+//kind=patches

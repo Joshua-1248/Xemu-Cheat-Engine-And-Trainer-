@@ -1,0 +1,4 @@
+//game=Starsky & Hutch
+//serial=EM-005
+//titleid=454D0005
+//kind=patches

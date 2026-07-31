@@ -1,0 +1,4 @@
+//game=Ty the Tasmanian Tiger 2: Bush Rescue
+//serial=EA-099
+//titleid=45410063
+//kind=patches

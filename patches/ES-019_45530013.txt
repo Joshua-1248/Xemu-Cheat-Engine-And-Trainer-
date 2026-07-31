@@ -1,0 +1,4 @@
+//game=ShellShock: Nam '67
+//serial=ES-019
+//titleid=45530013
+//kind=patches

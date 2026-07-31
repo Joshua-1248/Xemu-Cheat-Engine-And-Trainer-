@@ -1,0 +1,4 @@
+//game=Ford Racing 2
+//serial=EM-007
+//titleid=454D0007
+//kind=patches

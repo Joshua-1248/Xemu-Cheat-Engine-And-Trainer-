@@ -1,0 +1,4 @@
+//game=Tiger Woods PGA Tour 07
+//serial=EA-164
+//titleid=454100A4
+//kind=patches

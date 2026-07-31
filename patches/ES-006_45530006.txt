@@ -1,0 +1,4 @@
+//game=Blood Omen 2
+//serial=ES-006
+//titleid=45530006
+//kind=patches

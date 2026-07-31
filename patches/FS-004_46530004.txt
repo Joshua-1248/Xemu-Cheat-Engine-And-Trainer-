@@ -1,0 +1,4 @@
+//game=Otogi 2: Immortal Warriors
+//serial=FS-004
+//titleid=46530004
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Harry Potter and the Goblet of Fire
+//serial=EA-119
+//titleid=45410077
+//kind=patches

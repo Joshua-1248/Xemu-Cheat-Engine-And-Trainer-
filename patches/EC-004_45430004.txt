@@ -1,0 +1,4 @@
+//game=Heroes of the Pacific
+//serial=EC-004
+//titleid=45430004
+//kind=patches

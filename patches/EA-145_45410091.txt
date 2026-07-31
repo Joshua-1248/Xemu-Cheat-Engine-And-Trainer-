@@ -1,0 +1,4 @@
+//game=Half-Life 2
+//serial=EA-145
+//titleid=45410091
+//kind=patches

@@ -1,0 +1,4 @@
+//game=NBA Live 07
+//serial=EA-161
+//titleid=454100A1
+//kind=patches

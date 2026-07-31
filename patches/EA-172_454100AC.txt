@@ -1,0 +1,4 @@
+//game=Madden NFL 08
+//serial=EA-172
+//titleid=454100AC
+//kind=patches

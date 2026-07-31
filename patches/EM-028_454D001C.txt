@@ -1,0 +1,4 @@
+//game=Taito Legends
+//serial=EM-028
+//titleid=454D001C
+//kind=patches

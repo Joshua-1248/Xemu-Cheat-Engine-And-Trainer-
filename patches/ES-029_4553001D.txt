@@ -1,0 +1,4 @@
+//game=Lego Star Wars: The Video Game
+//serial=ES-029
+//titleid=4553001D
+//kind=patches

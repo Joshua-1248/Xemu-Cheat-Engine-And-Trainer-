@@ -1,0 +1,4 @@
+//game=Superman Returns
+//serial=EA-160
+//titleid=454100A0
+//kind=patches

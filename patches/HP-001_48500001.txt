@@ -1,0 +1,4 @@
+//game=Stolen
+//serial=HP-001
+//titleid=48500001
+//kind=patches

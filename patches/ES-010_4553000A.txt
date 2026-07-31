@@ -1,0 +1,4 @@
+//game=TimeSplitters 2
+//serial=ES-010
+//titleid=4553000A
+//kind=patches

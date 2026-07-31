@@ -1,0 +1,4 @@
+//game=Hitman: Contracts
+//serial=ES-018
+//titleid=45530012
+//kind=patches

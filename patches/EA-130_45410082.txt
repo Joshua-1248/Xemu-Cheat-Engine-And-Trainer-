@@ -1,0 +1,4 @@
+//game=SSX On Tour
+//serial=EA-130
+//titleid=45410082
+//kind=patches

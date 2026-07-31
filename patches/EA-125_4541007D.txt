@@ -1,0 +1,4 @@
+//game=Godfather, The
+//serial=EA-125
+//titleid=4541007D
+//kind=patches

@@ -1,0 +1,4 @@
+//game=NHL 06
+//serial=EA-124
+//titleid=4541007C
+//kind=patches

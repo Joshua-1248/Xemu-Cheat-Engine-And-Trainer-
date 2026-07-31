@@ -1,0 +1,4 @@
+//game=Bloody Roar Extreme
+//serial=HU-001
+//titleid=48550001
+//kind=patches

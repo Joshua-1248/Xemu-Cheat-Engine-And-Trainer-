@@ -1,0 +1,4 @@
+//game=Grooverider: Slot Car Thunder
+//serial=EC-002
+//titleid=45430002
+//kind=patches

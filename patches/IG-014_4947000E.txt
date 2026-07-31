@@ -1,0 +1,4 @@
+//game=Magic: The Gathering - Battlegrounds
+//serial=IG-014
+//titleid=4947000E
+//kind=patches

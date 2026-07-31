@@ -1,0 +1,4 @@
+//game=Circus Maximus: Chariot Wars
+//serial=EC-001
+//titleid=45430001
+//kind=patches

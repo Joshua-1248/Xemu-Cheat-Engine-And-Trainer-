@@ -1,0 +1,4 @@
+//game=Furious Karting
+//serial=IG-011
+//titleid=4947000B
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Madden NFL 06
+//serial=EA-117
+//titleid=45410075
+//kind=patches
