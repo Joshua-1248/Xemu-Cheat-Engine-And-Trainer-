@@ -1,0 +1,4 @@
+//game=Whacked!
+//serial=MS-039
+//titleid=4D530027
+//kind=patches

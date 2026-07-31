@@ -1,0 +1,4 @@
+//game=MLB SlugFest 2003
+//serial=MW-008
+//titleid=4D570008
+//kind=patches

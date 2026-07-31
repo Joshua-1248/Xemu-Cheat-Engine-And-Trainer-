@@ -1,0 +1,4 @@
+//game=NHL Hitz 2003
+//serial=MW-011
+//titleid=4D57000B
+//kind=patches

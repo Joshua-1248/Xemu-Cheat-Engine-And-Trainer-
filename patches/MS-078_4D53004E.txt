@@ -1,0 +1,4 @@
+//game=NHL Rivals 2004
+//serial=MS-078
+//titleid=4D53004E
+//kind=patches

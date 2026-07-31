@@ -1,0 +1,17 @@
+//game=Halo 2
+//serial=MS-100
+//titleid=4D530064
+//kind=patches
+
+//enabled=0
+; Author: Josh_7774
+; Patches game to run at 60 FPS.
+[60 FPS] {
+  802E0B73 000000EB
+}
+
+//enabled=0
+; Author: Josh_7774
+[Instant Game Start In Multiplayer Menu] {
+  236043B0 00000000
+}

@@ -1,0 +1,4 @@
+//game=Halo: Combat Evolved
+//serial=MS-004
+//titleid=4D530004
+//kind=patches

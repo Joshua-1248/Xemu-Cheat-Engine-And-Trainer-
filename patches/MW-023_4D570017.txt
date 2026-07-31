@@ -1,0 +1,4 @@
+//game=Freestyle MetalX
+//serial=MW-023
+//titleid=4D570017
+//kind=patches

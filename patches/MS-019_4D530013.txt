@@ -1,0 +1,4 @@
+//game=Blinx: The Time Sweeper
+//serial=MS-019
+//titleid=4D530013
+//kind=patches

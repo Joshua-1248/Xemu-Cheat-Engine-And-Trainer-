@@ -1,0 +1,4 @@
+//game=Midway Arcade Treasures 2
+//serial=MW-032
+//titleid=4D570020
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Xyanide
+//serial=PC-001
+//titleid=50430001
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Mortal Kombat: Deception
+//serial=MW-025
+//titleid=4D570019
+//kind=patches

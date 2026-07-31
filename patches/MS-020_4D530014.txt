@@ -1,0 +1,4 @@
+//game=Tao Feng: Fist of the Lotus
+//serial=MS-020
+//titleid=4D530014
+//kind=patches

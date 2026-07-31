@@ -1,0 +1,4 @@
+//game=Pac-Man World 2
+//serial=NM-006
+//titleid=4E4D0006
+//kind=patches

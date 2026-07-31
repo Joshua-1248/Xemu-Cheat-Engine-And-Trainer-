@@ -1,0 +1,4 @@
+//game=NHL Hitz 2002
+//serial=MW-003
+//titleid=4D570003
+//kind=patches

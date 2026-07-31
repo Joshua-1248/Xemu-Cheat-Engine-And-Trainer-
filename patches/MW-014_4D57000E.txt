@@ -1,0 +1,4 @@
+//game=Gauntlet Dark Legacy
+//serial=MW-014
+//titleid=4D57000E
+//kind=patches

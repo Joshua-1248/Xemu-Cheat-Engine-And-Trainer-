@@ -1,0 +1,4 @@
+//game=NightCaster
+//serial=MS-008
+//titleid=4D530008
+//kind=patches

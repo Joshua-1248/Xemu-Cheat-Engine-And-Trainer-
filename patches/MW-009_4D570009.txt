@@ -1,0 +1,4 @@
+//game=MLB SlugFest 2004
+//serial=MW-009
+//titleid=4D570009
+//kind=patches

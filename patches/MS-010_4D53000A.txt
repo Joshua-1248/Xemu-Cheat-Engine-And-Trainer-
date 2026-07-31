@@ -1,0 +1,4 @@
+//game=Sudeki
+//serial=MS-010
+//titleid=4D53000A
+//kind=patches

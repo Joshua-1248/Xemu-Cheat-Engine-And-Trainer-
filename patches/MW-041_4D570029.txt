@@ -1,0 +1,4 @@
+//game=Mortal Kombat: Shaolin Monks
+//serial=MW-041
+//titleid=4D570029
+//kind=patches

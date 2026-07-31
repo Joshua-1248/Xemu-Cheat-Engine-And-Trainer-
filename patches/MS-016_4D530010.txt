@@ -1,0 +1,4 @@
+//game=Blood Wake
+//serial=MS-016
+//titleid=4D530010
+//kind=patches

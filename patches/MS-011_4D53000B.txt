@@ -1,0 +1,4 @@
+//game=NBA Inside Drive 2004
+//serial=MS-011
+//titleid=4D53000B
+//kind=patches

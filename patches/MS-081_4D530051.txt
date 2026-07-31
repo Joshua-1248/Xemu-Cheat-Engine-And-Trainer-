@@ -1,0 +1,4 @@
+//game=Conker - Live & Reloaded
+//serial=MS-081
+//titleid=4D530051
+//kind=patches

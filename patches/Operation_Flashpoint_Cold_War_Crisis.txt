@@ -1,0 +1,4 @@
+//game=Operation Flashpoint: Cold War Crisis
+//serial=
+//titleid=
+//kind=patches

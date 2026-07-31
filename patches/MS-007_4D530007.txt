@@ -1,0 +1,4 @@
+//game=Azurik: Rise of Perathia
+//serial=MS-007
+//titleid=4D530007
+//kind=patches

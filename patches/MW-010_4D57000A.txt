@@ -1,0 +1,4 @@
+//game=NFL Blitz 2003
+//serial=MW-010
+//titleid=4D57000A
+//kind=patches

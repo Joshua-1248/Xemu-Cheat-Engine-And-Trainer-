@@ -1,0 +1,4 @@
+//game=I-Ninja
+//serial=NM-015
+//titleid=4E4D000F
+//kind=patches

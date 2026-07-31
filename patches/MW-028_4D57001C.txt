@@ -1,0 +1,4 @@
+//game=Midway Arcade Treasures
+//serial=MW-028
+//titleid=4D57001C
+//kind=patches

@@ -1,0 +1,4 @@
+//game=NFL Fever 2003
+//serial=MS-040
+//titleid=4D530028
+//kind=patches

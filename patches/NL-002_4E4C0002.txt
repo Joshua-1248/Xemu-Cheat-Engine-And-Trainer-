@@ -1,0 +1,4 @@
+//game=Delta Force: Black Hawk Down
+//serial=NL-002
+//titleid=4E4C0002
+//kind=patches

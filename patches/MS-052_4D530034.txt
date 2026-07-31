@@ -1,0 +1,4 @@
+//game=Inside Pitch 2003
+//serial=MS-052
+//titleid=4D530034
+//kind=patches

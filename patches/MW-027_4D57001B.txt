@@ -1,0 +1,4 @@
+//game=Spy Hunter 2
+//serial=MW-027
+//titleid=4D57001B
+//kind=patches

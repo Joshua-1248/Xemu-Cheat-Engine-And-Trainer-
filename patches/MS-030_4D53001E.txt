@@ -1,0 +1,4 @@
+//game=Brute Force
+//serial=MS-030
+//titleid=4D53001E
+//kind=patches

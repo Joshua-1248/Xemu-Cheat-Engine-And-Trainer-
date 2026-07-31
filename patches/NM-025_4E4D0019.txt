@@ -1,0 +1,4 @@
+//game=Curious George
+//serial=NM-025
+//titleid=4E4D0019
+//kind=patches

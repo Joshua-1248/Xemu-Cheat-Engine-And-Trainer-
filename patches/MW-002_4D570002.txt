@@ -1,0 +1,4 @@
+//game=Arctic Thunder
+//serial=MW-002
+//titleid=4D570002
+//kind=patches

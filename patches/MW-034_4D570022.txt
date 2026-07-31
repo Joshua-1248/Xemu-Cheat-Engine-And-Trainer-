@@ -1,0 +1,4 @@
+//game=Gauntlet: Seven Sorrows
+//serial=MW-034
+//titleid=4D570022
+//kind=patches

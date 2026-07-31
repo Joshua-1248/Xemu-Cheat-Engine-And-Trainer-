@@ -1,0 +1,4 @@
+//game=Phantasy Star Online Episode I & II
+//serial=MS-074
+//titleid=4D53004A
+//kind=patches

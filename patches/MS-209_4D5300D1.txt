@@ -1,0 +1,4 @@
+//game=Fable: The Lost Chapters
+//serial=MS-209
+//titleid=4D5300D1
+//kind=patches

@@ -1,0 +1,4 @@
+//game=R: Racing Evolution
+//serial=NM-008
+//titleid=4E4D0008
+//kind=patches

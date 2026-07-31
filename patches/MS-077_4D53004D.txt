@@ -1,0 +1,4 @@
+//game=NFL Fever 2004
+//serial=MS-077
+//titleid=4D53004D
+//kind=patches

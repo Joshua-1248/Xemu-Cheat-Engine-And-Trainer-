@@ -1,0 +1,4 @@
+//game=Ed, Edd n Eddy: The Mis-Edventures
+//serial=MW-050
+//titleid=4D570032
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Grabbed by the Ghoulies
+//serial=MS-083
+//titleid=4D530053
+//kind=patches

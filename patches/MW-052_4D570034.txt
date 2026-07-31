@@ -1,0 +1,4 @@
+//game=Mortal Kombat: Armageddon
+//serial=MW-052
+//titleid=4D570034
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Midway Arcade Treasures 3
+//serial=MW-045
+//titleid=4D57002D
+//kind=patches

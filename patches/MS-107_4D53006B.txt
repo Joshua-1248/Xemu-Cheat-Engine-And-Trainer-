@@ -1,0 +1,4 @@
+//game=MechAssault 2: Lone Wolf
+//serial=MS-107
+//titleid=4D53006B
+//kind=patches

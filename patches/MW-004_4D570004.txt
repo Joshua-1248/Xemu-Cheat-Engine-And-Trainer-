@@ -1,0 +1,4 @@
+//game=Spy Hunter
+//serial=MW-004
+//titleid=4D570004
+//kind=patches

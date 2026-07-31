@@ -1,0 +1,4 @@
+//game=Amped 2
+//serial=MS-065
+//titleid=4D530041
+//kind=patches
