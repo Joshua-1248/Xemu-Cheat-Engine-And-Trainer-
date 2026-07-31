@@ -1,0 +1,4 @@
+//game=SSX 3
+//serial=EA-060
+//titleid=4541003C
+//kind=patches

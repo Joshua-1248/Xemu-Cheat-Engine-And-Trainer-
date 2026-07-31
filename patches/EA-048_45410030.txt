@@ -1,0 +1,4 @@
+//game=NHL 2004
+//serial=EA-048
+//titleid=45410030
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Knockout Kings 2002
+//serial=EA-010
+//titleid=4541000A
+//kind=patches

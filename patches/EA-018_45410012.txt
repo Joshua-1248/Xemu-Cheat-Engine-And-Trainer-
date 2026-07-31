@@ -1,0 +1,4 @@
+//game=Buffy the Vampire Slayer
+//serial=EA-018
+//titleid=45410012
+//kind=patches

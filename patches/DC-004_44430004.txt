@@ -1,0 +1,4 @@
+//game=Cold War
+//serial=DC-004
+//titleid=44430004
+//kind=patches

@@ -1,0 +1,4 @@
+//game=World Championship Poker
+//serial=CV-013
+//titleid=4356000D
+//kind=patches

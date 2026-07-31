@@ -1,0 +1,4 @@
+//game=Fight Night 2004
+//serial=EA-075
+//titleid=4541004B
+//kind=patches

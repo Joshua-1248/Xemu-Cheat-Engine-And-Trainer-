@@ -1,0 +1,4 @@
+//game=NHL 2005
+//serial=EA-079
+//titleid=4541004F
+//kind=patches

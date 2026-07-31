@@ -1,0 +1,4 @@
+//game=Medal of Honor: Frontline
+//serial=EA-026
+//titleid=4541001A
+//kind=patches

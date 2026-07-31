@@ -1,0 +1,4 @@
+//game=Group S Challenge
+//serial=CC-005
+//titleid=43430005
+//kind=patches

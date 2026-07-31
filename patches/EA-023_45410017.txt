@@ -1,0 +1,4 @@
+//game=FIFA Soccer 2003
+//serial=EA-023
+//titleid=45410017
+//kind=patches

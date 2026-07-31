@@ -1,0 +1,4 @@
+//game=Pro Cast Sports Fishing
+//serial=CC-011
+//titleid=4343000B
+//kind=patches

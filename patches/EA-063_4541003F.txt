@@ -1,0 +1,4 @@
+//game=Medal of Honor: Rising Sun
+//serial=EA-063
+//titleid=4541003F
+//kind=patches

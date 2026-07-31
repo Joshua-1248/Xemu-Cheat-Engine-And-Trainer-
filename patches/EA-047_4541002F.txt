@@ -1,0 +1,4 @@
+//game=Sims, The
+//serial=EA-047
+//titleid=4541002F
+//kind=patches

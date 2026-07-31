@@ -1,0 +1,4 @@
+//game=Trigger Man
+//serial=CV-009
+//titleid=43560009
+//kind=patches

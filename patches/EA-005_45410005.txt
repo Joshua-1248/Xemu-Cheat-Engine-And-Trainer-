@@ -1,0 +1,4 @@
+//game=NHL 2002
+//serial=EA-005
+//titleid=45410005
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Without Warning
+//serial=CC-020
+//titleid=43430014
+//kind=patches

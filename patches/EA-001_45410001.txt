@@ -1,0 +1,4 @@
+//game=Madden NFL 2002
+//serial=EA-001
+//titleid=45410001
+//kind=patches

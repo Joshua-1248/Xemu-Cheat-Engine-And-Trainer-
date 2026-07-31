@@ -1,0 +1,4 @@
+//game=Madden NFL 2004
+//serial=EA-054
+//titleid=45410036
+//kind=patches

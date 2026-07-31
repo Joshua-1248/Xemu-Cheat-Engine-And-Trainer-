@@ -1,0 +1,4 @@
+//game=Strike Force Bowling
+//serial=CV-008
+//titleid=43560008
+//kind=patches

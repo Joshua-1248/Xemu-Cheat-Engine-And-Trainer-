@@ -1,0 +1,4 @@
+//game=Miami Vice
+//serial=DX-001
+//titleid=44580001
+//kind=patches

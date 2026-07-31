@@ -1,0 +1,4 @@
+//game=Dark Angel
+//serial=
+//titleid=
+//kind=patches

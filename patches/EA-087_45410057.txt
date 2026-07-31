@@ -1,0 +1,4 @@
+//game=NFL Street 2
+//serial=EA-087
+//titleid=45410057
+//kind=patches

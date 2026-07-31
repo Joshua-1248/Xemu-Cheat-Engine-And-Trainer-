@@ -1,0 +1,4 @@
+//game=NBA Live 2005
+//serial=EA-080
+//titleid=45410050
+//kind=patches

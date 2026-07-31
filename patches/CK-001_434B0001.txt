@@ -1,0 +1,4 @@
+//game=Dai Senryaku VII: Modern Military Tactics
+//serial=CK-001
+//titleid=434B0001
+//kind=patches

@@ -1,0 +1,4 @@
+//game=LMA Manager 2003
+//serial=CM-004
+//titleid=434D0004
+//kind=patches

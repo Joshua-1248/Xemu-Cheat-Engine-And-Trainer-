@@ -1,0 +1,4 @@
+//game=NHL 2003
+//serial=EA-030
+//titleid=4541001E
+//kind=patches

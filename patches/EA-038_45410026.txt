@@ -1,0 +1,4 @@
+//game=007 - NightFire
+//serial=EA-038
+//titleid=45410026
+//kind=patches

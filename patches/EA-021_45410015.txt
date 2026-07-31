@@ -1,0 +1,4 @@
+//game=Pirates: The Legend of Black Kat
+//serial=EA-021
+//titleid=45410015
+//kind=patches

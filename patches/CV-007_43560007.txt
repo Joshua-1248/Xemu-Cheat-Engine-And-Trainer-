@@ -1,0 +1,4 @@
+//game=Future Tactics: The Uprising
+//serial=CV-007
+//titleid=43560007
+//kind=patches

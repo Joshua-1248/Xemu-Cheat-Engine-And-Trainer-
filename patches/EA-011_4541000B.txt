@@ -1,0 +1,4 @@
+//game=2002 FIFA World Cup
+//serial=EA-011
+//titleid=4541000B
+//kind=patches

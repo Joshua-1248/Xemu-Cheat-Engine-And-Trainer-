@@ -1,0 +1,4 @@
+//game=Tiger Woods PGA Tour 2005
+//serial=EA-084
+//titleid=45410054
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Sims, The: Bustin' Out
+//serial=EA-067
+//titleid=45410043
+//kind=patches

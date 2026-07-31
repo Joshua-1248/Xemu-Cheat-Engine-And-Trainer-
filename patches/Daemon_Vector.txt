@@ -1,0 +1,4 @@
+//game=Daemon Vector
+//serial=
+//titleid=
+//kind=patches

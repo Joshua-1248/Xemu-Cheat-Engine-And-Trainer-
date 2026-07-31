@@ -1,0 +1,4 @@
+//game=Capcom Fighting Evolution
+//serial=CC-016
+//titleid=43430010
+//kind=patches

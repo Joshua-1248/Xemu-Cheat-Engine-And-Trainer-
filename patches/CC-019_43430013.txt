@@ -1,0 +1,4 @@
+//game=Final Fight: Streetwise
+//serial=CC-019
+//titleid=43430013
+//kind=patches

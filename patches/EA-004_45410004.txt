@@ -1,0 +1,4 @@
+//game=SSX Tricky
+//serial=EA-004
+//titleid=45410004
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Beat Down: Fists of Vengeance
+//serial=CC-021
+//titleid=43430015
+//kind=patches

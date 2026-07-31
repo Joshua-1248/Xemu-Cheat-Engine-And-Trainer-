@@ -1,0 +1,4 @@
+//game=NCAA Football 2005
+//serial=EA-081
+//titleid=45410051
+//kind=patches

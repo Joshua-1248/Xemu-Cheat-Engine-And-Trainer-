@@ -1,0 +1,4 @@
+//game=MVP Baseball 2003
+//serial=EA-045
+//titleid=4541002D
+//kind=patches

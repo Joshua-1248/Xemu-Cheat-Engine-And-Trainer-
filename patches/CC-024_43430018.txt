@@ -1,0 +1,4 @@
+//game=Capcom Classics Collection
+//serial=CC-024
+//titleid=43430018
+//kind=patches

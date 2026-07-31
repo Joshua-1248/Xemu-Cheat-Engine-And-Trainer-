@@ -1,0 +1,4 @@
+//game=Harry Potter and the Prisoner of Azkaban
+//serial=EA-076
+//titleid=4541004C
+//kind=patches

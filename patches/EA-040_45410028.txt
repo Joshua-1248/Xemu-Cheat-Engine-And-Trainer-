@@ -1,0 +1,4 @@
+//game=Need for Speed: Hot Pursuit 2
+//serial=EA-040
+//titleid=45410028
+//kind=patches

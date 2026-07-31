@@ -1,0 +1,4 @@
+//game=Mojo!
+//serial=CV-005
+//titleid=43560005
+//kind=patches

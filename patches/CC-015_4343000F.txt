@@ -1,0 +1,4 @@
+//game=Street Fighter Anniversary Collection
+//serial=CC-015
+//titleid=4343000F
+//kind=patches
