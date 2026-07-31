@@ -1,0 +1,4 @@
+//game=Hunter: The Reckoning - Redeemer
+//serial=VU-045
+//titleid=5655002D
+//kind=patches

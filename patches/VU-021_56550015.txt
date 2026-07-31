@@ -1,0 +1,4 @@
+//game=Simpsons, The: Hit & Run
+//serial=VU-021
+//titleid=56550015
+//kind=patches

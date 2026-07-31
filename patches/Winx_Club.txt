@@ -1,0 +1,4 @@
+//game=Winx Club
+//serial=
+//titleid=
+//kind=patches

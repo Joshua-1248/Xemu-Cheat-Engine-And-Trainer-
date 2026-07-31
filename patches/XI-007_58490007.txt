@@ -1,0 +1,4 @@
+//game=Judge Dredd: Dredd vs. Death
+//serial=XI-007
+//titleid=58490007
+//kind=patches

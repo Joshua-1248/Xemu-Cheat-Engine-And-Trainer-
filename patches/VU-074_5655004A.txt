@@ -1,0 +1,4 @@
+//game=Legend of Spyro, The: A New Beginning
+//serial=VU-074
+//titleid=5655004A
+//kind=patches

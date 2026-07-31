@@ -1,0 +1,4 @@
+//game=Van Helsing
+//serial=VU-041
+//titleid=56550029
+//kind=patches

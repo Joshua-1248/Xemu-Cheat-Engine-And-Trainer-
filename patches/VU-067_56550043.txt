@@ -1,0 +1,4 @@
+//game=Eragon
+//serial=VU-067
+//titleid=56550043
+//kind=patches

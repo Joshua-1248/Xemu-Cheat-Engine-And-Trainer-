@@ -1,0 +1,4 @@
+//game=Baldur's Gate: Dark Alliance
+//serial=VU-026
+//titleid=5655001A
+//kind=patches

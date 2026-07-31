@@ -1,0 +1,4 @@
+//game=Lotus Challenge
+//serial=XI-005
+//titleid=58490005
+//kind=patches

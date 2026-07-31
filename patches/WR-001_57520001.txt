@@ -1,0 +1,4 @@
+//game=Justice League Heroes
+//serial=WR-001
+//titleid=57520001
+//kind=patches

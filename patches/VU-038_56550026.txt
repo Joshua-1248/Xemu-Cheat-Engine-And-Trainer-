@@ -1,0 +1,4 @@
+//game=Chronicles of Riddick, The: Escape from Butcher Bay
+//serial=VU-038
+//titleid=56550026
+//kind=patches

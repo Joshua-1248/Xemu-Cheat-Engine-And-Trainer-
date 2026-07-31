@@ -1,0 +1,4 @@
+//game=Jurassic Park: Operation Genesis
+//serial=VU-033
+//titleid=56550021
+//kind=patches

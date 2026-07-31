@@ -1,0 +1,4 @@
+//game=Bass Pro Shops: Trophy Bass 2007
+//serial=VU-073
+//titleid=56550049
+//kind=patches
