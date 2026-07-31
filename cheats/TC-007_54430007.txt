@@ -1,0 +1,4 @@
+//game=Dead or Alive Xtreme Beach Volleyball
+//serial=TC-007
+//titleid=54430007
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Special Forces: Nemesis Strike
+//serial=
+//titleid=
+//kind=cheats

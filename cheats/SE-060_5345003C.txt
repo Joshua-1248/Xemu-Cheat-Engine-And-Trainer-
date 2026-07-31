@@ -1,0 +1,4 @@
+//game=Sonic Mega Collection Plus
+//serial=SE-060
+//titleid=5345003C
+//kind=cheats

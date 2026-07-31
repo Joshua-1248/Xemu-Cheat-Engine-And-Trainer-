@@ -1,0 +1,4 @@
+//game=Dead or Alive 1 Ultimate
+//serial=TC-006
+//titleid=54430006
+//kind=cheats

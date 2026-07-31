@@ -1,0 +1,4 @@
+//game=ESPN College Hoops 2K5
+//serial=SE-051
+//titleid=53450033
+//kind=cheats

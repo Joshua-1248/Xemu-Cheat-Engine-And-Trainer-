@@ -1,0 +1,4 @@
+//game=Headhunter: Redemption
+//serial=SE-037
+//titleid=53450025
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=WWE Raw 2
+//serial=TQ-013
+//titleid=5451000D
+//kind=cheats

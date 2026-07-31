@@ -1,0 +1,4 @@
+//game=New Legends
+//serial=TQ-001
+//titleid=54510001
+//kind=cheats

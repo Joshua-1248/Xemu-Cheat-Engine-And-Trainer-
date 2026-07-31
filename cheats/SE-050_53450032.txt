@@ -1,0 +1,4 @@
+//game=ESPN NHL 2K5
+//serial=SE-050
+//titleid=53450032
+//kind=cheats

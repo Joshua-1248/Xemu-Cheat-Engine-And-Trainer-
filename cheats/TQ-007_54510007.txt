@@ -1,0 +1,4 @@
+//game=Toxic Grind
+//serial=TQ-007
+//titleid=54510007
+//kind=cheats

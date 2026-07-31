@@ -1,0 +1,4 @@
+//game=Worms 3D
+//serial=SE-042
+//titleid=5345002A
+//kind=cheats

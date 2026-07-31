@@ -1,0 +1,4 @@
+//game=Alter Echo
+//serial=TQ-015
+//titleid=5451000F
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Total Overdose
+//serial=SC-016
+//titleid=53430010
+//kind=cheats

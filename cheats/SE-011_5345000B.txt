@@ -1,0 +1,4 @@
+//game=Gunvalkyrie
+//serial=SE-011
+//titleid=5345000B
+//kind=cheats

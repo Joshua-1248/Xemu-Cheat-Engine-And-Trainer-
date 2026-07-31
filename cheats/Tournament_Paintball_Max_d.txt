@@ -1,0 +1,4 @@
+//game=Tournament Paintball Max'd
+//serial=
+//titleid=
+//kind=cheats

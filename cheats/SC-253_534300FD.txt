@@ -1,0 +1,4 @@
+//game=Tomb Raider: Legend
+//serial=SC-253
+//titleid=534300FD
+//kind=cheats

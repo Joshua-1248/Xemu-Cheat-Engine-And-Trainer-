@@ -1,0 +1,4 @@
+//game=ESPN Major League Baseball
+//serial=SE-040
+//titleid=53450028
+//kind=cheats

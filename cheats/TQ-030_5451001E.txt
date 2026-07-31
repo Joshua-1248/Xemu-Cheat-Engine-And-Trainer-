@@ -1,0 +1,4 @@
+//game=Finding Nemo
+//serial=TQ-030
+//titleid=5451001E
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=NBA 2K3
+//serial=SE-019
+//titleid=53450013
+//kind=cheats

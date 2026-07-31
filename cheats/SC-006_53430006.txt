@@ -1,0 +1,4 @@
+//game=Conflict: Desert Storm II - Back to Baghdad
+//serial=SC-006
+//titleid=53430006
+//kind=cheats

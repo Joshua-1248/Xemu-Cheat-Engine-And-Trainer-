@@ -1,0 +1,4 @@
+//game=OutRun 2006: Coast 2 Coast
+//serial=SE-136
+//titleid=53450088
+//kind=cheats

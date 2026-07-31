@@ -1,0 +1,4 @@
+//game=Kingdom Under Fire: Heroes
+//serial=PL-006
+//titleid=504C0006
+//kind=cheats

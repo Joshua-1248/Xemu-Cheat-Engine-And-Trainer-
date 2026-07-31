@@ -1,0 +1,4 @@
+//game=WWE Raw
+//serial=TQ-002
+//titleid=54510002
+//kind=cheats

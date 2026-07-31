@@ -1,0 +1,4 @@
+//game=World Series Baseball 2K3
+//serial=SE-026
+//titleid=5345001A
+//kind=cheats

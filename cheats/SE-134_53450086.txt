@@ -1,0 +1,4 @@
+//game=Shadow the Hedgehog
+//serial=SE-134
+//titleid=53450086
+//kind=cheats

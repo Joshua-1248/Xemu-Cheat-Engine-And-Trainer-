@@ -1,0 +1,4 @@
+//game=Pokemon XD: Gale of Darkness
+//serial=
+//titleid=
+//kind=cheats

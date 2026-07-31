@@ -1,0 +1,4 @@
+//game=Red Faction II
+//serial=TQ-005
+//titleid=54510005
+//kind=cheats

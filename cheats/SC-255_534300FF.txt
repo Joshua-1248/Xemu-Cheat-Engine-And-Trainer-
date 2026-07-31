@@ -1,0 +1,4 @@
+//game=Reservoir Dogs
+//serial=SC-255
+//titleid=534300FF
+//kind=cheats

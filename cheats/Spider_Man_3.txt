@@ -1,0 +1,4 @@
+//game=Spider-Man 3
+//serial=
+//titleid=
+//kind=cheats

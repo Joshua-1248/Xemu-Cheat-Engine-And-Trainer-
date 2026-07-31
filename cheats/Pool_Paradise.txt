@@ -1,0 +1,4 @@
+//game=Pool Paradise
+//serial=
+//titleid=
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Power Rangers: Dino Thunder
+//serial=
+//titleid=
+//kind=cheats

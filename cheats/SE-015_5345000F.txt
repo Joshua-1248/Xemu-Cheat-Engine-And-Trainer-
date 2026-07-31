@@ -1,0 +1,4 @@
+//game=ToeJam & Earl III: Mission to Earth
+//serial=SE-015
+//titleid=5345000F
+//kind=cheats

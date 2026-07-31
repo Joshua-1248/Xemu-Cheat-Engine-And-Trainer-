@@ -1,0 +1,4 @@
+//game=Fatal Frame II: Crimson Butterfly
+//serial=TC-010
+//titleid=5443000A
+//kind=cheats

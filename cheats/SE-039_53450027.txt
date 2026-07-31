@@ -1,0 +1,4 @@
+//game=Puyo Pop Fever
+//serial=SE-039
+//titleid=53450027
+//kind=cheats

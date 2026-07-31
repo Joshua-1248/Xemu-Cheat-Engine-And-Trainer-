@@ -1,0 +1,4 @@
+//game=MotoGP 2
+//serial=TQ-022
+//titleid=54510016
+//kind=cheats

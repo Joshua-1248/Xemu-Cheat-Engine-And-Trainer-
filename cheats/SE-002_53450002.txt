@@ -1,0 +1,4 @@
+//game=NBA 2K2
+//serial=SE-002
+//titleid=53450002
+//kind=cheats

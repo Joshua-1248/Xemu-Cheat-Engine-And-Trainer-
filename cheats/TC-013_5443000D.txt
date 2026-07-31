@@ -1,0 +1,4 @@
+//game=Ninja Gaiden Black
+//serial=TC-013
+//titleid=5443000D
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=NCAA College Football 2K3
+//serial=SE-016
+//titleid=53450010
+//kind=cheats

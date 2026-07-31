@@ -1,0 +1,4 @@
+//game=Metal Slug 4
+//serial=SN-005
+//titleid=534E0005
+//kind=cheats

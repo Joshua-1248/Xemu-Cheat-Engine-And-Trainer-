@@ -1,0 +1,4 @@
+//game=Tom Clancy's Ghost Recon 2
+//serial=
+//titleid=
+//kind=cheats

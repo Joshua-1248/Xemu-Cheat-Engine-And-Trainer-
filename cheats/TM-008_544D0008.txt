@@ -1,0 +1,4 @@
+//game=Conan
+//serial=TM-008
+//titleid=544D0008
+//kind=cheats

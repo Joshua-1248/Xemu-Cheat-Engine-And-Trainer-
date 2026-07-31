@@ -1,0 +1,4 @@
+//game=OutRun 2
+//serial=SE-054
+//titleid=53450036
+//kind=cheats

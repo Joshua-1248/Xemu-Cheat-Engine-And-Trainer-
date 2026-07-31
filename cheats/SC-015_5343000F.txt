@@ -1,0 +1,4 @@
+//game=Constantine
+//serial=SC-015
+//titleid=5343000F
+//kind=cheats

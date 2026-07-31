@@ -1,0 +1,4 @@
+//game=Richard Burns Rally
+//serial=SC-005
+//titleid=53430005
+//kind=cheats

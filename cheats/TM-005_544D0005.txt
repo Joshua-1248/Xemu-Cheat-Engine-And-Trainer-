@@ -1,0 +1,4 @@
+//game=World Racing
+//serial=TM-005
+//titleid=544D0005
+//kind=cheats

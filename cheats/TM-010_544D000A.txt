@@ -1,0 +1,4 @@
+//game=UFC: Tapout 2
+//serial=TM-010
+//titleid=544D000A
+//kind=cheats

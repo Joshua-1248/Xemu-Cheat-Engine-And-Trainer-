@@ -1,0 +1,4 @@
+//game=Jet Set Radio Future
+//serial=SE-010
+//titleid=5345000A
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Metal Slug 3
+//serial=SN-002
+//titleid=534E0002
+//kind=cheats

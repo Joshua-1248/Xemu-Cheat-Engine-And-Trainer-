@@ -1,0 +1,4 @@
+//game=Dead or Alive 3
+//serial=TC-001
+//titleid=54430001
+//kind=cheats

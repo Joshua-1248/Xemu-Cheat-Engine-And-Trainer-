@@ -1,0 +1,4 @@
+//game=Dark Summit
+//serial=TQ-004
+//titleid=54510004
+//kind=cheats

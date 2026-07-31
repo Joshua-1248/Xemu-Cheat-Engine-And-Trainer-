@@ -1,0 +1,4 @@
+//game=Just Cause
+//serial=SC-251
+//titleid=534300FB
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Knights of the Temple: Infernal Crusade
+//serial=TM-007
+//titleid=544D0007
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Super Monkey Ball Deluxe
+//serial=SE-056
+//titleid=53450038
+//kind=cheats
