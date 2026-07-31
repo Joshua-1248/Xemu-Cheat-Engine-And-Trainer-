@@ -1,0 +1,4 @@
+//game=Yakuza
+//serial=
+//titleid=
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Black Stone: Magic & Steel
+//serial=XI-004
+//titleid=58490004
+//kind=cheats

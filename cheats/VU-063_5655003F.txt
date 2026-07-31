@@ -1,0 +1,4 @@
+//game=Scarface: The World Is Yours
+//serial=VU-063
+//titleid=5655003F
+//kind=cheats

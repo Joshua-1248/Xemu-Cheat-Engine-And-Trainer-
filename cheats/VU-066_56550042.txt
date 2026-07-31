@@ -1,0 +1,4 @@
+//game=50 Cent: Bulletproof
+//serial=VU-066
+//titleid=56550042
+//kind=cheats

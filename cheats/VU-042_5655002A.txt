@@ -1,0 +1,4 @@
+//game=Barbie Horse Adventures: Wild Horse Rescue
+//serial=VU-042
+//titleid=5655002A
+//kind=cheats

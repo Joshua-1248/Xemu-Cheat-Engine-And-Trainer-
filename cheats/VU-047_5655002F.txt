@@ -1,0 +1,4 @@
+//game=Fight Club
+//serial=VU-047
+//titleid=5655002F
+//kind=cheats

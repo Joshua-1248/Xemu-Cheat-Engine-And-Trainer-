@@ -1,0 +1,4 @@
+//game=Hulk
+//serial=VU-017
+//titleid=56550011
+//kind=cheats

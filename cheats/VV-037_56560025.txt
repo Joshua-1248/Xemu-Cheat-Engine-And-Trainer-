@@ -1,0 +1,4 @@
+//game=SWAT: Global Strike Team
+//serial=VV-037
+//titleid=56560025
+//kind=cheats

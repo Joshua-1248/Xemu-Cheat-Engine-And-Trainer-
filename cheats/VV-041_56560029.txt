@@ -1,0 +1,4 @@
+//game=Die Hard: Vendetta
+//serial=VV-041
+//titleid=56560029
+//kind=cheats

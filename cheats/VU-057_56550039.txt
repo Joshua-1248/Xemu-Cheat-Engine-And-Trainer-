@@ -1,0 +1,4 @@
+//game=Incredible Hulk, The: Ultimate Destruction
+//serial=VU-057
+//titleid=56550039
+//kind=cheats

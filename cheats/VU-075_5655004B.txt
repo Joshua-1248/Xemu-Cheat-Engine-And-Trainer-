@@ -1,0 +1,4 @@
+//game=Ice Age 2: The Meltdown
+//serial=VU-075
+//titleid=5655004B
+//kind=cheats

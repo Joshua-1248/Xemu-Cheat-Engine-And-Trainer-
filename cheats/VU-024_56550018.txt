@@ -1,0 +1,4 @@
+//game=Mace Griffin: Bounty Hunter
+//serial=VU-024
+//titleid=56550018
+//kind=cheats

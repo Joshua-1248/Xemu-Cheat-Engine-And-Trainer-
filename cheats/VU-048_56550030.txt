@@ -1,0 +1,4 @@
+//game=Predator: Concrete Jungle
+//serial=VU-048
+//titleid=56550030
+//kind=cheats

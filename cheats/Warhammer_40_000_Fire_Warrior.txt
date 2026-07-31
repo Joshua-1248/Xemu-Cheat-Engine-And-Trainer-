@@ -1,0 +1,4 @@
+//game=Warhammer 40,000: Fire Warrior
+//serial=
+//titleid=
+//kind=cheats

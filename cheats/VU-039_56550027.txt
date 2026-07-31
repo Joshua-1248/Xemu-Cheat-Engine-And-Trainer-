@@ -1,0 +1,4 @@
+//game=Red Ninja: End of Honor
+//serial=VU-039
+//titleid=56550027
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Leisure Suit Larry: Magna Cum Laude
+//serial=VU-049
+//titleid=56550031
+//kind=cheats

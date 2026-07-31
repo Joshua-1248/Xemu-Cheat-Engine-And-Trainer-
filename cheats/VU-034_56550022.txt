@@ -1,0 +1,4 @@
+//game=Aliens Versus Predator: Extinction
+//serial=VU-034
+//titleid=56550022
+//kind=cheats

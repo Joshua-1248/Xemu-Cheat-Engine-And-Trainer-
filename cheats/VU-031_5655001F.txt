@@ -1,0 +1,4 @@
+//game=Crash Nitro Kart
+//serial=VU-031
+//titleid=5655001F
+//kind=cheats

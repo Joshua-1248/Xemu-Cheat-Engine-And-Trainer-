@@ -1,0 +1,4 @@
+//game=Spyro: A Hero's Tail
+//serial=VU-052
+//titleid=56550034
+//kind=cheats

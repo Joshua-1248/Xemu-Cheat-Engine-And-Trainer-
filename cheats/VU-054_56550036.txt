@@ -1,0 +1,4 @@
+//game=Crash Twinsanity
+//serial=VU-054
+//titleid=56550036
+//kind=cheats

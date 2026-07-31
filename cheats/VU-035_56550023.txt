@@ -1,0 +1,4 @@
+//game=Hobbit, The
+//serial=VU-035
+//titleid=56550023
+//kind=cheats
