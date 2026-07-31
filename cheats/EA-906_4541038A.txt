@@ -1,0 +1,4 @@
+//game=Marvel Nemesis: Rise of the Imperfects
+//serial=EA-906
+//titleid=4541038A
+//kind=cheats

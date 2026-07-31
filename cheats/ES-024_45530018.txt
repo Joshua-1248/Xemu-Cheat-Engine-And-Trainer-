@@ -1,0 +1,4 @@
+//game=25 to Life
+//serial=ES-024
+//titleid=45530018
+//kind=cheats

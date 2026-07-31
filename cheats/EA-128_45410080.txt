@@ -1,0 +1,4 @@
+//game=NCAA Football 06
+//serial=EA-128
+//titleid=45410080
+//kind=cheats

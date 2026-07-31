@@ -1,0 +1,4 @@
+//game=Mad Dash Racing
+//serial=ES-001
+//titleid=45530001
+//kind=cheats

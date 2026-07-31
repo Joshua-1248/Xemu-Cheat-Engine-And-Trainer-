@@ -1,0 +1,4 @@
+//game=NFL Head Coach
+//serial=EA-142
+//titleid=4541008E
+//kind=cheats

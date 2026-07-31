@@ -1,0 +1,4 @@
+//game=007 - From Russia With Love
+//serial=EA-121
+//titleid=45410079
+//kind=cheats

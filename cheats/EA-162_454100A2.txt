@@ -1,0 +1,4 @@
+//game=NCAA Football 07
+//serial=EA-162
+//titleid=454100A2
+//kind=cheats

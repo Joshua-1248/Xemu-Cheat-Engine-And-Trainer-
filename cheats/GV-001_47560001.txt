@@ -1,0 +1,4 @@
+//game=Pariah
+//serial=GV-001
+//titleid=47560001
+//kind=cheats

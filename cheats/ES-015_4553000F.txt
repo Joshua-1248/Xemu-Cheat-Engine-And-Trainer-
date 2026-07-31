@@ -1,0 +1,4 @@
+//game=Legacy of Kain: Defiance
+//serial=ES-015
+//titleid=4553000F
+//kind=cheats

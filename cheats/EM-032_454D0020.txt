@@ -1,0 +1,4 @@
+//game=FlatOut 2
+//serial=EM-032
+//titleid=454D0020
+//kind=cheats

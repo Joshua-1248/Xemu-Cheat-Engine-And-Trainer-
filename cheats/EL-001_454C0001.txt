@@ -1,0 +1,4 @@
+//game=American McGee Presents Scrapland
+//serial=EL-001
+//titleid=454C0001
+//kind=cheats

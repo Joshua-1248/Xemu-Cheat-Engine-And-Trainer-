@@ -1,0 +1,4 @@
+//game=WarPath
+//serial=GV-010
+//titleid=4756000A
+//kind=cheats

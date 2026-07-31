@@ -1,0 +1,4 @@
+//game=Oddworld: Stranger's Wrath
+//serial=EA-109
+//titleid=4541006D
+//kind=cheats

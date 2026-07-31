@@ -1,0 +1,4 @@
+//game=FIFA Soccer 06
+//serial=EA-120
+//titleid=45410078
+//kind=cheats

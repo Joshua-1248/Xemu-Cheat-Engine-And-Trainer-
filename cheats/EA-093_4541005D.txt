@@ -1,0 +1,4 @@
+//game=GoldenEye: Rogue Agent
+//serial=EA-093
+//titleid=4541005D
+//kind=cheats

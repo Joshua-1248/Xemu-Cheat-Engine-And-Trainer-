@@ -1,0 +1,4 @@
+//game=Zapper
+//serial=IG-018
+//titleid=49470012
+//kind=cheats

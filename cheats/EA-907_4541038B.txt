@@ -1,0 +1,4 @@
+//game=Sims, The 2
+//serial=EA-907
+//titleid=4541038B
+//kind=cheats

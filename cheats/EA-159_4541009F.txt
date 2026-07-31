@@ -1,0 +1,4 @@
+//game=Madden NFL 07
+//serial=EA-159
+//titleid=4541009F
+//kind=cheats

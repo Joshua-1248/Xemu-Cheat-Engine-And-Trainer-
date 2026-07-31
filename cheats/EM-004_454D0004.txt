@@ -1,0 +1,4 @@
+//game=Ghost Master: The Gravenville Chronicles
+//serial=EM-004
+//titleid=454D0004
+//kind=cheats

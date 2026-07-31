@@ -1,0 +1,4 @@
+//game=Rugby 2005
+//serial=EA-097
+//titleid=45410061
+//kind=cheats

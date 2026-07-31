@@ -1,0 +1,4 @@
+//game=Combat: Task Force 121
+//serial=GV-003
+//titleid=47560003
+//kind=cheats

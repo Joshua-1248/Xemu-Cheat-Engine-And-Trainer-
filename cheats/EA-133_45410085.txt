@@ -1,0 +1,4 @@
+//game=FIFA Street 2
+//serial=EA-133
+//titleid=45410085
+//kind=cheats

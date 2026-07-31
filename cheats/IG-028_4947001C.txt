@@ -1,0 +1,4 @@
+//game=Micro Machines
+//serial=IG-028
+//titleid=4947001C
+//kind=cheats

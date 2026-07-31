@@ -1,0 +1,4 @@
+//game=FIFA Soccer 07
+//serial=EA-166
+//titleid=454100A6
+//kind=cheats

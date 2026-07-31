@@ -1,0 +1,4 @@
+//game=NASCAR Heat 2002
+//serial=IG-009
+//titleid=49470009
+//kind=cheats

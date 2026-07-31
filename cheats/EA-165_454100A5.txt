@@ -1,0 +1,4 @@
+//game=NHL 07
+//serial=EA-165
+//titleid=454100A5
+//kind=cheats

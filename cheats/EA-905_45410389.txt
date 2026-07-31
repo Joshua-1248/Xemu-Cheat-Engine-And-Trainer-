@@ -1,0 +1,4 @@
+//game=Batman Begins
+//serial=EA-905
+//titleid=45410389
+//kind=cheats

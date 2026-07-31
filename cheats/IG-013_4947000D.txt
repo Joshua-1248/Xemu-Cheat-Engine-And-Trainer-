@@ -1,0 +1,4 @@
+//game=Taz: Wanted
+//serial=IG-013
+//titleid=4947000D
+//kind=cheats

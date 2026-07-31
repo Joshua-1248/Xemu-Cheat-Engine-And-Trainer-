@@ -1,0 +1,4 @@
+//game=NASCAR 06: Total Team Control
+//serial=EA-139
+//titleid=4541008B
+//kind=cheats

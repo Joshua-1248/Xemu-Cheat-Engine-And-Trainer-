@@ -1,0 +1,4 @@
+//game=Rugby 06
+//serial=EA-135
+//titleid=45410087
+//kind=cheats

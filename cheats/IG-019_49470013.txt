@@ -1,0 +1,4 @@
+//game=Dungeons & Dragons: Heroes
+//serial=IG-019
+//titleid=49470013
+//kind=cheats

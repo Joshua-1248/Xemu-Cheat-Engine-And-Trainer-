@@ -1,0 +1,4 @@
+//game=Superman: The Man of Steel
+//serial=IG-022
+//titleid=49470016
+//kind=cheats

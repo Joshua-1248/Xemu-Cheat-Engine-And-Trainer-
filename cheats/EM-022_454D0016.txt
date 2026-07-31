@@ -1,0 +1,4 @@
+//game=Bad Boys: Miami Takedown
+//serial=EM-022
+//titleid=454D0016
+//kind=cheats

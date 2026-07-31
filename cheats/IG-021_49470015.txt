@@ -1,0 +1,4 @@
+//game=Apex
+//serial=IG-021
+//titleid=49470015
+//kind=cheats

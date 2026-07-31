@@ -1,0 +1,4 @@
+//game=Need for Speed: Underground 2
+//serial=EA-090
+//titleid=4541005A
+//kind=cheats

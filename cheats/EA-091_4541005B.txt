@@ -1,0 +1,4 @@
+//game=Burnout 3: Takedown
+//serial=EA-091
+//titleid=4541005B
+//kind=cheats

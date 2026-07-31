@@ -1,0 +1,4 @@
+//game=Project: Snowblind
+//serial=ES-025
+//titleid=45530019
+//kind=cheats

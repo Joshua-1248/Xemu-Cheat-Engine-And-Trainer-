@@ -1,0 +1,4 @@
+//game=Otogi: Myth of Demons
+//serial=FS-002
+//titleid=46530002
+//kind=cheats

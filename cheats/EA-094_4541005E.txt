@@ -1,0 +1,4 @@
+//game=Medal of Honor: European Assault
+//serial=EA-094
+//titleid=4541005E
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Loons: The Fight for Fame
+//serial=IG-006
+//titleid=49470006
+//kind=cheats

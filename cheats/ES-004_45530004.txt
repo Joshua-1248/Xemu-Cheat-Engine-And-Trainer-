@@ -1,0 +1,4 @@
+//game=Thief: Deadly Shadows
+//serial=ES-004
+//titleid=45530004
+//kind=cheats

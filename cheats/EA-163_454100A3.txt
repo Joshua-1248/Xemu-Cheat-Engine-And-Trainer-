@@ -1,0 +1,4 @@
+//game=NASCAR 07
+//serial=EA-163
+//titleid=454100A3
+//kind=cheats

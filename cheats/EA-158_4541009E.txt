@@ -1,0 +1,4 @@
+//game=Need for Speed: Carbon
+//serial=EA-158
+//titleid=4541009E
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Tiger Woods PGA Tour 06
+//serial=EA-126
+//titleid=4541007E
+//kind=cheats

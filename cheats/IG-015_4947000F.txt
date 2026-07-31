@@ -1,0 +1,4 @@
+//game=Monopoly Party!
+//serial=IG-015
+//titleid=4947000F
+//kind=cheats
