@@ -1,0 +1,4 @@
+//game=Ultimate Spider-Man
+//serial=AV-053
+//titleid=41560035
+//kind=patches

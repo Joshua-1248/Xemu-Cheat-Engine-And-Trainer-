@@ -1,0 +1,4 @@
+//game=Elder Scrolls III, The: Morrowind
+//serial=BS-001
+//titleid=42530001
+//kind=patches

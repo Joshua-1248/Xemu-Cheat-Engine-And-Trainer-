@@ -1,0 +1,4 @@
+//game=Tenchu: Return from Darkness
+//serial=AV-038
+//titleid=41560026
+//kind=patches

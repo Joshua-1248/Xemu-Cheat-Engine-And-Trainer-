@@ -1,0 +1,4 @@
+//game=Hustle: Detroit Streets
+//serial=AV-091
+//titleid=4156005B
+//kind=patches

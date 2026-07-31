@@ -1,0 +1,4 @@
+//game=Cabela's Deer Hunt 2005 Season
+//serial=AV-063
+//titleid=4156003F
+//kind=patches

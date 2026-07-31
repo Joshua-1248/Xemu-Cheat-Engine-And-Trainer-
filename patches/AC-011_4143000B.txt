@@ -1,0 +1,4 @@
+//game=Speed Kings
+//serial=AC-011
+//titleid=4143000B
+//kind=patches

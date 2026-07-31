@@ -1,0 +1,4 @@
+//game=Reign of Fire
+//serial=BM-002
+//titleid=424D0002
+//kind=patches

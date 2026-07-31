@@ -1,0 +1,4 @@
+//game=ATV Quad Power Racing 2
+//serial=AC-010
+//titleid=4143000A
+//kind=patches

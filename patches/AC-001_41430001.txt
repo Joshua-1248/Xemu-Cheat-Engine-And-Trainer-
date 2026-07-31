@@ -1,0 +1,4 @@
+//game=Dave Mirra Freestyle BMX 2
+//serial=AC-001
+//titleid=41430001
+//kind=patches

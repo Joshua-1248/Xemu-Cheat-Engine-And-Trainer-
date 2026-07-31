@@ -1,0 +1,4 @@
+//game=Ty the Tasmanian Tiger 3: Night of the Quinkan
+//serial=AV-085
+//titleid=41560055
+//kind=patches

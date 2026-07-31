@@ -1,0 +1,4 @@
+//game=AMF Bowling 2004
+//serial=BS-009
+//titleid=42530009
+//kind=patches

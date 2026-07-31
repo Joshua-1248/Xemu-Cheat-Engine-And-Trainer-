@@ -1,0 +1,4 @@
+//game=Digimon Rumble Arena 2
+//serial=BA-001
+//titleid=42410001
+//kind=patches

@@ -1,0 +1,4 @@
+//game=World Championship Rugby
+//serial=AC-031
+//titleid=4143001F
+//kind=patches

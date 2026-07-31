@@ -1,0 +1,4 @@
+//game=X-Men: Next Dimension
+//serial=AV-007
+//titleid=41560007
+//kind=patches

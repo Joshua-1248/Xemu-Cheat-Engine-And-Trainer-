@@ -1,0 +1,4 @@
+//game=Blinx 2: Masters of Time and Space
+//serial=
+//titleid=
+//kind=patches

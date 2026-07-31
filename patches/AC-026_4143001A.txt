@@ -1,0 +1,4 @@
+//game=Gladiator: Sword of Vengeance
+//serial=AC-026
+//titleid=4143001A
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Call of Cthulhu: Dark Corners of the Earth
+//serial=BS-007
+//titleid=42530007
+//kind=patches

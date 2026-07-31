@@ -1,0 +1,4 @@
+//game=Minority Report: Everybody Runs
+//serial=AV-020
+//titleid=41560014
+//kind=patches

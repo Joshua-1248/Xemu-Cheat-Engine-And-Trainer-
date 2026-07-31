@@ -1,0 +1,4 @@
+//game=Cabela's Big Game Hunter 2005 Adventures
+//serial=AV-062
+//titleid=4156003E
+//kind=patches

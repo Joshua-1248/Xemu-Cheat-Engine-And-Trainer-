@@ -1,0 +1,4 @@
+//game=Tony Hawk's Pro Skater 2x
+//serial=AV-001
+//titleid=41560001
+//kind=patches

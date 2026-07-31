@@ -1,0 +1,4 @@
+//game=All-Star Baseball 2003 featuring Derek Jeter
+//serial=AC-002
+//titleid=41430002
+//kind=patches

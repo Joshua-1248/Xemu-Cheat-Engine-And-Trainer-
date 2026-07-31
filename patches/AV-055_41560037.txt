@@ -1,0 +1,4 @@
+//game=Shrek 2
+//serial=AV-055
+//titleid=41560037
+//kind=patches

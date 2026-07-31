@@ -1,0 +1,4 @@
+//game=IHRA Professional Drag Racing 2005
+//serial=BS-012
+//titleid=4253000C
+//kind=patches

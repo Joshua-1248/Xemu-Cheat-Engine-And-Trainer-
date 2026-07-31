@@ -1,0 +1,4 @@
+//game=Dreamfall: The Longest Journey
+//serial=AY-004
+//titleid=41590004
+//kind=patches

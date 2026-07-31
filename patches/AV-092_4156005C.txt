@@ -1,0 +1,4 @@
+//game=Marvel Ultimate Alliance
+//serial=AV-092
+//titleid=4156005C
+//kind=patches

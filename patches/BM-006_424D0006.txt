@@ -1,0 +1,4 @@
+//game=Carmen Sandiego: The Secret of the Stolen Drums
+//serial=BM-006
+//titleid=424D0006
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Chronicles of Narnia, The: The Lion, the Witch and the Wardrobe
+//serial=BV-003
+//titleid=42560003
+//kind=patches

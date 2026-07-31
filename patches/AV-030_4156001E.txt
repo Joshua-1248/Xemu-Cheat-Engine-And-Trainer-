@@ -1,0 +1,4 @@
+//game=X-Men: Legends
+//serial=AV-030
+//titleid=4156001E
+//kind=patches

@@ -1,0 +1,4 @@
+//game=Vexx
+//serial=AC-005
+//titleid=41430005
+//kind=patches

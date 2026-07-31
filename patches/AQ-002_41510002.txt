@@ -1,0 +1,4 @@
+//game=Flight Academy
+//serial=AQ-002
+//titleid=41510002
+//kind=patches

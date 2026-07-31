@@ -1,0 +1,4 @@
+//game=Cabela's Outdoor Adventures
+//serial=AV-077
+//titleid=4156004D
+//kind=patches

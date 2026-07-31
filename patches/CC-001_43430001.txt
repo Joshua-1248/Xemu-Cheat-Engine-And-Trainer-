@@ -1,0 +1,4 @@
+//game=Genma Onimusha
+//serial=CC-001
+//titleid=43430001
+//kind=patches

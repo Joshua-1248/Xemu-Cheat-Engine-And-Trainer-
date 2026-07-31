@@ -1,0 +1,4 @@
+//game=Tony Hawk's Pro Skater 3
+//serial=AV-004
+//titleid=41560004
+//kind=patches

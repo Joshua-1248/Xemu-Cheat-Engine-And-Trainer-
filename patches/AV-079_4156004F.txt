@@ -1,0 +1,4 @@
+//game=American Chopper 2: Full Throttle
+//serial=AV-079
+//titleid=4156004F
+//kind=patches

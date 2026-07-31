@@ -1,0 +1,4 @@
+//game=Dino Crisis 3
+//serial=CC-003
+//titleid=43430003
+//kind=patches

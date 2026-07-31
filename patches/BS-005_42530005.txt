@@ -1,0 +1,4 @@
+//game=Elder Scrolls III, The: Morrowind - Game of the Year Edition
+//serial=BS-005
+//titleid=42530005
+//kind=patches

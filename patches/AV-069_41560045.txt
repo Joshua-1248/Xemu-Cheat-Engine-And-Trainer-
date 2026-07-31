@@ -1,0 +1,4 @@
+//game=True Crime: New York City
+//serial=AV-069
+//titleid=41560045
+//kind=patches

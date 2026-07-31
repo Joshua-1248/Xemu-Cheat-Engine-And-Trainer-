@@ -1,0 +1,4 @@
+//game=Tony Hawk's American Wasteland
+//serial=AV-073
+//titleid=41560049
+//kind=patches

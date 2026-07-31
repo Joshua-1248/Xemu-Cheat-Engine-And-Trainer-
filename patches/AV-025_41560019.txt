@@ -1,0 +1,4 @@
+//game=Cabela's Dangerous Hunts
+//serial=AV-025
+//titleid=41560019
+//kind=patches

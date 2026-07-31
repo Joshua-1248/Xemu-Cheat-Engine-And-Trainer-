@@ -1,0 +1,4 @@
+//game=Return To Castle Wolfenstein: Tides of War
+//serial=AV-016
+//titleid=41560010
+//kind=patches

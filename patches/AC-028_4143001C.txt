@@ -1,0 +1,4 @@
+//game=All-Star Baseball 2005 featuring Derek Jeter
+//serial=AC-028
+//titleid=4143001C
+//kind=patches

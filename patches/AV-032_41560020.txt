@@ -1,0 +1,4 @@
+//game=Doom 3 - Collector's Edition
+//serial=AV-032
+//titleid=41560020
+//kind=patches
