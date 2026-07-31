@@ -1,0 +1,4 @@
+//game=Robot Wars: Extreme Destruction
+//serial=BW-001
+//titleid=42570001
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Street Hoops
+//serial=AV-003
+//titleid=41560003
+//kind=cheats

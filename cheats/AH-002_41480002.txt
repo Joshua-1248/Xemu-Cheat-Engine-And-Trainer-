@@ -1,0 +1,4 @@
+//game=Playboy: The Mansion
+//serial=AH-002
+//titleid=41480002
+//kind=cheats

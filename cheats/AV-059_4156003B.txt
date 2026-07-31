@@ -1,0 +1,4 @@
+//game=Madagascar
+//serial=AV-059
+//titleid=4156003B
+//kind=cheats

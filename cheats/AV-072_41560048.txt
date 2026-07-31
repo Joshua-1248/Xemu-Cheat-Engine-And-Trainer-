@@ -1,0 +1,4 @@
+//game=Shrek SuperSlam
+//serial=AV-072
+//titleid=41560048
+//kind=cheats

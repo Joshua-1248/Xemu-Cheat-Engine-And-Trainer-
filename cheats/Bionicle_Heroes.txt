@@ -1,0 +1,4 @@
+//game=Bionicle Heroes
+//serial=
+//titleid=
+//kind=cheats

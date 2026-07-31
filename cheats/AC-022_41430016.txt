@@ -1,0 +1,4 @@
+//game=Alias
+//serial=AC-022
+//titleid=41430016
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=X-Men: The Official Game
+//serial=AV-070
+//titleid=41560046
+//kind=cheats

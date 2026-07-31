@@ -1,0 +1,4 @@
+//game=Lemony Snicket's A Series of Unfortunate Events
+//serial=AV-031
+//titleid=4156001F
+//kind=cheats

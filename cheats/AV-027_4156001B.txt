@@ -1,0 +1,4 @@
+//game=Soldier of Fortune II: Double Helix
+//serial=AV-027
+//titleid=4156001B
+//kind=cheats

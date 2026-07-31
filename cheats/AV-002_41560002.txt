@@ -1,0 +1,4 @@
+//game=Kelly Slater's Pro Surfer
+//serial=AV-002
+//titleid=41560002
+//kind=cheats

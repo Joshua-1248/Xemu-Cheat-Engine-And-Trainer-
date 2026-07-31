@@ -1,0 +1,4 @@
+//game=American Chopper
+//serial=AV-061
+//titleid=4156003D
+//kind=cheats

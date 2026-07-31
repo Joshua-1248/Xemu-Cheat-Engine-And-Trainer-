@@ -1,0 +1,4 @@
+//game=X-Men: Legends II - Rise of Apocalypse
+//serial=AV-071
+//titleid=41560047
+//kind=cheats

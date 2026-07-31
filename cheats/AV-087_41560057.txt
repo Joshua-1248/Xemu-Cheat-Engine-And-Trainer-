@@ -1,0 +1,4 @@
+//game=Greg Hastings' Tournament Paintball Max'd
+//serial=AV-087
+//titleid=41560057
+//kind=cheats

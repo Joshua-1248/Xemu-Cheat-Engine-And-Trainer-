@@ -1,0 +1,4 @@
+//game=Doom 3: Resurrection of Evil
+//serial=AV-078
+//titleid=4156004E
+//kind=cheats

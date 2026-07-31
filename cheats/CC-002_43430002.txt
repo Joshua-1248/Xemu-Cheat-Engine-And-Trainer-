@@ -1,0 +1,4 @@
+//game=Steel Battalion
+//serial=CC-002
+//titleid=43430002
+//kind=cheats

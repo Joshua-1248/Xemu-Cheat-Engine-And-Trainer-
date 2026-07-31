@@ -1,0 +1,4 @@
+//game=Wallace & Gromit in Project Zoo
+//serial=BM-003
+//titleid=424D0003
+//kind=cheats

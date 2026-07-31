@@ -1,0 +1,4 @@
+//game=NBA Jam
+//serial=AC-019
+//titleid=41430013
+//kind=cheats

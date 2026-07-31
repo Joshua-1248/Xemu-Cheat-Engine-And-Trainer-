@@ -1,0 +1,4 @@
+//game=Shin Megami Tensei: Nine
+//serial=AT-002
+//titleid=41540002
+//kind=cheats

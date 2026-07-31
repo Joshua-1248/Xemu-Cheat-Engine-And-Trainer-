@@ -1,0 +1,4 @@
+//game=Chase: Hollywood Stunt Driver
+//serial=BM-001
+//titleid=424D0001
+//kind=cheats

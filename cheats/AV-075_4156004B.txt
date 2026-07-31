@@ -1,0 +1,4 @@
+//game=Gun
+//serial=AV-075
+//titleid=4156004B
+//kind=cheats

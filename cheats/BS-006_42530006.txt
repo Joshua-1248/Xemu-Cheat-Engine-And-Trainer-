@@ -1,0 +1,4 @@
+//game=IHRA Drag Racing 2004
+//serial=BS-006
+//titleid=42530006
+//kind=cheats

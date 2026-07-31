@@ -1,0 +1,4 @@
+//game=Galaxy Angel
+//serial=BR-001
+//titleid=42520001
+//kind=cheats

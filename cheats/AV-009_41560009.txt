@@ -1,0 +1,4 @@
+//game=Rally Fusion: Race of Champions
+//serial=AV-009
+//titleid=41560009
+//kind=cheats

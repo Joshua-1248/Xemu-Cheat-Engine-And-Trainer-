@@ -1,0 +1,4 @@
+//game=Pro Fishing Challenge
+//serial=AT-003
+//titleid=41540003
+//kind=cheats

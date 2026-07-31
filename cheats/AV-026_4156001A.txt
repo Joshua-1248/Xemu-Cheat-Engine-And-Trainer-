@@ -1,0 +1,4 @@
+//game=Fantastic Four
+//serial=AV-026
+//titleid=4156001A
+//kind=cheats

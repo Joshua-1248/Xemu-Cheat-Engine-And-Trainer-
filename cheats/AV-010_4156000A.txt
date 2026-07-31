@@ -1,0 +1,4 @@
+//game=Wreckless: The Yakuza Missions
+//serial=AV-010
+//titleid=4156000A
+//kind=cheats

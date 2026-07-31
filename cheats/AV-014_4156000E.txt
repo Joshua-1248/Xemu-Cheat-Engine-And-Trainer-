@@ -1,0 +1,4 @@
+//game=True Crime: Streets of LA
+//serial=AV-014
+//titleid=4156000E
+//kind=cheats

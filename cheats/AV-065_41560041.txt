@@ -1,0 +1,4 @@
+//game=Monster Garage
+//serial=AV-065
+//titleid=41560041
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Call of Duty: Finest Hour
+//serial=AV-042
+//titleid=4156002A
+//kind=cheats

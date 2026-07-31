@@ -1,0 +1,4 @@
+//game=AMF Xtreme Bowling
+//serial=BS-020
+//titleid=42530014
+//kind=cheats

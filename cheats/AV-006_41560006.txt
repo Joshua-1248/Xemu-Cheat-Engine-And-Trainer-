@@ -1,0 +1,4 @@
+//game=Spider-Man
+//serial=AV-006
+//titleid=41560006
+//kind=cheats

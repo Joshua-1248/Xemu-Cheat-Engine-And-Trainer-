@@ -1,0 +1,4 @@
+//game=X2: Wolverine's Revenge
+//serial=AV-008
+//titleid=41560008
+//kind=cheats

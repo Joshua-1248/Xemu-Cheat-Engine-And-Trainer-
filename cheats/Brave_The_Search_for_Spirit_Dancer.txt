@@ -1,0 +1,4 @@
+//game=Brave: The Search for Spirit Dancer
+//serial=
+//titleid=
+//kind=cheats

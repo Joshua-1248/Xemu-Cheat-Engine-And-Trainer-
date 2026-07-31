@@ -1,0 +1,27 @@
+//game=Doom 3 - Collector's Edition
+//serial=AV-032
+//titleid=41560020
+//kind=cheats
+
+//enabled=0
+; Author: Josh_7774
+[Infinite Health] {
+  705FE4B0 000003E7
+  00020000 00000088
+}
+
+//enabled=1
+; Author: Josh_7774
+[Infinite Health (Alternate)] {
+  705FE4B0 0000270F
+  00020000 00000088
+}
+
+//enabled=1
+; Author: Josh_7774
+[Hold A Button To Moon Jump] {
+  D000029F 030000FF
+  70310600 43480000
+  00020002 000007D4
+  00000498 00000000
+}

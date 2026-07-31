@@ -1,0 +1,235 @@
+//game=Return To Castle Wolfenstein: Tides of War
+//serial=AV-016
+//titleid=41560010
+//kind=cheats
+
+//group=Single Player
+
+//group=Single Player\Infinite Ammo - No Reload
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Colt] {
+  0083F0DC 00000008
+  0083F104 00000008
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Dynamite] {
+  0083F108 0000000A
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\FG42 Paratrooper Rifle] {
+  0083F0C4 00000014
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Grenades] {
+  0083F0C8 0000000F
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Luger] {
+  0083F0B8 00000008
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Mauser Rifle] {
+  0083F0C0 0000000A
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\M1S Snooper Rifle] {
+  0083F0E4 00000005
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Mk. 2 Hand Grenades] {
+  0083F0E8 0000000F
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\MP40] {
+  0083F0BC 00000020
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Shotgun] {
+  0083F0F8 00000006
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Sten] {
+  0083F0FC 00000020
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Infinite Ammo - No Reload\Tommy Gun] {
+  0083F0E0 0000001E
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Accuracy Doesn't Diminish When Shooting] {
+  2083F27C 00000000
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Hold Jump Button To Moon Jump] {
+  D079E3C0 01000001
+  2083EE48 43480000
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Rapid Fire] {
+  1083EE4C 00000000
+}
+
+//enabled=1
+; Author: Josh_7774
+[Single Player\Sten Never Overheats] {
+  1083F2D8 00000000
+}
+
+//group=Cooperative
+
+//group=Cooperative\Infinite Ammo - No Reload
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Luger
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Luger\Player 1] {
+  0092E0B8 00000008
+}
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Colt
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Dynamite
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\FG42 Paratrooper Rifle
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Mauser Rifle
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Mauser Rifle\Player 1] {
+  0092E0C0 0000000A
+}
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\M1S Snooper Rifle
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Grenades
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Grenades\Player 1] {
+  0092E0C8 0000000F
+}
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Tommy Gun
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Tommy Gun\Player 1] {
+  0092E0E0 0000001E
+}
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Shotgun
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Tesla Cannon
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Mk. 2 Hand Grenades
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\MP40
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\MP40\Player 1] {
+  0092E0BC 00000020
+}
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Sten
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Sten\Player 1] {
+  0092E0FC 00000020
+}
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Panzerfaust
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Venom Gun
+
+//group=Cooperative\Infinite Ammo - No Reload\Infinite Ammo - No Reload\Flamethrower
+
+//group=Cooperative\Infinite Health
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Infinite Health\Player 1] {
+  20962D38 00000064
+}
+
+//group=Cooperative\Sten Never Overheats
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Sten Never Overheats\Player 1] {
+  1092E2D8 00000000
+}
+
+//group=Cooperative\Hold Jump Button To Moon Jump
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Hold Jump Button To Moon Jump\Player 1] {
+  D088D3C0 01000001
+  2092DE48 43480000
+}
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Hold Jump Button To Moon Jump\Player 2] {
+  D0571940 01000001
+  2092E690 43480000
+}
+
+//group=Cooperative\Accuracy Doesn't Diminish When Shooting
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Accuracy Doesn't Diminish When Shooting\Player 1] {
+  2092E27C 00000000
+  0092E280 00000000
+}
+
+//group=Cooperative\Rapid Fire
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Rapid Fire\Player 1] {
+  1092DE4C 00000000
+}
+
+//enabled=1
+; Author: Josh_7774
+[Cooperative\Rapid Fire\Player 2] {
+  1092E694 00000000
+}

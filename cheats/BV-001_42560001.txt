@@ -1,0 +1,4 @@
+//game=Tron 2.0: Killer App
+//serial=BV-001
+//titleid=42560001
+//kind=cheats

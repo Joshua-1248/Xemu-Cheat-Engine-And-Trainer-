@@ -1,0 +1,4 @@
+//game=Spider-Man 2
+//serial=AV-043
+//titleid=4156002B
+//kind=cheats

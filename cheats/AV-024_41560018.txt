@@ -1,0 +1,4 @@
+//game=Pitfall: The Lost Expedition
+//serial=AV-024
+//titleid=41560018
+//kind=cheats

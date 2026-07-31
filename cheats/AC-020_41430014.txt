@@ -1,0 +1,4 @@
+//game=XGRA: Extreme G Racing Association
+//serial=AC-020
+//titleid=41430014
+//kind=cheats

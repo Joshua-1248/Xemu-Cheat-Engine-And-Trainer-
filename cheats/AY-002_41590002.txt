@@ -1,0 +1,4 @@
+//game=Stubbs the Zombie in Rebel Without a Pulse
+//serial=AY-002
+//titleid=41590002
+//kind=cheats

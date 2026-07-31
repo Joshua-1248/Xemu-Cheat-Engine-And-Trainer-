@@ -1,0 +1,4 @@
+//game=Tony Hawk's Pro Skater 4
+//serial=AV-023
+//titleid=41560017
+//kind=cheats

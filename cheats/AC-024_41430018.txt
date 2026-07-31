@@ -1,0 +1,4 @@
+//game=All-Star Baseball 2004 featuring Derek Jeter
+//serial=AC-024
+//titleid=41430018
+//kind=cheats

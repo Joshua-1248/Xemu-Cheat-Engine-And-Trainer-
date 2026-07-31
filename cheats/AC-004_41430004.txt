@@ -1,0 +1,4 @@
+//game=Turok: Evolution
+//serial=AC-004
+//titleid=41430004
+//kind=cheats

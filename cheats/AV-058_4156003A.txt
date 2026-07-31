@@ -1,0 +1,4 @@
+//game=Rapala Pro Fishing
+//serial=AV-058
+//titleid=4156003A
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Blade II
+//serial=AV-005
+//titleid=41560005
+//kind=cheats

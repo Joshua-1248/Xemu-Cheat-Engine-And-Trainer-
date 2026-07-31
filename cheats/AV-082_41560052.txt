@@ -1,0 +1,4 @@
+//game=Cabela's Dangerous Hunts 2
+//serial=AV-082
+//titleid=41560052
+//kind=cheats

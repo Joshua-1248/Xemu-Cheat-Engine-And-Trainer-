@@ -1,0 +1,4 @@
+//game=BMX XXX
+//serial=AC-014
+//titleid=4143000E
+//kind=cheats

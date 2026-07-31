@@ -1,0 +1,4 @@
+//game=Aggressive Inline
+//serial=AC-007
+//titleid=41430007
+//kind=cheats
