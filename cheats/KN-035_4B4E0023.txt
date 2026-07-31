@@ -1,0 +1,4 @@
+//game=Teenage Mutant Ninja Turtles 2: Battle Nexus
+//serial=KN-035
+//titleid=4B4E0023
+//kind=cheats

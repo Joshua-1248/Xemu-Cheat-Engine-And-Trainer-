@@ -1,0 +1,4 @@
+//game=Nickelodeon Party Blast
+//serial=IG-040
+//titleid=49470028
+//kind=cheats

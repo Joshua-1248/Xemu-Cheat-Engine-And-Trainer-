@@ -1,0 +1,4 @@
+//game=Dynasty Warriors 5
+//serial=KO-007
+//titleid=4B4F0007
+//kind=cheats

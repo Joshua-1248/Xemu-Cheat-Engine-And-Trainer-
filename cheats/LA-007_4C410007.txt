@@ -1,0 +1,4 @@
+//game=Indiana Jones and the Emperor's Tomb
+//serial=LA-007
+//titleid=4C410007
+//kind=cheats

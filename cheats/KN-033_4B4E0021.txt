@@ -1,0 +1,4 @@
+//game=Dance Dance Revolution Ultramix 2
+//serial=KN-033
+//titleid=4B4E0021
+//kind=cheats

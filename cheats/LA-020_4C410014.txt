@@ -1,0 +1,4 @@
+//game=Star Wars: Knights of the Old Republic II - The Sith Lords
+//serial=LA-020
+//titleid=4C410014
+//kind=cheats

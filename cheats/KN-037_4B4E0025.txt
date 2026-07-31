@@ -1,0 +1,4 @@
+//game=Karaoke Revolution
+//serial=KN-037
+//titleid=4B4E0025
+//kind=cheats

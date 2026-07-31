@@ -1,0 +1,4 @@
+//game=Wrath Unleashed
+//serial=LA-015
+//titleid=4C41000F
+//kind=cheats

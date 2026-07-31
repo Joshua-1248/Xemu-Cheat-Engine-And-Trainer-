@@ -1,0 +1,4 @@
+//game=Jaws Unleashed
+//serial=MJ-015
+//titleid=4D4A000F
+//kind=cheats

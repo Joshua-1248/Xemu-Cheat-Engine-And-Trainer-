@@ -1,0 +1,4 @@
+//game=Godzilla: Destroy All Monsters Melee
+//serial=IG-057
+//titleid=49470039
+//kind=cheats

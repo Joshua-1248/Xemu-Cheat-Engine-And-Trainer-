@@ -1,0 +1,4 @@
+//game=Trivial Pursuit Unhinged
+//serial=IG-061
+//titleid=4947003D
+//kind=cheats

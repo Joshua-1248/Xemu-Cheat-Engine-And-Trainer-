@@ -1,0 +1,4 @@
+//game=Silent Hill 4: The Room
+//serial=KN-031
+//titleid=4B4E001F
+//kind=cheats

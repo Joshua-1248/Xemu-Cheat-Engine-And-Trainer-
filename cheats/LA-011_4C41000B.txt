@@ -1,0 +1,4 @@
+//game=Star Wars: Jedi Knight - Jedi Academy
+//serial=LA-011
+//titleid=4C41000B
+//kind=cheats

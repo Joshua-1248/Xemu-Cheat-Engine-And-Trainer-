@@ -1,0 +1,4 @@
+//game=Teenage Mutant Ninja Turtles 3: Mutant Nightmare
+//serial=KN-042
+//titleid=4B4E002A
+//kind=cheats

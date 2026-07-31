@@ -1,0 +1,4 @@
+//game=Secret Weapons Over Normandy
+//serial=LA-006
+//titleid=4C410006
+//kind=cheats

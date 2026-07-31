@@ -1,0 +1,4 @@
+//game=Test Drive: Eve of Destruction
+//serial=IG-117
+//titleid=49470075
+//kind=cheats

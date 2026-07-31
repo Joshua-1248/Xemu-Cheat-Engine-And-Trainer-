@@ -1,0 +1,4 @@
+//game=Lego Star Wars II: The Original Trilogy
+//serial=LA-031
+//titleid=4C41001F
+//kind=cheats

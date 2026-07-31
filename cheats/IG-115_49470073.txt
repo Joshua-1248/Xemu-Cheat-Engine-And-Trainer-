@@ -1,0 +1,4 @@
+//game=Godzilla: Save the Earth
+//serial=IG-115
+//titleid=49470073
+//kind=cheats

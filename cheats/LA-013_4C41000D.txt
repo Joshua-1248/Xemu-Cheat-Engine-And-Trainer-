@@ -1,0 +1,4 @@
+//game=Armed and Dangerous
+//serial=LA-013
+//titleid=4C41000D
+//kind=cheats

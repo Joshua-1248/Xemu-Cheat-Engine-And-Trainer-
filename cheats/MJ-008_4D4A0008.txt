@@ -1,0 +1,4 @@
+//game=BlowOut
+//serial=MJ-008
+//titleid=4D4A0008
+//kind=cheats

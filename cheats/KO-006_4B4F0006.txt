@@ -1,0 +1,4 @@
+//game=Samurai Warriors
+//serial=KO-006
+//titleid=4B4F0006
+//kind=cheats

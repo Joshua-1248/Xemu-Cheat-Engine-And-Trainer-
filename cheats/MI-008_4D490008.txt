@@ -1,0 +1,4 @@
+//game=Syberia II
+//serial=MI-008
+//titleid=4D490008
+//kind=cheats

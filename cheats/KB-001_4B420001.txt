@@ -1,0 +1,4 @@
+//game=Batman: Dark Tomorrow
+//serial=KB-001
+//titleid=4B420001
+//kind=cheats

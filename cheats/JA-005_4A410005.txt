@@ -1,0 +1,4 @@
+//game=Goblin Commander: Unleash the Horde
+//serial=JA-005
+//titleid=4A410005
+//kind=cheats

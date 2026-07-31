@@ -1,0 +1,4 @@
+//game=James Bond 007: Quantum of Solace
+//serial=
+//titleid=
+//kind=cheats

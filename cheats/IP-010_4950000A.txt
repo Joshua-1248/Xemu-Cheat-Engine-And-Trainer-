@@ -1,0 +1,4 @@
+//game=Baldur's Gate: Dark Alliance II
+//serial=IP-010
+//titleid=4950000A
+//kind=cheats

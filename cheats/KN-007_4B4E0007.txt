@@ -1,0 +1,4 @@
+//game=Metal Gear Solid 2: Substance
+//serial=KN-007
+//titleid=4B4E0007
+//kind=cheats

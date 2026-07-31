@@ -1,0 +1,4 @@
+//game=Shadow Ops: Red Mercury
+//serial=IG-037
+//titleid=49470025
+//kind=cheats

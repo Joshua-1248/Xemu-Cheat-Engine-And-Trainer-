@@ -1,0 +1,4 @@
+//game=Aeon Flux
+//serial=MJ-020
+//titleid=4D4A0014
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Sniper Elite
+//serial=MI-013
+//titleid=4D49000D
+//kind=cheats

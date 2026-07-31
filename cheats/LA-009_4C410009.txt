@@ -1,0 +1,4 @@
+//game=Star Wars: Jedi Knight II - Jedi Outcast
+//serial=LA-009
+//titleid=4C410009
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Frogger: Ancient Shadow
+//serial=KN-044
+//titleid=4B4E002C
+//kind=cheats

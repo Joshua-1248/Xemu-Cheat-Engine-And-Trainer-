@@ -1,0 +1,4 @@
+//game=Gladius
+//serial=LA-008
+//titleid=4C410008
+//kind=cheats

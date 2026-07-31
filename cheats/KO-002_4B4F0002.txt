@@ -1,0 +1,4 @@
+//game=Crimson Sea
+//serial=KO-002
+//titleid=4B4F0002
+//kind=cheats

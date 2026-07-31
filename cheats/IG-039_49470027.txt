@@ -1,0 +1,4 @@
+//game=Dead Man's Hand
+//serial=IG-039
+//titleid=49470027
+//kind=cheats

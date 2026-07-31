@@ -1,0 +1,4 @@
+//game=Mercenaries: Playground of Destruction
+//serial=
+//titleid=
+//kind=cheats

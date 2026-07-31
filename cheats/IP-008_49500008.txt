@@ -1,0 +1,4 @@
+//game=Fallout: Brotherhood of Steel
+//serial=IP-008
+//titleid=49500008
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Yu-Gi-Oh! The Dawn of Destiny
+//serial=KN-030
+//titleid=4B4E001E
+//kind=cheats

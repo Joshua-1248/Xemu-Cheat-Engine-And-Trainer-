@@ -1,0 +1,4 @@
+//game=NBA Starting Five
+//serial=KN-018
+//titleid=4B4E0012
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Rogue Ops
+//serial=KB-004
+//titleid=4B420004
+//kind=cheats

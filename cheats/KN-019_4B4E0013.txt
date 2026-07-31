@@ -1,0 +1,4 @@
+//game=Frogger Beyond
+//serial=KN-019
+//titleid=4B4E0013
+//kind=cheats

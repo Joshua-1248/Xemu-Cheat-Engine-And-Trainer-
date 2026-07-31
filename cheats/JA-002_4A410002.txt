@@ -1,0 +1,4 @@
+//game=NightCaster II: Equinox
+//serial=JA-002
+//titleid=4A410002
+//kind=cheats

@@ -1,0 +1,4 @@
+//game=Dynasty Warriors 4
+//serial=KO-004
+//titleid=4B4F0004
+//kind=cheats

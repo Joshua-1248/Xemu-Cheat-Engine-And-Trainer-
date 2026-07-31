@@ -1,0 +1,4 @@
+//game=RollerCoaster Tycoon
+//serial=IG-046
+//titleid=4947002E
+//kind=cheats

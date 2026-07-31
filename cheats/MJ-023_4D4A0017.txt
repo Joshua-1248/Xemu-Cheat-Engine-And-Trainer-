@@ -1,0 +1,4 @@
+//game=Worms 4: Mayhem
+//serial=MJ-023
+//titleid=4D4A0017
+//kind=cheats

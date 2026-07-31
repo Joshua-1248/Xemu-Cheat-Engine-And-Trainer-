@@ -1,0 +1,4 @@
+//game=World Soccer Winning Eleven 9
+//serial=KN-047
+//titleid=4B4E002F
+//kind=cheats

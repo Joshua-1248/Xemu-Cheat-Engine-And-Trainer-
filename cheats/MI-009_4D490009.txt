@@ -1,0 +1,4 @@
+//game=ObsCure
+//serial=MI-009
+//titleid=4D490009
+//kind=cheats

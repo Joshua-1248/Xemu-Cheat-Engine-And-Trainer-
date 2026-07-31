@@ -1,0 +1,4 @@
+//game=Dance Dance Revolution Ultramix 3
+//serial=KN-041
+//titleid=4B4E0029
+//kind=cheats

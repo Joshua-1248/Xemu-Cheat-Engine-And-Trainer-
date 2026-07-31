@@ -1,0 +1,4 @@
+//game=Terminator, The 3: Rise of the Machines
+//serial=IG-059
+//titleid=4947003B
+//kind=cheats

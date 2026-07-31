@@ -1,0 +1,4 @@
+//game=AirForce Delta Storm
+//serial=KN-002
+//titleid=4B4E0002
+//kind=cheats

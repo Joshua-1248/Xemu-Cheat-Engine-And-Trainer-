@@ -1,0 +1,4 @@
+//game=Master Chief Collection
+//serial=
+//titleid=
+//kind=cheats

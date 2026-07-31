@@ -1,0 +1,4 @@
+//game=Drake of the 99 Dragons
+//serial=MJ-011
+//titleid=4D4A000B
+//kind=cheats

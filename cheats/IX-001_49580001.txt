@@ -1,0 +1,4 @@
+//game=Bard's Tale, The
+//serial=IX-001
+//titleid=49580001
+//kind=cheats
