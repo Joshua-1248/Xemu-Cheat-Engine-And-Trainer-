@@ -6,7 +6,7 @@
 //enabled=1
 ; Author: Josh_7774
 [Hold Black To Moon Jump] {
-  D0AAE0F4 01002000
+  D00002A4 020000FF
   7084A5F8 42800000
   00020001 000000D0
 }
