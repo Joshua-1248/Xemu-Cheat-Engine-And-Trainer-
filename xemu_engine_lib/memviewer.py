@@ -1098,3 +1098,4 @@ class TabbedMemoryViewer:
                 except Exception:
                     pass
                 break
+                
