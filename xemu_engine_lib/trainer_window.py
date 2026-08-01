@@ -1361,6 +1361,13 @@ class TrainerWindow(tk.Tk):
         # the table freezes at whatever it last displayed. Guarantee the next
         # tick is queued regardless of what goes wrong.
         self._queue_table_refresh()
+        # Nothing can be read once xemu exits. self.engine.pid still points at
+        # the dead process and xbox_ram_base is cleared by reconnect(), so
+        # every row would try None + offset and raise - a hundred times a
+        # second, which is what filled the terminal with identical tracebacks.
+        # The rows keep their last values until a new process is attached.
+        if self.engine.pid is None or self.engine.xbox_ram_base is None:
+            return
         try:
             mem = open(f"/proc/{self.engine.pid}/mem", "rb")
         except Exception:
