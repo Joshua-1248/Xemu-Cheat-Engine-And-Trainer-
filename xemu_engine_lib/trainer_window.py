@@ -167,6 +167,16 @@ class TrainerWindow(tk.Tk):
         """Cleanly shut down: save settings, stop the freeze thread."""
         self._save_settings()
         self.engine.running = False
+        # Cancel the queued timers before tearing the widgets down. Both
+        # reschedule themselves, so without this they stay pending and fire
+        # once more against a window that is already being destroyed.
+        self._shutting_down = True
+        for attr in ('_table_after_id', '_conn_after_id'):
+            aid = getattr(self, attr, None)
+            if aid is not None:
+                try: self.after_cancel(aid)
+                except Exception: pass
+                setattr(self, attr, None)
         if self.engine.win_process_handle and self.engine.os_type == "Windows":
             ctypes.windll.kernel32.CloseHandle(self.engine.win_process_handle)
         super().destroy()
@@ -761,9 +771,11 @@ class TrainerWindow(tk.Tk):
 
     def _check_connection(self):
         """Periodically check if Xemu is still alive; reconnect if needed."""
+        if getattr(self, '_shutting_down', False):
+            return
         if self.engine.pid and self.engine.is_process_alive() \
                 and self.engine.xbox_ram_base is not None:
-            self.after(2000, self._check_connection)
+            self._conn_after_id = self.after(2000, self._check_connection)
             return
         self.engine.running = False   # retire the old thread before rebasing
         if self.engine.reconnect():
@@ -773,7 +785,7 @@ class TrainerWindow(tk.Tk):
         else:
             self._disable_buttons()
             self.label_status.config(text="Waiting for Xemu...", fg="#FF9800")
-        self.after(2000, self._check_connection)
+        self._conn_after_id = self.after(2000, self._check_connection)
 
     # _clipboard_paste() lived here. Besides pasting twice it had its
     # selection handling inverted - selection_present() true wiped the WHOLE
@@ -1340,6 +1352,8 @@ class TrainerWindow(tk.Tk):
     # ---- Table view update ------------------------------------------------
     def _queue_table_refresh(self):
         """Schedule exactly one pending table refresh."""
+        if getattr(self, '_shutting_down', False):
+            return
         try:
             if getattr(self, '_table_after_id', None) is not None:
                 self.after_cancel(self._table_after_id)
