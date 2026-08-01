@@ -215,7 +215,9 @@ class TrainerWindow(tk.Tk):
                  lambda: self.open_mem_viewer(0),
                  "#607D8B", "white", "disabled"),
                 ("btn_disasm", "Debugger", self.open_disassembler,
-                 "#795548", "white", "disabled"))):
+                 "#795548", "white", "disabled"),
+                ("btn_patches", "Code Patches", self.open_code_patches,
+                 "#5E35B1", "white", "disabled"))):
             b = tk.Button(top_left, text=text, command=cmd,
                           font=("Helvetica",8,"bold"), bg=bg, fg=fg,
                           state=st, relief="flat")
@@ -757,7 +759,8 @@ class TrainerWindow(tk.Tk):
                     self.btn_mem_view, self.btn_disasm, self.btn_save, self.btn_load,
                     self.btn_add_manual, self.btn_stage1, self.btn_stage2,
                     self.btn_multi_pointer, self.btn_dump_ram,
-                    self.btn_ptr_wizard, self.btn_add_pointer):
+                    self.btn_ptr_wizard, self.btn_add_pointer,
+                    self.btn_patches):
             btn.config(state="normal")
 
     def _disable_buttons(self):
@@ -766,7 +769,8 @@ class TrainerWindow(tk.Tk):
                     self.btn_mem_view, self.btn_disasm, self.btn_save, self.btn_load,
                     self.btn_add_manual, self.btn_stage1, self.btn_stage2,
                     self.btn_multi_pointer, self.btn_dump_ram,
-                    self.btn_ptr_wizard, self.btn_add_pointer):
+                    self.btn_ptr_wizard, self.btn_add_pointer,
+                    self.btn_patches):
             btn.config(state="disabled")
 
     def _check_connection(self):
@@ -3533,6 +3537,11 @@ class TrainerWindow(tk.Tk):
     def open_debugger(self, address=None):
         """Alias - the window is the debugger now, the name predates it."""
         return self.open_disassembler(address)
+
+    def open_code_patches(self):
+        """Open the code patch window (writes go through the gdbstub)."""
+        from .code_patch import open_code_patch_window
+        return open_code_patch_window(self)
 
     def open_disassembler(self, address=None):
         """Open (or raise) the debugger / disassembly window."""
