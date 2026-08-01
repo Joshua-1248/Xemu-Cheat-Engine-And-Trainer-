@@ -199,28 +199,89 @@ class TabbedMemoryViewer:
             i += take
         return written, holes
 
+    def _ensure_pagemap(self):
+        """Build the page map if it is not up yet. Returns True when usable."""
+        if self.engine.pagemap is None:
+            mf = None
+            try:
+                if self.engine.os_type == "Linux":
+                    mf = open(f"/proc/{self.engine.pid}/mem", "rb")
+                self.engine.refresh_pagemap(mf)
+            except Exception:
+                pass
+            finally:
+                if mf:
+                    try: mf.close()
+                    except Exception: pass
+        return self.engine.pagemap is not None
+
     def add_tab_at(self, dest, virtual=False, title=None):
         """
         Open a tab at `dest`, switching it into Virtual mode when asked.
 
-        Factored out of follow_pointer, which had this sequence inline: create
-        the tab, set virt_var, fire its toggle so the tab re-reads through the
-        page tables, then place the caret and refresh. Skipping any of those
-        leaves the tab showing a physical read of a virtual address.
+        `dest` is an address in the space named by `virtual` - it is NOT
+        translated here. That is the whole point: the caller already knows
+        which space it holds, and re-deriving it loses information.
+
+        Previously this set virt_var and then fired on_virt_toggle() to make
+        the tab re-read through the page tables. That was wrong in three ways
+        and is why jumps landed in the wrong place:
+
+          * on_virt_toggle exists to convert the address currently on screen
+            from one space to the other. Firing it on a tab already holding a
+            virtual address translated that address a second time, as though
+            it were physical. Whatever fell out was then partially overwritten,
+            so the visible result depended on whether the bogus intermediate
+            happened to be mapped.
+          * The refresh it performs runs against that bogus intermediate.
+          * When the double translation returned None it took the
+            "unmapped" branch and reset the view to 0x00010000, which is the
+            "it just went somewhere else entirely" case.
+
+        Switching space and choosing an address are now separate operations
+        (set_space vs. the assignments below), so neither can corrupt the other.
         """
+        if virtual and not self._ensure_pagemap():
+            messagebox.showerror(
+                "Virtual addressing unavailable",
+                "The guest page tables could not be read.\n"
+                "The game may not be running yet.")
+            return None
+
         self.add_tab(offset=dest, title=title)
         st = self.tabs[-1]['state']
-        if virtual and st.get('virt_var') is not None:
-            st['virt_var'].set(True)
-            if st.get('on_virt_toggle'):
-                st['on_virt_toggle']()
-            st['offset'] = dest
+
+        # Set the address space first, without translating anything.
+        if virtual and st.get('set_space'):
+            st['set_space'](True)
+
+        # Align the view origin to a row boundary but keep the caret on the
+        # exact byte asked for. Truncating the address itself (the old
+        # behaviour, and still what follow_pointer did) silently moved the
+        # target by up to 15 bytes, which matters when the thing being
+        # inspected is a field inside a struct.
+        st['offset'] = dest & 0xFFFFFFF0
         st['keyboard_focused_byte_addr'] = dest
         st['selected_byte_start'] = dest
         st['selected_byte_end'] = dest
+        st['keyboard_nibble_flip'] = 0
+        # Tells the deferred initial_highlight not to overwrite this.
+        st['cursor_pinned'] = True
         if st.get('addr_entry') is not None:
             st['addr_entry'].delete(0, tk.END)
             st['addr_entry'].insert(0, f"0x{dest:08X}")
+
+        # The tab's widgets were created a moment ago and have not been laid
+        # out, so winfo_width()/winfo_height() still report 1. refresh_view
+        # derives bytes-per-row and row-count from those, so drawing now
+        # produces a 1-byte-wide, 2-row view and places the highlight using
+        # that geometry. A later <Configure> redraws the hex correctly but does
+        # not always re-place the caret - which is exactly the intermittent
+        # "sometimes it doesn't go to the right place" behaviour.
+        try:
+            self.win.update_idletasks()
+        except Exception:
+            pass
         if st.get('refresh'):
             st['refresh']()
         return st
@@ -402,6 +463,28 @@ class TabbedMemoryViewer:
             _refresh_regions()
             refresh_view()
 
+        def set_space(virtual):
+            """
+            Switch address space WITHOUT touching the current address.
+
+            on_virt_toggle translates the on-screen address as it flips; that
+            is right when the user clicks the tickbox (they want to keep
+            looking at the same byte) and wrong when a caller already has an
+            address in the target space. This is the no-translation half, and
+            it also updates max_bounds - which matters because refresh_view
+            stops drawing rows at max_bounds, so a virtual address above the
+            physical RAM size (the 0x8xxxxxxx and 0xD0xxxxxx kernel windows)
+            renders as an empty pane if the bound is left at physical.
+            """
+            nonlocal max_bounds
+            virt_var.set(bool(virtual))
+            max_bounds = (0x100000000 if virtual
+                          else self.engine.xbox_ram_size_mb * 1024 * 1024)
+            try:
+                _refresh_regions()
+            except Exception:
+                pass
+
         tk.Checkbutton(row2, text="Virtual", variable=virt_var,
                        command=on_virt_toggle,
                        font=("Helvetica",9), fg="#4FC3F7", bg="#212121",
@@ -459,6 +542,7 @@ class TabbedMemoryViewer:
             'addr_entry': addr_entry,
             'hex_text': hex_text,
             'char_width': char_width,
+            'cursor_pinned': False,
             'refresh': None
         }
 
@@ -566,13 +650,20 @@ class TabbedMemoryViewer:
         # Exposed so other tabs can flip this one into virtual mode
         # (used by Follow Address, which opens a new tab).
         state['on_virt_toggle'] = on_virt_toggle
+        state['set_space'] = set_space
 
         # Auto‑highlight first byte after initial draw
         def initial_highlight():
-            state['keyboard_focused_byte_addr'] = state['offset']
-            state['selected_byte_start'] = state['offset']
-            state['selected_byte_end'] = state['offset']
-            state['keyboard_nibble_flip'] = 0
+            # Fires 100 ms after the tab is built. If a caller has already
+            # placed the caret deliberately (add_tab_at, _jump), leave it
+            # alone - this used to run last and quietly drag the selection
+            # back to the top of the view, undoing the jump that had just
+            # been performed.
+            if not state.get('cursor_pinned'):
+                state['keyboard_focused_byte_addr'] = state['offset']
+                state['selected_byte_start'] = state['offset']
+                state['selected_byte_end'] = state['offset']
+                state['keyboard_nibble_flip'] = 0
             render_highlights()
         self.win.after(100, initial_highlight)
 
@@ -839,14 +930,23 @@ class TabbedMemoryViewer:
                 if virt:
                     # Stored pointers are virtual, so follow them as-is.
                     pm = self.engine.pagemap
-                    if pm is None or pm.to_phys(ptr) is None: return
-                    dest = ptr & 0xFFFFFFF0
+                    if pm is None or pm.to_phys(ptr) is None:
+                        messagebox.showerror(
+                            "Not mapped",
+                            f"0x{ptr:08X} has no physical mapping.\n"
+                            "It is either not a pointer, or its page is not "
+                            "currently resident.")
+                        return
+                    dest = ptr
                 else:
                     if not ((0x80000000 <= ptr < 0x80000000 + max_bounds) or
                             (0 <= ptr < max_bounds)):
                         return
-                    dest = (ptr - 0x80000000 if ptr >= 0x80000000
-                            else ptr) & 0xFFFFFFF0
+                    dest = (ptr - 0x80000000 if ptr >= 0x80000000 else ptr)
+                # Row alignment is applied to the view ORIGIN by add_tab_at;
+                # the destination itself is kept exact. Truncating it here
+                # moved the caret off the pointee by up to 15 bytes, so
+                # following a chain landed near the target, not on it.
                 # Open in a new tab so the origin stays put - following a chain
                 # by hand means constantly wanting to look back at where the
                 # pointer came from.
@@ -956,15 +1056,27 @@ class TabbedMemoryViewer:
                     else:
                         limit = target < self.engine.xbox_ram_size_mb * 1024 * 1024
                     if limit:
-                        tab['state']['offset'] = target & 0xFFFFFFF0
-                        tab['state']['refresh']()
-                        def hl():
-                            tab['state']['keyboard_focused_byte_addr'] = target & 0xFFFFFFF0
-                            tab['state']['selected_byte_start'] = target & 0xFFFFFFF0
-                            tab['state']['selected_byte_end'] = target & 0xFFFFFFF0
-                            tab['state']['keyboard_nibble_flip'] = 0
-                            tab['state']['refresh']()
-                        self.win.after(50, hl)
-                except: pass
+                        # Origin snaps to a row; the caret keeps the exact
+                        # address typed. Rounding the caret as well meant
+                        # entering a struct field address selected the start
+                        # of its row instead of the field.
+                        st['offset'] = target & 0xFFFFFFF0
+                        st['keyboard_focused_byte_addr'] = target
+                        st['selected_byte_start'] = target
+                        st['selected_byte_end'] = target
+                        st['keyboard_nibble_flip'] = 0
+                        st['cursor_pinned'] = True
+                        st['refresh']()
+                        # Re-place once layout has settled; on a tab created
+                        # moments ago the geometry used by the first pass can
+                        # still be the pre-layout 1x1.
+                        self.win.after(50, lambda s=st: s['refresh']())
+                    else:
+                        space = "virtual" if self._vmode(st) else "physical"
+                        messagebox.showerror(
+                            "Out of range",
+                            f"0x{target:08X} is not a valid {space} address.\n"
+                            "Nothing was changed.")
+                except Exception:
+                    pass
                 break
-
