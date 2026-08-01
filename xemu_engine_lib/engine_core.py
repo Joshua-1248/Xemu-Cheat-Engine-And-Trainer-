@@ -31,6 +31,10 @@ class XemuTrainerEngine:
         self.running           = False          # Controls the freeze trainer thread
         self._trainer_gen      = 0              # Only the newest freeze thread may run
         self.pagemap           = None           # XboxPageMap, built on demand
+        self._pagemap_probe    = None           # PDE fingerprint when map was built
+        self._pagemap_time     = 0.0            # when the map was built
+        self._pagemap_check    = 0.0            # last staleness probe
+        self._pagemap_stale    = False          # latched verdict, cleared on rebuild
         self._memfh            = None           # shared /proc/<pid>/mem handle
         self._memfh_pid        = None
         self.scan_pagemask     = None           # bool per physical page, None = all
@@ -77,25 +81,128 @@ class XemuTrainerEngine:
         return False
 
     # ----------------------------------------------------------------------
-    def ensure_pagemap(self):
+    # A full snapshot cannot notice the guest re-paging, so it gets a short
+    # life. The on-demand walker re-reads the tables per lookup and expires its
+    # own cache, so it only needs the cheap fingerprint check below.
+    PAGEMAP_SNAPSHOT_TTL = 2.0      # seconds
+    PAGEMAP_PROBE_EVERY  = 0.25     # seconds; rate-limit the 4-byte probe
+
+    def _pd_fingerprint(self, mem_file=None):
         """
-        Make sure a translator exists, cheaply.
+        4-byte fingerprint of the guest page directory.
+
+        The PDE covering the XBE image changes whenever the guest rebuilds its
+        page tables, which it does on level load and on title restart. Reading
+        one dword is enough to notice, and is cheap enough to do inline.
+        """
+        try:
+            off = XboxPageMap.PD_PHYS + ((0x00010000 >> 22) * 4)
+            raw = self.read_mem(self.xbox_ram_base + off, 4, mem_file)
+            return struct.unpack("<I", raw)[0] if len(raw) >= 4 else None
+        except Exception:
+            return None
+
+    def pagemap_is_stale(self, mem_file=None):
+        """
+        Whether the cached translator can still be trusted.
+
+        This check did not exist, and its absence is why the address table got
+        stuck showing "Error" until the program was restarted. ensure_pagemap()
+        only built a map when there was none, so once one was installed it was
+        kept for the life of the process. A virtual-region scan installs a FULL
+        snapshot (resolve of scan_pagemask needs the v2p array); after the guest
+        re-paged, every pointer chain resolved through that frozen table, every
+        dereference read the wrong frame, and resolve_entry returned None -
+        which the table renders as "Error". Nothing recovered because nothing
+        ever reconsidered the map.
+        """
+        pm = self.pagemap
+        if pm is None:
+            return True
+        # Latched: once staleness has been established it stays established
+        # until a rebuild clears it. Without this the rate limiter below
+        # answers False on the very next call, so ensure_pagemap() - which
+        # asks again immediately after this returns True - would decline to
+        # rebuild and the stale map would survive anyway.
+        if self._pagemap_stale:
+            return True
+        now = time.time()
+        # Snapshots go stale on a timer; they have no way to self-heal.
+        if getattr(pm, 'v2p', None) is not None and \
+                now - self._pagemap_time > self.PAGEMAP_SNAPSHOT_TTL:
+            self._pagemap_stale = True
+            return True
+        if self._pagemap_probe is None:
+            self._pagemap_stale = True
+            return True
+        # Rate-limit: resolve_entry runs per row per refresh, and an
+        # unthrottled probe would add a syscall to each one.
+        if now - self._pagemap_check < self.PAGEMAP_PROBE_EVERY:
+            return False
+        self._pagemap_check = now
+        cur = self._pd_fingerprint(mem_file)
+        if cur is None or cur != self._pagemap_probe:
+            self._pagemap_stale = True
+            return True
+        # Same page directory, but individual pages below it may still have
+        # moved; drop the walker's memoised translations to be safe.
+        try:
+            pm.invalidate()
+        except Exception:
+            pass
+        return False
+
+    def invalidate_pagemap(self):
+        """Force the next ensure_pagemap() to rebuild. Call when re-attaching."""
+        self.pagemap = None
+        self._pagemap_probe = None
+        self._pagemap_time = 0.0
+        self._pagemap_check = 0.0
+        self._pagemap_stale = False
+
+    def ensure_pagemap(self, mem_file=None):
+        """
+        Make sure a usable translator exists, cheaply.
 
         Callers used to test `self.pagemap is not None` and silently fall back
         to physical reads when it was None - which produced a "virtual" pointer
         entry that actually read a physical offset and returned zeros. Nothing
         built the map outside the pointer finder, so that was the normal case.
+
+        Now also rebuilds when the cached map has gone stale, rather than
+        keeping a dead one forever (see pagemap_is_stale).
         """
-        if self.pagemap is None and self.pid:
-            try:
-                pm = XboxPageMap.on_demand(self)
-                self.pagemap = pm if pm.valid else None
-            except Exception:
-                self.pagemap = None
+        if not self.pid:
+            return self.pagemap
+        if not self.pagemap_is_stale(mem_file):
+            return self.pagemap
+        try:
+            pm = XboxPageMap.on_demand(self)
+            self.pagemap = pm if pm.valid else None
+        except Exception:
+            self.pagemap = None
+        self._pagemap_time = time.time()
+        self._pagemap_probe = (self._pd_fingerprint(mem_file)
+                               if self.pagemap is not None else None)
+        self._pagemap_check = time.time()
+        self._pagemap_stale = False
         return self.pagemap
 
+    def ensure_pagemap_full(self, mem_file=None):
+        """
+        A translator backed by a complete v2p array.
+
+        Only the scan-region code needs this; everything else should use
+        ensure_pagemap(), which returns the cheaper on-demand walker.
+        """
+        pm = self.pagemap
+        if pm is not None and getattr(pm, 'v2p', None) is not None and \
+                not self.pagemap_is_stale(mem_file):
+            return pm
+        return self.refresh_pagemap(mem_file)
+
     def refresh_pagemap(self, mem_file=None):
-        """Re-read the guest page tables. Cheap enough to do per scan."""
+        """Re-read the guest page tables in full. Installs a snapshot."""
         try:
             maxb = self.xbox_ram_size_mb * 1024 * 1024
             dump = self.read_mem(self.xbox_ram_base, maxb, mem_file)
@@ -103,6 +210,11 @@ class XemuTrainerEngine:
             self.pagemap = pm if pm.valid else None
         except Exception:
             self.pagemap = None
+        self._pagemap_time = time.time()
+        self._pagemap_probe = (self._pd_fingerprint(mem_file)
+                               if self.pagemap is not None else None)
+        self._pagemap_check = time.time()
+        self._pagemap_stale = False
         return self.pagemap
 
     def read32_virt(self, va, mem_file=None):
@@ -562,7 +674,9 @@ class XemuTrainerEngine:
             self.scan_bytes = (lo, hi)      # exact bounds; the mask is coarse
             return True
 
-        if self.pagemap is None and self.refresh_pagemap() is None:
+        # Needs the full array; ensure_pagemap() may legitimately have
+        # installed the on-demand walker, whose v2p is None.
+        if self.ensure_pagemap_full() is None:
             return False
         v2p = self.pagemap.v2p
         vlo, vhi = lo >> 12, (hi + 0xFFF) >> 12
@@ -987,4 +1101,3 @@ Address space facts this relies on:
   - The XBE loads at a fixed base (header field, almost always 0x00010000)
     with a fixed image size. Static pointers live in there and only there.
 """
-
