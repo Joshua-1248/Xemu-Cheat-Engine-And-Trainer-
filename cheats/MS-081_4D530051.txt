@@ -19,5 +19,6 @@
 //enabled=1
 ; Author: Josh_7774
 [Infinite Time (Countdown)] {
-  110DDFA0 00003F48
+  70801908 00003F48
+  00010001 000007B0
 }
