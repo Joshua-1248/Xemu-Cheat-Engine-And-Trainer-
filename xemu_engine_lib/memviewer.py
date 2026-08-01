@@ -104,6 +104,15 @@ class TabbedMemoryViewer:
                 trainer_window.active_mem_viewer = None
             if hasattr(trainer_window, 'tabbed_viewer'):
                 trainer_window.tabbed_viewer = None
+            # _close_tab cancels a tab's live timer, but it does not run when
+            # the whole window is closed - so every open tab's live_loop was
+            # left queued and fired once more into a destroyed window.
+            for tab in self.tabs:
+                aid = tab['state'].get('live_id')
+                if aid:
+                    try: self.win.after_cancel(aid)
+                    except Exception: pass
+                    tab['state']['live_id'] = None
             self.win.destroy()
         self.win.protocol("WM_DELETE_WINDOW", on_close)
 
