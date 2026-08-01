@@ -57,6 +57,14 @@ class TrainerWindow(tk.Tk):
         # Internal state
         self.ui_row_editing_locks = {}      # prevents value updates while user types
         self._rebuild_table = True          # flag to force full address‑table rebuild
+        # Address-table selection. _selected_entry_id is the LAST row clicked
+        # (what Ctrl+C copies); _selected_entry_ids is the full set, which may
+        # hold several rows at once. The set is the authority for bulk actions;
+        # the single id is kept in step so existing single-row code still works.
+        self._selected_entry_id = None
+        self._selected_entry_ids = set()
+        self._sel_anchor = None             # Shift+click ranges extend from here
+        self._row_order = []                # entry ids in on-screen order
         self.groups = []                    # list of group names (order matters)
         self.collapsed_groups = {}          # which groups are collapsed
         # Pointer finder settings
@@ -682,6 +690,8 @@ class TrainerWindow(tk.Tk):
         self.bind("<Control-C>", self._on_table_copy)
         self.bind("<Control-v>", self._on_table_paste)
         self.bind("<Control-V>", self._on_table_paste)
+        self.bind("<Control-a>", self._select_all_entries)
+        self.bind("<Control-A>", self._select_all_entries)
         self.ui_row_widgets = {}
 
     # ---- Hover helpers ---------------------------------------------------
@@ -1456,6 +1466,16 @@ class TrainerWindow(tk.Tk):
             else: ungrouped.append((off, e))
         for child in self.scrollable_inner.winfo_children(): child.destroy()
         self.ui_row_widgets.clear()
+        self._row_order = []
+        # Rows that no longer exist must not stay selected: a stale id would
+        # survive a delete and get picked up again by the next bulk action
+        # once the id counter came back around.
+        live = {e[10] for e in self.engine.address_table if len(e) > 10}
+        self._selected_entry_ids &= live
+        if self._selected_entry_id not in live:
+            self._selected_entry_id = None
+        if self._sel_anchor not in live:
+            self._sel_anchor = None
 
         def make_group_header(name, row, expanded):
             lbl = tk.Label(self.scrollable_inner,
@@ -1673,16 +1693,28 @@ class TrainerWindow(tk.Tk):
                                   command=lambda o=eid: self._new_group(o))
             popup.add_cascade(label="Move to group", menu=move_menu)
             for w in (chk, addr_ent, desc_ent, val_ent):
-                # Remember which row was last touched, so Ctrl+C has a target
-                # even though these are plain widgets rather than a Treeview.
+                # Remember which rows are selected, so Ctrl+C and the bulk
+                # actions have a target even though these are plain widgets
+                # rather than a Treeview. Ctrl+click toggles one row,
+                # Shift+click extends a range, a plain click replaces the
+                # selection.
                 w.bind("<Button-1>", lambda e, o=eid:
-                       setattr(self, '_selected_entry_id', o), add="+")
-                w.bind("<Button-3>", lambda e, o=eid, m=popup: (
-                    setattr(self, '_selected_entry_id', o),
-                    popup_menu(m, e.x_root, e.y_root)), add="+")
-                w.bind("<Delete>", lambda e, o=eid: self._delete_entry(o))
+                       self._on_row_click(o, e), add="+")
+                w.bind("<Button-3>", lambda e, o=eid, m=popup:
+                       self._on_row_right_click(o, e, m), add="+")
+                # Delete removes every selected row, not just the one under
+                # the pointer - otherwise selecting ten rows and pressing
+                # Delete would quietly drop only one of them.
+                w.bind("<Delete>", lambda e, o=eid:
+                       self._delete_selected_entries(o))
                 w.bind("<Control-d>", lambda e, o=eid:
                        (self._duplicate_entry(o), "break")[1])
+            # Shift+click needs to know what "between these two rows" means,
+            # and that is screen order - which is neither entry-id order nor
+            # address_table order once groups and Description sorting are in
+            # play. Rows are built top to bottom, so recording them here is
+            # exactly the visible order.
+            self._row_order.append(eid)
             return (chk, freeze_var, desc_ent, type_menu, type_var,
                     val_ent, val_var, addr_ent)
 
@@ -1729,6 +1761,10 @@ class TrainerWindow(tk.Tk):
         # underneath, so the wheel bindings have to be reapplied here or the
         # pointer only scrolls while over the scrollbar.
         self._bind_table_wheel()
+        # Rows are brand new widgets after a rebuild and come back with default
+        # colours, so the selection has to be repainted or it looks like the
+        # table cleared it (e.g. after a type change or a group move).
+        self._apply_row_highlight()
         if mem: mem.close()
         self._rebuild_table = False
 
@@ -1843,6 +1879,287 @@ class TrainerWindow(tk.Tk):
         self._rebuild_table = True
         self.update_table_view()
 
+    # ---- Multi-row selection ---------------------------------------------
+    #
+    # Row colours. The table is drawn from individual widgets rather than a
+    # Treeview, so there is no built-in "selected" look - it is painted by
+    # hand here. The Value entry is deliberately left alone: _commit_value
+    # flashes it green and restores it to white, and tinting it too would mean
+    # that flash restores the wrong colour on a selected row.
+    ROW_BG        = "#151515"
+    ROW_DESC_BG   = "#333333"
+    SEL_BG        = "#0D3A5C"
+    SEL_DESC_BG   = "#14507E"
+
+    def _apply_row_highlight(self):
+        """Repaint every visible row to match the current selection."""
+        sel = self._selected_entry_ids
+        for eid, widgets in list(self.ui_row_widgets.items()):
+            try:
+                chk, _, desc_ent, _, _, _, _, addr_ent = widgets
+                on = eid in sel
+                chk.config(bg=self.SEL_BG if on else self.ROW_BG)
+                # A pointer row's address cell is readonly, and Tk draws a
+                # readonly Entry with readonlybackground - setting bg on it
+                # has no visible effect at all.
+                if str(addr_ent.cget("state")) == "readonly":
+                    addr_ent.config(
+                        readonlybackground=self.SEL_BG if on else self.ROW_BG)
+                else:
+                    addr_ent.config(bg=self.SEL_BG if on else self.ROW_BG)
+                desc_ent.config(
+                    bg=self.SEL_DESC_BG if on else self.ROW_DESC_BG)
+            except Exception:
+                pass
+
+    def _on_row_click(self, eid, event=None):
+        """
+        Update the selection for a click on a row.
+
+        Plain click replaces the selection, Ctrl+click toggles a single row,
+        Shift+click selects everything between the anchor and this row. The
+        modifier bits come from event.state: 0x0001 is Shift, 0x0004 is
+        Control on every platform Tk runs on.
+        """
+        state = getattr(event, "state", 0) if event is not None else 0
+        try:
+            ctrl = bool(state & 0x0004)
+            shift = bool(state & 0x0001)
+        except TypeError:
+            ctrl = shift = False
+        sel = self._selected_entry_ids
+
+        if shift and self._sel_anchor in self._row_order and \
+                eid in self._row_order:
+            i = self._row_order.index(self._sel_anchor)
+            j = self._row_order.index(eid)
+            if i > j:
+                i, j = j, i
+            if not ctrl:
+                sel.clear()
+            sel.update(self._row_order[i:j + 1])
+            # The anchor deliberately stays put, so dragging the shift-click
+            # up and down re-picks the range instead of walking it along.
+        elif ctrl:
+            if eid in sel:
+                sel.discard(eid)
+            else:
+                sel.add(eid)
+            self._sel_anchor = eid
+        else:
+            sel.clear()
+            sel.add(eid)
+            self._sel_anchor = eid
+
+        self._selected_entry_id = eid
+        self._apply_row_highlight()
+        return None
+
+    def _on_row_right_click(self, eid, event, single_menu):
+        """
+        Post the row context menu, or the bulk menu when several are selected.
+
+        Right-clicking a row that is not part of the current selection selects
+        just that row first - the usual behaviour everywhere else, and it stops
+        an action aimed at one row from silently hitting a selection made
+        somewhere else in the table minutes ago.
+        """
+        if eid not in self._selected_entry_ids:
+            self._on_row_click(eid)
+        else:
+            self._selected_entry_id = eid
+        if len(self._selected_entry_ids) > 1:
+            menu = self._build_multi_menu()
+        else:
+            menu = single_menu
+        popup_menu(menu, event.x_root, event.y_root)
+        return None
+
+    def _selected_entries(self):
+        """Selected entries, in on-screen order."""
+        by_id = {e[10]: e for e in self.engine.address_table if len(e) > 10}
+        out = [by_id[i] for i in self._row_order
+               if i in self._selected_entry_ids and i in by_id]
+        # Anything selected but not currently drawn (a collapsed group) still
+        # counts - it is selected, the user just cannot see it.
+        seen = {id(e) for e in out}
+        out += [by_id[i] for i in self._selected_entry_ids
+                if i in by_id and id(by_id[i]) not in seen]
+        return out
+
+    def _build_multi_menu(self):
+        """Context menu for a multi-row selection."""
+        n = len(self._selected_entry_ids)
+        menu = tk.Menu(self, tearoff=0, bg="#424242", fg="#FFFFFF",
+                       activebackground="#FF9800", activeforeground="#000000")
+        menu.add_command(label=f"{n} entries selected", state="disabled")
+        menu.add_separator()
+        menu.add_command(label=f"Set value for all {n}…",
+                         command=self._set_value_selected)
+        menu.add_command(label=f"Freeze all {n}",
+                         command=lambda: self._freeze_selected(True))
+        menu.add_command(label=f"Unfreeze all {n}",
+                         command=lambda: self._freeze_selected(False))
+        menu.add_separator()
+        move_menu = tk.Menu(menu, tearoff=0, bg="#424242", fg="#FFFFFF",
+                            activebackground="#FF9800",
+                            activeforeground="#000000")
+        move_menu.add_command(label="None",
+                              command=lambda: self._move_selected_to_group(""))
+        if self.groups:
+            move_menu.add_separator()
+            for g in self.groups:
+                move_menu.add_command(
+                    label=g,
+                    command=lambda gn=g: self._move_selected_to_group(gn))
+        move_menu.add_separator()
+        move_menu.add_command(label="New group…",
+                              command=self._new_group_selected)
+        menu.add_cascade(label=f"Move all {n} to group", menu=move_menu)
+        menu.add_separator()
+        menu.add_command(label=f"Remove all {n}  (Delete)",
+                         command=self._delete_selected_entries)
+        # Held on self: a Tk menu with no Python reference is garbage collected
+        # right after posting and the menu vanishes mid-click.
+        self._multi_menu = menu
+        return menu
+
+    def _delete_selected_entries(self, fallback_eid=None):
+        """
+        Remove every selected entry in one pass.
+
+        Deleting one at a time through _delete_entry would rebuild the whole
+        table once per row, which is slow and makes the list jump around while
+        it works. Large deletions ask first, since there is no undo.
+        """
+        ids = set(self._selected_entry_ids)
+        if not ids and fallback_eid is not None:
+            ids = {fallback_eid}
+        if not ids:
+            return
+        if len(ids) > 1 and not messagebox.askyesno(
+                "Remove entries",
+                f"Remove {len(ids)} entries from the address table?",
+                parent=self):
+            return
+        self.engine.address_table[:] = [
+            e for e in self.engine.address_table
+            if not (len(e) > 10 and e[10] in ids)]
+        self._selected_entry_ids.clear()
+        self._selected_entry_id = None
+        self._sel_anchor = None
+        self._rebuild_table = True
+        self.update_table_view()
+
+    def _set_value_selected(self):
+        """Write one value into every selected entry."""
+        entries = self._selected_entries()
+        if not entries:
+            return
+        txt = simpledialog.askstring(
+            "Set value",
+            f"New value for {len(entries)} selected "
+            f"{'entry' if len(entries) == 1 else 'entries'}:",
+            parent=self)
+        if txt is None:
+            return
+        txt = txt.strip()
+        # The rows may not share a type, so each one is packed against its own
+        # type rather than packing once and reusing the bytes. A value that
+        # does not fit a given row's type is skipped and reported at the end
+        # instead of aborting the whole batch.
+        failed = []
+        try:
+            mem = open(f"/proc/{self.engine.pid}/mem", "rb+") \
+                  if self.engine.os_type == "Linux" else None
+        except Exception:
+            mem = None
+        try:
+            for e in entries:
+                packed = self.engine.pack_freeze_data(txt, e[2])
+                if not packed:
+                    failed.append(e[1] or f"0x{e[0]:08X}")
+                    continue
+                tgt = self.engine.resolve_entry(e, mem)
+                if tgt is None:
+                    failed.append(e[1] or f"0x{e[0]:08X}")
+                    continue
+                self.engine.write_mem(self.engine.xbox_ram_base + tgt,
+                                      packed, mem)
+                e[4] = txt
+                # A frozen row keeps writing e[4], so updating it above is what
+                # makes the new value stick rather than being overwritten by
+                # the freeze thread on its next pass.
+        finally:
+            if mem:
+                mem.close()
+        for e in entries:
+            wid = self.ui_row_widgets.get(e[10])
+            if wid:
+                wid[5].config(bg="#A5D6A7")
+        self.after(220, self._restore_value_backgrounds)
+        if failed:
+            shown = "\n".join(f"  • {d}" for d in failed[:12])
+            if len(failed) > 12:
+                shown += f"\n  … and {len(failed) - 12} more"
+            messagebox.showwarning(
+                "Set value",
+                f"{len(failed)} of {len(entries)} entries could not be "
+                f"written (bad value for their type, or unresolved "
+                f"pointer):\n\n{shown}", parent=self)
+
+    def _restore_value_backgrounds(self):
+        for wid in list(self.ui_row_widgets.values()):
+            try:
+                wid[5].config(bg="#FFFFFF")
+            except Exception:
+                pass
+
+    def _freeze_selected(self, on):
+        """Turn freezing on or off for every selected entry."""
+        for e in self._selected_entries():
+            e[3] = bool(on)
+            if on:
+                # Freeze the value showing right now, matching what the
+                # single-row checkbox does.
+                wid = self.ui_row_widgets.get(e[10])
+                if wid:
+                    e[4] = wid[6].get().strip()
+        self._rebuild_table = True
+        self.update_table_view()
+
+    def _move_selected_to_group(self, group):
+        for e in self._selected_entries():
+            while len(e) <= 9:
+                e.append("")
+            e[9] = group
+        self._rebuild_table = True
+        self.update_table_view()
+
+    def _new_group_selected(self):
+        name = simpledialog.askstring("New Group", "Group name:", parent=self)
+        if name and name.strip():
+            name = name.strip()
+            if name not in self.groups:
+                self.groups.append(name)
+            self._move_selected_to_group(name)
+
+    def _select_all_entries(self, event=None):
+        """Ctrl+A selects every row - but not while typing in a field."""
+        w = None
+        try:
+            w = self.focus_get()
+        except Exception:
+            pass
+        if isinstance(w, (tk.Entry, tk.Text, ttk.Entry)):
+            return None
+        self._selected_entry_ids = {e[10] for e in self.engine.address_table
+                                    if len(e) > 10}
+        if self._row_order:
+            self._sel_anchor = self._row_order[0]
+        self._apply_row_highlight()
+        return "break"
+
     def _guest_virtual_for(self, entry):
         """
         The GUEST VIRTUAL address an entry refers to, for watchpoints.
@@ -1894,6 +2211,9 @@ class TrainerWindow(tk.Tk):
         per-widget.
         """
         self._selected_entry_id = None
+        self._selected_entry_ids.clear()
+        self._sel_anchor = None
+        self._apply_row_highlight()
         focused = None
         try:
             focused = self.focus_get()
