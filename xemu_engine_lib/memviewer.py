@@ -583,8 +583,14 @@ class TabbedMemoryViewer:
             state['calculated_row_capacity'] = cap
 
             bytes_to_fetch = cap * B
-            mem_file = open(f"/proc/{self.engine.pid}/mem","rb") \
-                       if self.engine.os_type == "Linux" else None
+            # open() on a dead pid raises ProcessLookupError. The viewer has
+            # no useful way to render a process that is gone, so it leaves the
+            # last dump on screen and waits for a reattach.
+            try:
+                mem_file = open(f"/proc/{self.engine.pid}/mem","rb") \
+                           if self.engine.os_type == "Linux" else None
+            except OSError:
+                return
             chunk, cmask = self._read_span(state, state['offset'],
                                            bytes_to_fetch, mem_file)
             if mem_file: mem_file.close()
@@ -1021,11 +1027,14 @@ class TabbedMemoryViewer:
 
         def live_loop():
             if not self.win.winfo_exists(): return
-            if state['live_var'].get() and not state['scroll_throttle_active']:
-                refresh_view()
+            # The reschedule has to happen even if refresh_view() throws.
+            # With it sitting after the call, one bad refresh silently ended
+            # live mode for the rest of the session.
             try: ms = max(10, min(1000, int(state['interval_entry'].get())))
             except: ms = 100
             state['live_id'] = self.win.after(ms, live_loop)
+            if state['live_var'].get() and not state['scroll_throttle_active']:
+                refresh_view()
         live_loop()
 
         tab_data = {'id': tid, 'state': state, 'frame': tab_frame}
