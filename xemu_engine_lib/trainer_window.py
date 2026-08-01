@@ -152,6 +152,7 @@ class TrainerWindow(tk.Tk):
                     self._config['memory_viewer']['y']      = geo2[3]
             with open(self._config_file, 'w') as f:
                 self._config.write(f)
+            xemu_privs.reclaim(self._config_file)
         except: pass
 
     def destroy(self):
@@ -1235,11 +1236,10 @@ class TrainerWindow(tk.Tk):
                 row.append(bool(e[11]) if len(e) > 11 else bool(e[5]))
                 out.append(row)
             with open(path, "w") as f: json.dump(out, f, indent=4)
-            if platform.system() == "Linux" and os.environ.get("SUDO_USER"):
-                import pwd
-                u = pwd.getpwnam(os.environ["SUDO_USER"])
-                os.chown(path, u.pw_uid, u.pw_gid)
-                os.chmod(path, 0o664)
+            # Ownership handback now lives in xemu_privs so that every write
+            # site gets it, not just this one, and so that a root shell with
+            # no SUDO_USER set is still handled.
+            xemu_privs.reclaim(path)
             messagebox.showinfo("Saved", "Table saved.")
         except Exception as e: messagebox.showerror("Error", str(e))
 
@@ -2250,6 +2250,7 @@ class TrainerWindow(tk.Tk):
                 if path.lower().endswith(".bin"):
                     with open(path, "wb") as f:
                         f.write(dump)
+                    xemu_privs.reclaim(path)
                 elif path.lower().endswith(".xz"):
                     import lzma
                     # preset 6 rather than 9: RAM dumps are mostly zero pages
@@ -2257,6 +2258,7 @@ class TrainerWindow(tk.Tk):
                     # minutes for a couple of percent.
                     with lzma.open(path, "wb", preset=6) as f:
                         f.write(dump)
+                    xemu_privs.reclaim(path)
                 else:
                     self._write_analysis_bundle(path, dump, maxb, tgt)
                 size = os.path.getsize(path)
@@ -2352,6 +2354,10 @@ class TrainerWindow(tk.Tk):
                            int(self.engine.pid or 0),
                            -1 if tgt is None else tgt,
                            int(time.time())], dtype=np.int64))
+
+        # savez_compressed appends .npz when the path lacks that suffix, so
+        # reclaim both candidate names rather than guessing which one landed.
+        xemu_privs.reclaim(path if os.path.exists(path) else path + '.npz')
 
     def _dump_done(self, path, size):
         self.label_status.config(text=f"Attached! PID:{self.engine.pid}",
@@ -3206,11 +3212,23 @@ class TrainerWindow(tk.Tk):
         Virtual tickbox is switched on for you. Handing a virtual address to a
         tab in physical mode lands somewhere unrelated, so the flag has to
         travel with the address rather than being set by hand afterwards.
+
+        The window is raised explicitly. It was only ever created here, never
+        deiconified or lifted, so once it had been opened and then covered or
+        minimised every later Browse added a tab to a window the user could
+        not see - which looks exactly like the jump having done nothing.
         """
         if not hasattr(self, 'tabbed_viewer') or not self.tabbed_viewer or \
            not self.tabbed_viewer.win.winfo_exists():
             self.tabbed_viewer = TabbedMemoryViewer(self, self.engine)
-        self.tabbed_viewer.add_tab_at(offset, virtual=virtual)
+        else:
+            try:
+                self.tabbed_viewer.win.deiconify()
+                self.tabbed_viewer.win.lift()
+                self.tabbed_viewer.win.focus_force()
+            except Exception:
+                pass
+        return self.tabbed_viewer.add_tab_at(offset, virtual=virtual)
 
     def _on_sort_changed(self):
         self._rebuild_table = True
@@ -3219,4 +3237,3 @@ class TrainerWindow(tk.Tk):
     def _on_hex_display_toggle(self):
         self._rebuild_table = True
         self.update_table_view()
-
