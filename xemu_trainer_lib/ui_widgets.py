@@ -258,4 +258,3 @@ def install_clipboard_fix(root):
     root.bind_class("Text", "<<Paste>>", text_paste)
     root.bind_class("Text", "<<Copy>>", text_copy)
     root.bind_class("Text", "<<Cut>>", lambda e: text_copy(e, cut=True))
-
