@@ -6,6 +6,16 @@ import os, sys, time, struct, platform, threading, re, json, configparser
 import tkinter as tk
 from tkinter import ttk, messagebox, filedialog, simpledialog
 
+# Ownership reclamation for files written while running under sudo. Imported
+# here rather than per-module because prelude re-exports its whole namespace,
+# so every `from .prelude import *` picks it up. The path insert covers the
+# case of a module being imported directly rather than through the launcher.
+try:
+    import xemu_privs
+except ImportError:
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    import xemu_privs
+
 # ----- Windows‑only imports -----
 if platform.system() == "Windows":
     import ctypes
