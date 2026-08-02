@@ -173,13 +173,28 @@ class Config:
             return 50
 
     @staticmethod
+    def load_gdb_patching():
+        """
+        Whether [ASM] patches are written through xemu's gdbstub.
+
+        Defaults to on: a raw /proc write to code leaves QEMU's JIT running
+        the block it already translated, so the patch does nothing.
+        """
+        try:
+            c = configparser.ConfigParser(); c.read(Config.FILE)
+            return c.getboolean('main', 'gdb_patching', fallback=True)
+        except Exception:
+            return True
+
+    @staticmethod
     def save(games_list: list, geometry: str, freeze_ms: int = 50,
-             sort_mode: str = "Order added"):
+             sort_mode: str = "Order added", gdb_patching: bool = True):
         config = configparser.ConfigParser()
         config['main'] = {
             'geometry': geometry,
             'freeze_interval_ms': str(int(freeze_ms)),
             'sort_mode': sort_mode,
+            'gdb_patching': str(bool(gdb_patching)),
             'games': ','.join(g['name'] for g in games_list)
         }
         # ---- decide who writes which file, before writing anything -------
@@ -245,5 +260,8 @@ class Config:
         tmp = Config.FILE + '.tmp'
         with open(tmp, 'w') as f:
             config.write(f)
+        # Reclaim before the rename: os.replace keeps the temp file's inode,
+        # so chowning afterwards would work too, but doing it here means the
+        # file is never visible at its final name while still root-owned.
+        xemu_privs.reclaim(tmp)
         os.replace(tmp, Config.FILE)
-
