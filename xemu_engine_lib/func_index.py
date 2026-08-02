@@ -243,7 +243,7 @@ class FunctionIndex:
         otherwise scatter plausible-looking names over unrelated code.
         """
         added = kept = dropped = 0
-        with open(path, "r", errors="replace") as fh:
+        with open(path, "r", encoding="utf-8", errors="replace") as fh:
             for line in fh:
                 if added + dropped > limit:
                     break
@@ -446,4 +446,3 @@ class FunctionIndex:
         bits = [f"{v} {k}" for k, v in sorted(self.stats.items())
                 if v]
         return f"{len(self.names)} functions (" + ", ".join(bits) + ")"
-
