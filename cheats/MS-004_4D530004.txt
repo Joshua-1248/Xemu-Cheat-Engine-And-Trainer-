@@ -12,6 +12,7 @@
 }
 
 //enabled=1
+; Author: Josh_7774
 [Infinite\Shields (Alternate)] {
   2010F908 7F7FFFFF
 }
