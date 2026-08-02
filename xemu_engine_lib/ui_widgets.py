@@ -286,9 +286,17 @@ def screen_monitors(widget):
                 _fields_ = [("cbSize", wintypes.DWORD), ("rcMonitor", RECT),
                             ("rcWork", RECT), ("dwFlags", wintypes.DWORD)]
 
+            # MonitorEnumProc is
+            #   BOOL CALLBACK(HMONITOR, HDC, LPRECT, LPARAM)
+            # LPARAM is a pointer-sized INTEGER. Declaring it as c_double made
+            # ctypes read the 4th argument from a floating-point register
+            # (XMM3 on x64) instead of the integer one (R9) - the wrong
+            # register entirely. The callback ignores that argument, so this
+            # tended to survive, but it is a calling-convention mismatch on
+            # every call and not something to leave in place.
             cb = ctypes.WINFUNCTYPE(ctypes.c_int, ctypes.c_void_p,
                                     ctypes.c_void_p, ctypes.POINTER(RECT),
-                                    ctypes.c_double)
+                                    ctypes.c_ssize_t)
 
             def _cb(hmon, hdc, lprc, data):
                 mi = MONITORINFO()
@@ -301,7 +309,11 @@ def screen_monitors(widget):
                                  r.bottom - r.top))
                 return 1
 
-            ctypes.windll.user32.EnumDisplayMonitors(None, None, cb(_cb), 0)
+            # Bound to a name first: an inline cb(_cb) creates a temporary
+            # whose refcount can drop to zero, freeing the thunk while
+            # EnumDisplayMonitors is still calling into it.
+            _thunk = cb(_cb)
+            ctypes.windll.user32.EnumDisplayMonitors(None, None, _thunk, 0)
         elif sys.platform != "darwin":
             # macOS Tk already places menus correctly; X11 does not.
             import re as _re
@@ -490,4 +502,3 @@ def install_clipboard_fix(root):
     root.bind_class("Text", "<<Paste>>", text_paste)
     root.bind_class("Text", "<<Copy>>", text_copy)
     root.bind_class("Text", "<<Cut>>", lambda e: text_copy(e, cut=True))
-
