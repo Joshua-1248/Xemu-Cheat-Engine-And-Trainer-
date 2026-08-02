@@ -1872,6 +1872,13 @@ class CheatManagerApp(tk.Tk):
 
     # ---- Xemu connection ----
     def _check_connection(self):
+        if getattr(self.mem, 'unsupported', False):
+            # Say it once per tick in the status bar rather than looping on a
+            # scan that cannot succeed on this OS.
+            self.status_label.config(
+                text=f"{self.mem.os_type} is not supported", fg="#f44336")
+            self.after(5000, self._check_connection)
+            return
         if self.mem.pid is None or not self.mem.is_alive():
             if self.mem.reconnect():
                 self._status_connected()
