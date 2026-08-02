@@ -853,4 +853,3 @@ class CheatEngine:
         for blk in blocks:
             if blk.get('enabled', False):
                 self.execute_block(blk, mem_file)
-                
