@@ -228,7 +228,7 @@ class CodePatchWindow(tk.Toplevel):
             filetypes=[("Patch list", "*.json"), ("All files", "*.*")])
         if not path:
             return
-        with open(path, "w") as f:
+        with open(path, "w", encoding="utf-8") as f:
             json.dump([p.to_dict() for p in self.patches], f, indent=2)
 
     def _load(self):
@@ -238,7 +238,7 @@ class CodePatchWindow(tk.Toplevel):
         if not path:
             return
         try:
-            with open(path) as f:
+            with open(path, encoding="utf-8") as f:
                 loaded = [CodePatch.from_dict(d) for d in json.load(f)]
         except Exception as exc:                            # noqa: BLE001
             messagebox.showerror("Load", str(exc), parent=self)
@@ -275,7 +275,10 @@ class CodePatchWindow(tk.Toplevel):
 
         self.listbox = tk.Listbox(self, bg="#151515", fg="#E0E0E0",
                                   selectmode="extended", activestyle="none",
-                                  font=("monospace", 10),
+                                  font=("Courier", 10),   # "monospace" is an X11 alias Windows Tk
+                                  # does not resolve; it would silently
+                                  # fall back to a proportional font and
+                                  # misalign every hex column.
                                   selectbackground="#0D3A5C")
         self.listbox.pack(fill="both", expand=True, padx=8)
         self.listbox.bind("<Double-Button-1>", lambda e: self._edit())
