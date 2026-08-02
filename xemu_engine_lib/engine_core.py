@@ -42,6 +42,11 @@ class XemuTrainerEngine:
         self.scan_region_name  = "All physical RAM"
         self.scan_virtual      = False          # report results as virtual?
         self.os_type           = platform.system()  # "Linux" or "Windows"
+        # Every platform branch below is Linux-or-Windows with a silent no-op
+        # fallthrough, so on macOS reads return zeros and writes disappear
+        # without raising. Name it so the UI can report it instead of looking
+        # attached-but-broken.
+        self.unsupported       = self.os_type not in ("Linux", "Windows")
         self.win_process_handle = None          # (Windows) OpenProcess handle
 
         # Address table – each entry is a list with these elements:
@@ -396,12 +401,16 @@ class XemuTrainerEngine:
                 with open(f"/proc/{pid}/comm", "r") as f:
                     if "xemu" not in f.read().lower(): continue
             except: continue
-            self.pid = pid
+            # int(), not the str from listdir. os.kill() rejects a str with
+            # TypeError, the bare except in is_alive() swallowed it, and
+            # is_alive() therefore returned False on every single call - so
+            # the 2-second watchdog tore down and rebuilt the connection
+            # forever, briefly clearing xbox_ram_base each time.
+            self.pid = int(pid)
             break
         if not self.pid: return False
 
-        best = 0
-        best_addr = None
+        candidates = []
         try:
             with open(f"/proc/{self.pid}/maps", "r") as maps:
                 for line in maps:
@@ -414,11 +423,15 @@ class XemuTrainerEngine:
                     end   = int(end_hex, 16)
                     size  = end - start
                     # Xbox RAM is usually exactly 64, 128, or 256 MB
-                    if size in (0x04000000, 0x08000000, 0x10000000) and size > best:
-                        best = size
-                        best_addr = start
+                    if size in (0x04000000, 0x08000000, 0x10000000):
+                        candidates.append((start, size))
         except: pass
 
+        # Same selection as Windows: prefer a region that passes the
+        # structural check, fall back to the largest. Keeping the two
+        # platforms on one chooser means a fix to the heuristic cannot reach
+        # only one of them, which is how the two page maps already drifted.
+        best_addr, best = self._choose_ram_region(candidates)
         if best_addr is not None:
             self.xbox_ram_base = best_addr
             self.xbox_ram_size_mb = best // (1024 * 1024)
@@ -452,8 +465,7 @@ class XemuTrainerEngine:
         if not self.win_process_handle: return False
 
         cur = 0
-        best_size = 0
-        best_addr = None
+        candidates = []
         class MEMORY_BASIC_INFORMATION(ctypes.Structure):
             _fields_ = [
                 ("BaseAddress",       ctypes.c_void_p),
@@ -465,21 +477,100 @@ class XemuTrainerEngine:
                 ("Type",              wintypes.DWORD),
             ]
         mbi = MEMORY_BASIC_INFORMATION()
+        PAGE_GUARD = 0x100
+        PAGE_EXECUTE_READWRITE = 0x40
         while ctypes.windll.kernel32.VirtualQueryEx(
                 self.win_process_handle, ctypes.c_void_p(cur),
                 ctypes.byref(mbi), ctypes.sizeof(mbi)):
-            if mbi.State == MEM_COMMIT and mbi.Protect == PAGE_READWRITE:
-                if mbi.RegionSize in (0x04000000, 0x08000000, 0x10000000) \
-                   and mbi.RegionSize > best_size:
-                    best_size = mbi.RegionSize
-                    best_addr = mbi.BaseAddress
-            cur += mbi.RegionSize
+            base = mbi.BaseAddress or 0
+            if mbi.State == MEM_COMMIT and not (mbi.Protect & PAGE_GUARD) \
+                    and (mbi.Protect & (PAGE_READWRITE | PAGE_EXECUTE_READWRITE)):
+                # Every plausible region is collected, not just the biggest.
+                # An exact == PAGE_READWRITE test used to miss a region that
+                # merely had an extra flag set, and taking the largest match
+                # blindly could land on a JIT cache instead of guest RAM.
+                if mbi.RegionSize in (0x04000000, 0x08000000, 0x10000000):
+                    candidates.append((base, mbi.RegionSize))
+            # Advance from this region's own base: VirtualQueryEx rounds the
+            # query address down to a page boundary, so RegionSize is measured
+            # from BaseAddress and adding it to `cur` can skip or stall.
+            nxt = base + mbi.RegionSize
+            if nxt <= cur:
+                break
+            cur = nxt
 
+        best_addr, best_size = self._choose_ram_region(candidates)
         if best_addr is not None:
             self.xbox_ram_base = best_addr
             self.xbox_ram_size_mb = best_size // (1024 * 1024)
             return True
         return False
+
+    # ----------------------------------------------------------------------
+    def _looks_like_xbox_ram(self, base, mem_file=None):
+        """
+        Confirm a candidate region really is the guest's RAM.
+
+        Picking "the largest read-write region of a plausible size" is a guess.
+        A host process can hold several regions that fit that description - a
+        JIT code cache, GPU staging buffers - and choosing wrong means reading
+        convincing-looking garbage forever.
+
+        So check the structure instead. The Xbox page directory sits at guest
+        physical 0xF000, and the XBE image is mapped at guest virtual 0x10000.
+        Walk one PDE and one PTE, then look for the 'XBEH' magic at the
+        physical address that falls out. Nothing but real Xbox RAM satisfies
+        that chain, and it costs three small reads.
+
+        Returns False when no title is loaded (the dashboard has no XBE at
+        0x10000), so callers treat this as a preference, not a requirement.
+        """
+        def u32(off):
+            raw = self.read_mem(base + off, 4, mem_file)
+            if not raw or len(raw) != 4:
+                return None
+            return int.from_bytes(raw, 'little')
+
+        try:
+            va = 0x10000
+            pde = u32(0xF000 + ((va >> 22) << 2))
+            if not pde or not (pde & 1):
+                return False
+            if pde & 0x80:                       # 4 MB large page
+                phys = (pde & 0xFFC00000) | (va & 0x3FFFFF)
+            else:
+                pte = u32((pde & 0xFFFFF000) + (((va >> 12) & 0x3FF) << 2))
+                if not pte or not (pte & 1):
+                    return False
+                phys = (pte & 0xFFFFF000) | (va & 0xFFF)
+            if phys is None or phys >= (self.xbox_ram_size_mb or 128) * 1024 * 1024:
+                return False
+            return self.read_mem(base + phys, 4, mem_file) == b'XBEH'
+        except Exception:                                      # noqa: BLE001
+            return False
+
+    def _choose_ram_region(self, candidates):
+        """
+        Pick the guest RAM region from the candidates found by the OS scan.
+
+        Prefers a region that passes the structural check. Falls back to the
+        largest candidate so that attaching still works before a title is
+        loaded, which is exactly when the structural check cannot pass.
+
+        `candidates` is a list of (base_address, size_in_bytes).
+        """
+        if not candidates:
+            return None, 0
+        ranked = sorted(candidates, key=lambda c: -c[1])
+        for addr, size in ranked:
+            # size must be set before validating: _looks_like_xbox_ram bounds
+            # the translated physical address against it.
+            self.xbox_ram_size_mb = size // (1024 * 1024)
+            if self._looks_like_xbox_ram(addr):
+                self.ram_region_verified = True
+                return addr, size
+        self.ram_region_verified = False
+        return ranked[0]
 
     # ----------------------------------------------------------------------
     def is_process_alive(self):
@@ -534,12 +625,34 @@ class XemuTrainerEngine:
             except Exception:
                 return b'\x00' * length
         elif self.os_type == "Windows":
+            # ReadProcessMemory is all-or-nothing: if a single page anywhere
+            # in the range is unreadable it fails and touches nothing. The old
+            # code ignored both the BOOL return and bytes_read and handed back
+            # the buffer regardless, so a failed read looked like a region full
+            # of zeros - which during a full 128 MB dump means "scan found
+            # nothing" with no error anywhere.
             buf = ctypes.create_string_buffer(length)
-            bytes_read = ctypes.c_size_t(0)
-            ctypes.windll.kernel32.ReadProcessMemory(
+            got = ctypes.c_size_t(0)
+            ok = ctypes.windll.kernel32.ReadProcessMemory(
                 self.win_process_handle, ctypes.c_void_p(address),
-                buf, length, ctypes.byref(bytes_read))
-            return buf.raw
+                buf, length, ctypes.byref(got))
+            if ok and got.value == length:
+                return buf.raw[:length]
+            # Retry page-aligned chunks so one bad page costs a page instead
+            # of the whole request. Anything unreadable stays zero, matching
+            # what the Linux path does with a short read.
+            CHUNK = 0x10000
+            out = bytearray(length)
+            cbuf = ctypes.create_string_buffer(CHUNK)
+            for off in range(0, length, CHUNK):
+                n = min(CHUNK, length - off)
+                g = ctypes.c_size_t(0)
+                if ctypes.windll.kernel32.ReadProcessMemory(
+                        self.win_process_handle,
+                        ctypes.c_void_p(address + off), cbuf, n,
+                        ctypes.byref(g)) and g.value:
+                    out[off:off + g.value] = cbuf.raw[:g.value]
+            return bytes(out)
         return b'\x00' * length
 
     def _shared_mem_file(self):
@@ -572,9 +685,27 @@ class XemuTrainerEngine:
                 mem_file.write(data)
             except: pass
         elif self.os_type == "Windows":
-            ctypes.windll.kernel32.WriteProcessMemory(
-                self.win_process_handle, ctypes.c_void_p(address),
-                data, len(data), None)
+            written = ctypes.c_size_t(0)
+            if not ctypes.windll.kernel32.WriteProcessMemory(
+                    self.win_process_handle, ctypes.c_void_p(address),
+                    data, len(data), ctypes.byref(written)):
+                # Guest RAM is committed read-write, so a failure here is
+                # usually a protection change rather than a bad address.
+                # Lift the protection for the write and put it straight back:
+                # leaving a region writable that the emulator expected to be
+                # read-only would be a worse bug than the failed write.
+                PAGE_EXECUTE_READWRITE = 0x40
+                old_prot = wintypes.DWORD(0)
+                if ctypes.windll.kernel32.VirtualProtectEx(
+                        self.win_process_handle, ctypes.c_void_p(address),
+                        len(data), PAGE_EXECUTE_READWRITE,
+                        ctypes.byref(old_prot)):
+                    ctypes.windll.kernel32.WriteProcessMemory(
+                        self.win_process_handle, ctypes.c_void_p(address),
+                        data, len(data), ctypes.byref(written))
+                    ctypes.windll.kernel32.VirtualProtectEx(
+                        self.win_process_handle, ctypes.c_void_p(address),
+                        len(data), old_prot, ctypes.byref(old_prot))
 
     # ---- Type helpers (for scanning/freezing) ----------------------------
     def _get_type_params(self, val_type, current_input=""):
