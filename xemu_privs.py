@@ -228,8 +228,21 @@ def require_memory_access(tool_name="This tool"):
     machine can run the tools as a normal user.
     """
     if not IS_LINUX:
+        # elevated() returns False on macOS too - it probes for the Windows
+        # admin API and swallows the AttributeError - so a bare "not elevated"
+        # branch told Mac users to get Administrator rights on Windows. Name
+        # the platform before assuming which one we are on.
+        if platform.system() != "Windows":
+            print(f"[-] {tool_name} does not support {platform.system()}.")
+            print("    Reading another process's memory needs task_for_pid()")
+            print("    and the mach_vm_* API on macOS; that backend does not")
+            print("    exist yet. Linux and Windows are supported.")
+            sys.exit(1)
         if not elevated():
             print(f"[-] {tool_name} needs Administrator rights on Windows.")
+            print("    Right-click the launcher and choose")
+            print("    'Run as administrator', or start it from an elevated")
+            print("    terminal.")
             sys.exit(1)
         return
 
