@@ -311,7 +311,10 @@ def write_cheat_file(path, title, serial, titleid, kind, tree):
     tmp = path + '.tmp'
     with open(tmp, 'w', encoding='utf-8') as f:
         f.write(text)
+    xemu_privs.reclaim(tmp)
     os.replace(tmp, path)
+    # makedirs may have created the parent chain as root; hand that back too.
+    xemu_privs.reclaim_tree(path)
 
 
 # ---------------------------------------------------------------------------
