@@ -2,3 +2,17 @@
 //serial=MS-081
 //titleid=4D530051
 //kind=patches
+
+//enabled=1
+; Author: Jao12345
+[60 FPS] {
+  801F6B23 00000001
+  802A9DCC 00000001
+}
+
+//enabled=0
+; Author: Jao12345
+[60 FPS - Off] {
+  801F6B23 00000002
+  802A9DCC 00000002
+}
