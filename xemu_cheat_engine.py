@@ -18,14 +18,14 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from xemu_engine_lib.prelude import *  # noqa: F401,F403  (ctypes, os, platform, sys)
 from xemu_engine_lib.engine_core import XemuTrainerEngine  # noqa: F401
 from xemu_engine_lib.trainer_window import TrainerWindow  # noqa: F401
+import xemu_privs
 
 
 if __name__ == "__main__":
-    # Require root on Linux, Administrator on Windows
-    if platform.system() == "Linux" and os.geteuid() != 0:
-        print("[-] Error: Run with sudo."); sys.exit(1)
-    if platform.system() == "Windows" and not ctypes.windll.shell32.IsUserAnAdmin():
-        print("[-] Error: Run as Administrator."); sys.exit(1)
+    # Require the ability to read foreign process memory -- which is not the
+    # same thing as being root. See xemu_privs for why, and for what happens
+    # to file ownership when this is run under sudo anyway.
+    xemu_privs.require_memory_access("Xemu Cheat Engine")
 
     trainer_engine = XemuTrainerEngine()
     app = TrainerWindow(trainer_engine)
