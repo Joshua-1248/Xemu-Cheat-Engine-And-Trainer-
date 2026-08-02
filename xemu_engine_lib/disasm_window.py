@@ -1120,8 +1120,9 @@ class DisassemblyWindow(tk.Toplevel):
                 defaultextension=".txt",
                 filetypes=[("Text", "*.txt"), ("All files", "*.*")])
             if path:
-                with open(path, "w") as fh:
+                with open(path, "w", encoding="utf-8") as fh:
                     fh.write(txt.get("1.0", "end"))
+                xemu_privs.reclaim(path)
         tk.Button(win, text="Save...", command=save, bd=0, bg="#455A64",
                   fg="white", font=("Helvetica", 9, "bold")).pack(
                       side="bottom", pady=4)
@@ -2312,4 +2313,3 @@ class DisassemblyWindow(tk.Toplevel):
             pass
         if self.winfo_exists():
             self.after(150, self._pump)
-
