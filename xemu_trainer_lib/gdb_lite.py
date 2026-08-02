@@ -140,4 +140,3 @@ class GdbLite:
         except Exception:                                   # noqa: BLE001
             pass
         self.close()
-
