@@ -594,4 +594,3 @@ def verify_chains(chains, dump2, ram_size, target2_off, tolerance=0):
         if ok and abs(cur - target2_off) <= tolerance:
             kept.append((base, offsets))
     return kept
-
