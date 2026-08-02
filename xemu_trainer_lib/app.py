@@ -51,6 +51,10 @@ class CheatManagerApp(tk.Tk):
         # Load from INI, restore geometry
         saved_geom = Config.load(self.games)
         self.freeze_interval_ms = Config.load_freeze_ms()
+        # [ASM] patches go through xemu's gdbstub so QEMU's JIT drops the
+        # block it already translated; without that a code patch writes into
+        # RAM and never executes.
+        self.cheat_engine.gdb_enabled = Config.load_gdb_patching()
         self.games.sort(key=lambda g: g['name'].lower())
         # Cheats are NOT sorted on load any more. The stored order is the order
         # they were added in, and the sort control below reorders the view
@@ -84,6 +88,29 @@ class CheatManagerApp(tk.Tk):
         self.freeze_rate_label = tk.Label(bottom, text="", fg="#4CAF50",
                                           bg="#212121", font=("Helvetica",8))
         self.freeze_rate_label.pack(side="left")
+
+        # [ASM] patches need the stub route or the JIT keeps running the block
+        # it already translated. Exposed rather than hardcoded so a game that
+        # dislikes having gdb attached can still be patched the raw way.
+        self.gdb_patch_var = tk.BooleanVar(
+            value=getattr(self.cheat_engine, 'gdb_enabled', True))
+
+        def _apply_gdb_patch(*_):
+            on = bool(self.gdb_patch_var.get())
+            self.cheat_engine.gdb_enabled = on
+            if not on:
+                self.cheat_engine.gdb_close()
+
+        self.gdb_patch_var.trace_add("write", _apply_gdb_patch)
+        tk.Checkbutton(bottom, text="JIT-safe patches",
+                       variable=self.gdb_patch_var, bg="#212121",
+                       fg="#B0BEC5", selectcolor="#151515",
+                       activebackground="#212121", activeforeground="#FFFFFF",
+                       font=("Helvetica",8), bd=0, highlightthickness=0
+                       ).pack(side="right", padx=(4,8))
+        self.gdb_status_label = tk.Label(bottom, text="", fg="#FF9800",
+                                         bg="#212121", font=("Helvetica",8))
+        self.gdb_status_label.pack(side="right")
 
         def _apply_interval(*_):
             try:
@@ -1834,7 +1861,8 @@ class CheatManagerApp(tk.Tk):
     def _write_config(self):
         try:
             Config.save(self.games, self.geometry(), self.freeze_interval_ms,
-                        self._sort_mode)
+                        self._sort_mode,
+                        getattr(self.cheat_engine, 'gdb_enabled', True))
         except Exception as e:
             print(f"[!] Could not save database: {e}")
 
@@ -1847,7 +1875,32 @@ class CheatManagerApp(tk.Tk):
                 self.status_label.config(text="Waiting for Xemu...", fg="#FF9800")
         else:
             self._status_connected()
+        self._update_gdb_status()
         self.after(2000, self._check_connection)
+
+    def _update_gdb_status(self):
+        """
+        Show whether [ASM] patches are actually taking effect.
+
+        A patch written the raw way lands in RAM and then does nothing, so
+        "no stub" is worth saying out loud rather than letting the patch look
+        applied while the game ignores it.
+        """
+        lbl = getattr(self, 'gdb_status_label', None)
+        if lbl is None:
+            return
+        if not getattr(self.cheat_engine, 'gdb_enabled', True):
+            lbl.config(text="raw writes", fg="#FF9800")
+            return
+        live, note = self.cheat_engine.gdb_status()
+        if live:
+            lbl.config(text="patched via gdbstub", fg="#4CAF50")
+        elif self.cheat_engine.asm_orig:
+            # Only nag once an [ASM] patch is actually in play.
+            lbl.config(text="no gdbstub - type 'gdbserver' in xemu's Monitor",
+                       fg="#f44336")
+        else:
+            lbl.config(text="", fg="#FF9800")
 
     def _status_connected(self):
         mb = self.mem.xbox_ram_size_mb
@@ -1884,4 +1937,3 @@ class CheatManagerApp(tk.Tk):
         if platform.system() == "Windows" and self.mem.win_process_handle:
             ctypes.windll.kernel32.CloseHandle(self.mem.win_process_handle)
         super().destroy()
-
