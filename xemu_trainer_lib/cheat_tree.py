@@ -58,9 +58,29 @@ def game_section(game, section):
     return game.setdefault(section, [])
 
 def all_game_nodes(game):
-    """Every cheat block in the game, from both sections."""
+    """
+    Every cheat block in the game, from both sections.
+
+    Blocks in the patches section are tagged `_asm` on the way out. A patch is
+    by definition an edit to code, and a code edit written straight to RAM has
+    no effect under QEMU's JIT - it keeps running the block it already
+    translated. The tag routes the write through the gdbstub instead, and makes
+    the block journal its original bytes so disabling it can put them back.
+
+    Tagged here rather than at load time because this is the one call both the
+    freeze loop and the restore pass go through, so the two cannot disagree
+    about which blocks are patches. The key is in-memory only - the on-disk
+    format writes a fixed set of fields and ignores it.
+    """
     out = []
     for section in SECTIONS:
-        out.extend(walk_cheats(game.get(section, []) or []))
+        # list() is load-bearing: walk_cheats is a generator, so tagging by
+        # iterating it would leave it exhausted and extend() would add nothing.
+        nodes = list(walk_cheats(game.get(section, []) or []))
+        is_patch = (section == 'patches')
+        for n in nodes:
+            # Assigned either way: a block dragged from patches to cheats must
+            # lose the tag, not keep a stale True.
+            n['_asm'] = is_patch
+        out.extend(nodes)
     return out
-
