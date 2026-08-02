@@ -40,7 +40,7 @@ class TrainerWindow(tk.Tk):
         saved_geom = None
         if os.path.exists(self._config_file):
             try:
-                self._config.read(self._config_file)
+                self._config.read(self._config_file, encoding='utf-8')
                 if 'main_window' in self._config:
                     x = self._config.getint('main_window', 'x', fallback=None)
                     y = self._config.getint('main_window', 'y', fallback=None)
@@ -158,7 +158,7 @@ class TrainerWindow(tk.Tk):
                     self._config['memory_viewer']['height'] = geo2[1]
                     self._config['memory_viewer']['x']      = geo2[2]
                     self._config['memory_viewer']['y']      = geo2[3]
-            with open(self._config_file, 'w') as f:
+            with open(self._config_file, 'w', encoding='utf-8') as f:
                 self._config.write(f)
             xemu_privs.reclaim(self._config_file)
         except: pass
@@ -777,6 +777,12 @@ class TrainerWindow(tk.Tk):
         """Periodically check if Xemu is still alive; reconnect if needed."""
         if getattr(self, '_shutting_down', False):
             return
+        if getattr(self.engine, 'unsupported', False):
+            self._disable_buttons()
+            self.label_status.config(
+                text=f"{self.engine.os_type} is not supported", fg="#f44336")
+            self._conn_after_id = self.after(5000, self._check_connection)
+            return
         if self.engine.pid and self.engine.is_process_alive() \
                 and self.engine.xbox_ram_base is not None:
             self._conn_after_id = self.after(2000, self._check_connection)
@@ -1261,7 +1267,8 @@ class TrainerWindow(tk.Tk):
                     row.append("")
                 row.append(bool(e[11]) if len(e) > 11 else bool(e[5]))
                 out.append(row)
-            with open(path, "w") as f: json.dump(out, f, indent=4)
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(out, f, indent=4, ensure_ascii=False)
             # Ownership handback now lives in xemu_privs so that every write
             # site gets it, not just this one, and so that a root shell with
             # no SUDO_USER set is still handled.
@@ -1274,7 +1281,7 @@ class TrainerWindow(tk.Tk):
         path = filedialog.askopenfilename(filetypes=[("Xemu Cheat Tables","*.txt")])
         if not path: return
         try:
-            with open(path, "r") as f: data = json.load(f)
+            with open(path, "r", encoding="utf-8") as f: data = json.load(f)
             self.engine.address_table.clear()
             if isinstance(data, list):
                 for item in data:
