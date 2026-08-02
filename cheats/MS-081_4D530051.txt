@@ -14,7 +14,8 @@
 //enabled=1
 ; Author: Josh_7774
 [Infinite Health] {
-  00BDA3DE 00000006
+  7084A5F8 00000006
+  00010001 000003AE
 }
 
 //enabled=1
