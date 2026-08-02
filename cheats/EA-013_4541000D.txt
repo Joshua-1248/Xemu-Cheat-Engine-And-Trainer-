@@ -30,12 +30,4 @@
   00000090 00000000
 }
 
-//group=Main\Infinite
-
-//enabled=0
-; Author: Josh_7774
-[Main\Infinite\Health] {
-  00000000 00000000
-}
-
 //group=Driving/On-Rails
