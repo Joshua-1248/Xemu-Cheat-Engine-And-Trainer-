@@ -17,13 +17,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from xemu_trainer_lib.prelude import *  # noqa: F401,F403  (ctypes, os, platform, sys)
 from xemu_trainer_lib.app import CheatManagerApp  # noqa: F401
+import xemu_privs
 
 
 if __name__ == "__main__":
-    if platform.system() == "Linux" and os.geteuid() != 0:
-        print("[-] Error: Run with sudo."); sys.exit(1)
-    if platform.system() == "Windows" and not ctypes.windll.shell32.IsUserAnAdmin():
-        print("[-] Error: Run as Administrator."); sys.exit(1)
+    xemu_privs.require_memory_access("Xemu Cheat Manager")
 
     app = CheatManagerApp()
     app.mainloop()
