@@ -138,11 +138,17 @@ if platform.system() == "Windows":
 
     class PROCESSENTRY32(ctypes.Structure):
         """Structure used by CreateToolhelp32Snapshot to enumerate processes."""
+        # Must match tlhelp32.h field for field. th32DefaultHeapID was missing
+        # and th32ModuleID stood in for it as a pointer, which left szExeFile
+        # 4 bytes early: Process32First filled the real layout, the name was
+        # read from the wrong offset, and "xemu.exe" never matched. Attaching
+        # on Windows could not work at all.
         _fields_ = [
             ("dwSize",              wintypes.DWORD),
             ("cntUsage",            wintypes.DWORD),
             ("th32ProcessID",       wintypes.DWORD),
-            ("th32ModuleID",        ctypes.c_void_p),
+            ("th32DefaultHeapID",   ctypes.POINTER(ctypes.c_ulong)),
+            ("th32ModuleID",        wintypes.DWORD),
             ("cntThreads",          wintypes.DWORD),
             ("th32ParentProcessID", wintypes.DWORD),
             ("pcPriClassBase",      wintypes.LONG),
