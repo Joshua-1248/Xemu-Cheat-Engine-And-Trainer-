@@ -1151,8 +1151,12 @@ class CheatManagerApp(tk.Tk):
         for game in self.games:
             active = game.get('active', False)
             for blk in all_game_nodes(game):
+                # `_asm` covers the patches section; the name suffix still
+                # covers a cheat the user tagged by hand. Checking only the
+                # name here would leave a disabled patch journalled forever
+                # and never write its original bytes back.
                 if active and blk.get('enabled') and \
-                        eng.is_asm_name(blk.get('name')):
+                        (blk.get('_asm') or eng.is_asm_name(blk.get('name'))):
                     live.add(blk.get('_bid', 0))
         total_r = total_f = 0
         for bid in {k[0] for k in eng.asm_orig} - live:
