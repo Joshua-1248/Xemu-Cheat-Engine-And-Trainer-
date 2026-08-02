@@ -145,7 +145,7 @@
 }
 
 //enabled=0
-[[ASM]\Ammo Never Decreases\Shotgun [ASM]] {
+[[ASM]\Ammo Never Decreases\Shotgun (Alt-Fire) [ASM]] {
   80342132 00000000
 }
 
