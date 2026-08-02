@@ -46,11 +46,22 @@ class CheatEngine:
         self.gdb = None
         self.gdb_host = GDB_HOST_DEFAULT
         self.gdb_port = GDB_PORT_DEFAULT
-        # OFF by default. The stub route only exists because QEMU will not
-        # notice a /proc write to code, and it is not worth requiring the user
-        # to start gdbserver for it. Set True to re-enable.
-        self.gdb_enabled = False
+        # ON by default. A /proc write to code is not merely slower - under
+        # TCG it does nothing at all until something unrelated invalidates the
+        # block, so an [ASM] patch silently fails. Connecting costs nothing
+        # when no stub is listening (one refused connect every gdb_retry_secs)
+        # and the raw write still runs as a fallback, so the only price of
+        # leaving this on is that price. Turn it off in Settings if a game
+        # misbehaves with the stub attached.
+        self.gdb_enabled = True
         self.gdb_note = ""
+        # Hold the socket open, or drop it the moment a patch is written?
+        # xemu's stub takes ONE connection, so holding it locks the Cheat
+        # Engine (and any real gdb) out for as long as the trainer is running.
+        # [ASM] patches are one-shot - _asm_written stops them re-firing every
+        # freeze tick - so there is nothing to keep the socket open for.
+        self.gdb_hold = False
+        self._gdb_last_ok = 0.0
         self._gdb_next_try = 0.0
         self.gdb_retry_secs = 3.0
         # (bid, space, addr) -> bytes we last wrote, so an [ASM] patch is
@@ -234,9 +245,17 @@ class CheatEngine:
         return self.gdb
 
     def gdb_status(self):
-        """(connected, text) for the UI."""
+        """
+        (working, text) for the UI.
+
+        With gdb_hold off the socket is normally closed, so "is it connected
+        right now" would read as a failure between patches. What the user
+        actually wants to know is whether the last patch went through the
+        stub, so report that instead.
+        """
         live = self.gdb is not None and self.gdb.alive
-        return live, self.gdb_note
+        recent = (time.time() - self._gdb_last_ok) < 30.0
+        return (live or recent), self.gdb_note
 
     def gdb_close(self):
         self._gdb_next_try = 0.0
@@ -271,6 +290,7 @@ class CheatEngine:
                     back = client.read_mem(va, len(data))
                     if back == data:
                         self.gdb_note = "patching through xemu's gdbstub"
+                        self._gdb_last_ok = time.time()
                         return True
                     self.gdb_note = (f"the stub accepted the write at "
                                      f"0x{va:08X} but it read back as "
@@ -281,6 +301,12 @@ class CheatEngine:
                 # Having interrupted, we owe a continue whatever happened.
                 if halted:
                     client.cont()
+                if not self.gdb_hold:
+                    # Free the stub for the Cheat Engine / a real gdb. Clear
+                    # the retry timer too, or the next patch would sit out the
+                    # backoff meant for "no stub is listening".
+                    self.gdb_close()
+                    self._gdb_next_try = 0.0
         phys = addr if space == 'p' else self._asm_phys(addr, mem_file)
         if phys is None:
             return False
@@ -827,4 +853,3 @@ class CheatEngine:
         for blk in blocks:
             if blk.get('enabled', False):
                 self.execute_block(blk, mem_file)
-
