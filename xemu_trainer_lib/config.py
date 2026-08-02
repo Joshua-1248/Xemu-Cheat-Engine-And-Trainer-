@@ -11,7 +11,16 @@ from . import cheatfiles  # noqa: F401
 
 
 class Config:
-    FILE = "xemu_cheat_manager.ini"
+    # Anchored to the package directory, not left as a bare relative name.
+    # A relative name resolves against the current working directory, so
+    # launching from a Windows shortcut, a .desktop entry, or any shell that
+    # is not sitting in the install folder would silently start a SECOND,
+    # empty database beside wherever that happened to be - and since
+    # base_dir() derives cheats/ and patches/ from this path, the whole cheat
+    # library would appear to have vanished.
+    FILE = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        "xemu_cheat_manager.ini")
 
     @staticmethod
     def _stem_of(game):
@@ -155,7 +164,7 @@ class Config:
     @staticmethod
     def load_sort_mode():
         try:
-            c = configparser.ConfigParser(); c.read(Config.FILE)
+            c = configparser.ConfigParser(); c.read(Config.FILE, encoding='utf-8')
             mode = c.get('main', 'sort_mode', fallback="Order added")
             return mode if mode in ("Order added", "Alphabetical") \
                 else "Order added"
@@ -166,7 +175,7 @@ class Config:
     def load_freeze_ms():
         """Read the saved freeze interval, defaulting to 50 ms."""
         try:
-            c = configparser.ConfigParser(); c.read(Config.FILE)
+            c = configparser.ConfigParser(); c.read(Config.FILE, encoding='utf-8')
             return max(1, min(c.getint('main', 'freeze_interval_ms',
                                        fallback=50), 5000))
         except Exception:
@@ -181,7 +190,7 @@ class Config:
         the block it already translated, so the patch does nothing.
         """
         try:
-            c = configparser.ConfigParser(); c.read(Config.FILE)
+            c = configparser.ConfigParser(); c.read(Config.FILE, encoding='utf-8')
             return c.getboolean('main', 'gdb_patching', fallback=True)
         except Exception:
             return True
@@ -258,7 +267,7 @@ class Config:
         # Write to a temp file and rename, so a crash mid-write cannot leave a
         # truncated database behind - this file is the only copy of the cheats.
         tmp = Config.FILE + '.tmp'
-        with open(tmp, 'w') as f:
+        with open(tmp, 'w', encoding='utf-8') as f:
             config.write(f)
         # Reclaim before the rename: os.replace keeps the temp file's inode,
         # so chowning afterwards would work too, but doing it here means the
