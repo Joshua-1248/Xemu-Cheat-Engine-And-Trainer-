@@ -111,4 +111,3 @@ class XboxPageMap:
             return None
         p = p * 0x1000 + (va & 0xFFF)
         return p if p < self.ram_size else None
-
