@@ -1,6 +1,13 @@
 # Xemu Toolchain — Restructuring Plan
 
-Status: analysis complete, no code changed yet.
+Status: analysis complete. The restructure itself has **not** started — both
+tools still ship as two packages, not the `xemu_tools/` layout below.
+
+Since this was written, a round of cross-platform work has landed (see
+`README_CHANGES.md`). It did not follow the behaviour-preserving rule in §7,
+because it was bug-fixing rather than restructuring. Three findings below have
+been overtaken by it and are marked inline.
+
 Baseline commit: *(record hash here before starting)*
 
 ---
@@ -27,6 +34,15 @@ Ran `pyflakes` + an AST pass for shadowed methods across both files:
 
 This is a well-maintained codebase. The restructure is about **structure and
 duplication**, not about repairing rot.
+
+**Caveat, added later.** Static analysis of this kind proves less than it looks
+like it does. It reported a clean bill of health on a `PROCESSENTRY32` struct
+that was missing a field, which made attaching on Windows impossible in both
+tools — the layout was self-consistent Python, just not the layout Windows
+fills. Every static pass since read past it too. It was found by executing an
+independently written implementation and noticing it disagreed.
+
+Read the health baseline as "no obvious rot", not "no bugs".
 
 ---
 
@@ -89,6 +105,26 @@ This is worse than copy-paste. Copy-paste at least stays in sync when you
 remember to update both. Drifted parallel implementations **disagree**, and a
 fix applied to one never reaches the other.
 
+**This prediction came true, expensively.** The cross-platform round had to fix
+the same four Windows bugs twice — `PROCESSENTRY32`, the pid type, the region
+scan, and the `ReadProcessMemory` return handling — once in `engine_core.py` and
+once in `mem.py`, from the same reasoning, by hand. Any one of those could have
+been fixed in only one copy and nobody would have noticed until a user on the
+other tool reported it.
+
+Two more parallel implementations have appeared since, both deliberate but both
+now on the list:
+
+| Concept | Engine | Trainer |
+|---|---|---|
+| Guest RAM region validation | `_looks_like_xbox_ram` / `_choose_ram_region` | same, duplicated verbatim |
+| Online-play guard | `online_guard.py` (unwired) | `online_guard.py` |
+
+The region chooser was written once and copied precisely *because* of this
+section — the intent being that a fix to the heuristic cannot reach only one
+tool. That intent lasts exactly as long as someone remembers it. It is an
+argument for step 4, not a substitute.
+
 ### Confirmed instance of that drift
 
 `XboxPageMap.__init__` is the pure-Python original in the trainer and the
@@ -105,6 +141,8 @@ results identical    : True (0 mismatches)
 Same output, 387× apart. This is the identical failure mode fixed in
 `execute_next_scan_logic` in an earlier session — per-element Python loops over
 a million entries — still living in the trainer.
+
+**Still true as of the cross-platform round** — this was not touched.
 
 **Mitigating detail:** the trainer never actually constructs `XboxPageMap(dump)`.
 It only calls `XboxPageMap.on_demand(...)`, the lazy walker. So the 11-second
@@ -245,6 +283,9 @@ mechanical movement.
    pass so it doesn't muddy a "pure move" diff.
 4. **Preservation constraint carried forward:** no modification of original
    game data at any point in the pipeline.
+5. **Added after the cross-platform round:** where a bug is fixed in one of the
+   duplicated subsystems, fix it in both copies in the same commit and say so in
+   the message. The two page maps drifted because that did not happen.
 
 ---
 
@@ -266,3 +307,10 @@ mechanical movement.
 - **Reviewable diffs.** Every commit currently touches one of two enormous
   files. Afterward, `git log` names the subsystem, and `git bisect` lands
   somewhere meaningful.
+- **One Windows backend.** Concretely demonstrated: four Windows bugs, each
+  fixed twice by hand. A unified `core/process.py` makes that one fix, and makes
+  a macOS backend one class rather than 36 scattered `os_type` branches.
+- **A place for the test helpers.** `fake_xemu.py` and `win_probe.py` exist
+  because there was no way to exercise the attach path without a GPU and a real
+  emulator. With `core/process.py` importable and Tk-free, most of what they do
+  becomes an ordinary test.
