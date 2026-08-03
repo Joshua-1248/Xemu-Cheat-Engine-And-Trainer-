@@ -5,10 +5,13 @@ it. Drop both scripts and both folders in the same directory and run them
 exactly as before.
 
 ```
-xemu_cheat_engine.py        launcher (32 lines)
-xemu_engine_lib/            13 modules
-xemu_cheats_trainer.py      launcher (29 lines)
-xemu_trainer_lib/           10 modules
+xemu_cheat_engine.py        launcher
+xemu_engine_lib/            16 modules
+xemu_cheats_trainer.py      launcher
+xemu_trainer_lib/           13 modules
+xemu_privs.py               shared privilege probing / ownership reclaim
+fake_xemu.py                test helper - fake attach target
+win_probe.py                test helper - Windows attach diagnostic
 ```
 
 Each launcher does `sys.path.insert(0, <its own directory>)`, so the folders
@@ -18,41 +21,74 @@ travel with the scripts. No install step, no `PYTHONPATH`, no package manager.
 
 ## Module map
 
-### `xemu_engine_lib/` — from `xemu_cheat_engine.py` (11,451 lines)
+### `xemu_engine_lib/`
 
 | Module | Lines | Contents |
 |---|---:|---|
-| `prelude` | 52 | Shared imports, numpy probe, Windows ctypes definitions |
-| `engine_core` | 990 | `XemuTrainerEngine` — attach, RAM read/write, scanning, freeze loop |
+| `prelude` | 170 | Shared imports, numpy gate, Windows ctypes definitions |
+| `engine_core` | 1,235 | `XemuTrainerEngine` — attach, RAM read/write, scanning, freeze loop |
 | `regions` | 123 | Xbox region map, XBE section parsing, `describe_address` |
-| `ui_widgets` | 493 | Wheel binding, menus, clipboard fix, geometry, monitors |
+| `ui_widgets` | 505 | Wheel binding, menus, clipboard fix, geometry, monitors |
 | `gdb_client` | 353 | `GdbClient`, `GdbStubError`, `disassemble_at` |
 | `func_index` | 449 | `FunctionIndex` — symbol/RTTI/string cross-referencing |
 | `sendtables` | 422 | `SendTableIndex` |
 | `debug_session` | 941 | `DebugSession`, `Breakpoint`, condition compiler |
 | `pagemap` | 597 | `XboxPageMap`, `PointerMap`, chain scanning + verification |
-| `trainer_window` | 3,222 | `TrainerWindow` |
+| `trainer_window` | 3,597 | `TrainerWindow` |
 | `gdb_broker` | 554 | `GdbBroker`, `GdbWatchWindow` |
-| `disasm_window` | 2,315 | `DisassemblyWindow` |
-| `memviewer` | 970 | `TabbedMemoryViewer` |
+| `disasm_window` | 2,316 | `DisassemblyWindow` |
+| `memviewer` | 1,101 | `TabbedMemoryViewer` |
+| `code_patch` | 326 | `CodePatchWindow` — JIT-safe assembly patches **(new)** |
+| `online_guard` | 454 | Online-play detection and code whitelist **(new, unwired)** |
 
-### `xemu_trainer_lib/` — from `xemu_cheats_trainer.py` (3,683 lines)
+### `xemu_trainer_lib/`
 
 | Module | Lines | Contents |
 |---|---:|---|
-| `prelude` | 42 | Shared imports, Windows ctypes definitions |
-| `mem` | 166 | `XemuMemory` — attach and raw read/write |
+| `prelude` | 58 | Shared imports, Windows ctypes definitions |
+| `mem` | 285 | `XemuMemory` — attach, raw read/write, region validation |
 | `ui_widgets` | 261 | Wheel binding, menus, clipboard fix |
 | `pagemap` | 114 | `XboxPageMap` (on-demand walker) |
-| `cheat_tree` | 66 | Node construction and traversal primitives |
+| `cheat_tree` | 87 | Node construction and traversal primitives |
 | `gdb_lite` | 143 | `GdbLite` |
 | `tree_ops` | 117 | Enable state, sorting, normalising, counting |
-| `codes` | 830 | `CheatEngine` — all code types, ASM patch journal |
-| `config` | 117 | `Config` |
-| `app` | 1,836 | `CheatManagerApp` |
+| `codes` | 1,228 | `CheatEngine` — all code types, ASM patch journal, switch state |
+| `cheatfiles` | 343 | Per-game `cheats/` and `patches/` file database |
+| `config` | 277 | `Config` |
+| `app` | 1,975 | `CheatManagerApp` |
+| `online_guard` | 454 | Online-play detection and code whitelist **(new)** |
 
 Dependency direction is one-way in both packages, and there are **no import
 cycles**. `ui_*` depends on logic; logic never imports UI.
+
+---
+
+## Cheat code types
+
+The type is the top nibble of the first word. `codes.py` carries the
+authoritative version of this table in its module docstring.
+
+| | | | |
+|---|---|---|---|
+| `0` | 8-bit constant write | `8` | 8-bit constant write (virtual) |
+| `1` | 16-bit constant write | `9` | 16-bit constant write (virtual) |
+| `2` | 32-bit constant write | `A` | 32-bit constant write (virtual) |
+| `3` | Increment / Decrement | `B` | Boolean operation |
+| `4` | 32-bit constant serial write | `C` | 32-bit do-all-following-if-equal |
+| `5` | Copy bytes | `D` | Do multi-lines if conditional |
+| `6` | Pointer write (physical or virtual) | `E` | Conditional on/off switch |
+| `7` | *free* | `F` | Hook code — reserved, unimplemented |
+
+Type 6 selects its address space with a flag byte in the header line — `00`
+physical, `01` virtual — which is what allowed the old virtual-pointer type 7 to
+be retired. Type E reuses type D's field layout exactly and differs only in
+treating the condition as an edge, so a D code becomes a button toggle by
+changing one nibble.
+
+Both retired types are still *consumed* with their old line counts rather than
+skipped as one line: an unhandled multi-line code leaves its tail to be read as
+fresh codes, and `0000000C 000001E3` is a type-0 write into the interrupt vector
+table.
 
 ---
 
@@ -143,29 +179,50 @@ keeps `PROCESSENTRY32` a single shared class rather than one per module.
 
 ---
 
-## What was NOT tested
+## Platform support
 
-**Neither GUI was actually launched.** The sandbox blocks the X socket, so a
-virtual display would not connect. Everything above is static analysis, import
-testing, and headless functional testing of the pure-logic surface.
+| Platform | State |
+|---|---|
+| Linux | Supported. Needs `PTRACE_MODE_ATTACH` — root, `CAP_SYS_PTRACE`, or `ptrace_scope=0`. See `xemu_privs.py`. |
+| Windows | Supported. Needs Administrator. Cheat Engine additionally needs `pip install numpy`. |
+| macOS | **Not supported.** Detected and reported rather than failing silently. Needs a `task_for_pid()` / `mach_vm_*` backend. |
 
-First run is the real test. Worth exercising specifically:
+Both GUIs, the game database, and the full attach chain are confirmed working
+on Windows 10. See `README_CHANGES.md` for what was verified and how.
 
-- both windows building and showing their full widget tree
-- attach to a running Xemu, then a first scan and a next scan
-- the freeze thread applying a cheat continuously
-- pointer wizard, disassembly window, memory viewer tabs
-- a GDB connect and a breakpoint hit
+---
 
-If something misbehaves, the module names above narrow it immediately — that is
-most of the point of the split.
+## Test helpers
+
+`fake_xemu.py` presents a process named `xemu.exe` holding a 64/128/256 MB
+region containing a valid page directory, a PTE for guest virtual `0x10000`, and
+the `XBEH` magic. It exercises the entire attach path with no emulator and no
+GPU — which matters, because xemu needs OpenGL 4.0 and a VM's virtual GPU does
+not provide it.
+
+```
+copy "%LOCALAPPDATA%\Programs\Python\Python313\python.exe" xemu.exe
+xemu.exe fake_xemu.py          # 64 MB retail; also accepts 128 or 256
+```
+
+The copy matters: the tools match on the *process* name, not the script name.
+
+`win_probe.py` walks the same four steps the tools take — process search,
+`OpenProcess`, region scan, `ReadProcessMemory` plus the structural check — and
+reports each separately, then dumps every large committed region with its
+protection and type. When someone reports "Waiting for Xemu...", this turns one
+ambiguous message into a specific failure.
+
+It also found the `PROCESSENTRY32` bug: a deliberately independent
+implementation disagreed with the tool, which three rounds of static review had
+not managed.
 
 ---
 
 ## Deliberately unchanged
 
-No behaviour was altered, no bugs fixed, no performance touched. In particular
-these were left exactly as found:
+Written when the split was purely mechanical. Behaviour *has* since changed —
+see `README_CHANGES.md` — but these specific items are still as found:
 
 - **`XboxPageMap.__init__` in `xemu_trainer_lib/pagemap.py` is the pre-numpy
   version** — benchmarked at 10,854 ms versus 28 ms for the engine's numpy
@@ -178,6 +235,9 @@ these were left exactly as found:
   deliberately when unifying — do not let a merge decide silently.
 - **`vt` at `engine_core` is assigned and never read** (was line 8516 in the
   monolith). Left in place so it does not muddy a pure-move diff.
+- **`clear_asm_journal` has a statement before its docstring**, so the string is
+  not a docstring at all and simply evaluates to nothing. Harmless, but it will
+  confuse whoever reads it next.
 
 The larger unification — one shared core behind both front-ends, removing the
 three drifted parallel implementations of process attach, page translation, and
