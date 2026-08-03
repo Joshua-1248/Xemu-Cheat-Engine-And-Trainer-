@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Local settings written at runtime
+xemu_cheat_engine.ini
+xemu_cheats_trainer.ini
+
+# Working files
+changes.diff
+*.orig
+*.rej
+*.bak
+
+# Memory dumps
+*.dump
+*.bin

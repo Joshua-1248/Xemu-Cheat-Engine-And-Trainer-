@@ -24,8 +24,21 @@ those semantics. No source code was copied from any of them.
   on. The field layout is this project's own, reusing type D's exactly so that
   a D code becomes a switch by changing one nibble.
 
-- **PCSX2** — the per-game cheat file naming convention follows PCSX2's pnach
-  layout.
+- **PCSX2** — three interface conventions are followed so the tools feel
+  familiar: the per-game cheat file naming stem (pnach style), the breakpoint
+  condition syntax (`&&`, `||`, `[esp+4]`, `u8[...]`), and the debugger
+  keyboard shortcuts. The condition compiler itself is an original
+  implementation that rewrites the expression and compiles it against a
+  whitelisted Python AST node set.
+
+- **Cheat Engine** — user-interface conventions only: manual pointer-chain
+  entry, scan comparison semantics, and address-table layout. No code is shared.
+  This project is not affiliated with or derived from Cheat Engine.
+
+- **Xbox hardware and XBE format** — the memory region map (kernel window, page
+  table self-map, NV2A and APU register ranges) and the XBE header/section
+  layout are publicly documented hardware and file-format facts, drawn from the
+  Original Xbox homebrew community's reference material.
 
 ## RTTI / vtable recovery
 
@@ -54,7 +67,10 @@ does not use, include, or derive from the Source SDK.
 Not redistributed; installed separately via pip.
 
 - **NumPy** — BSD 3-Clause. Used for vectorised memory scanning.
-- **Capstone** — BSD 3-Clause. Used for x86 disassembly.
+- **Capstone** — BSD 3-Clause. Imported lazily for x86 disassembly; the tools
+  degrade gracefully when it is absent.
+
+Neither is bundled, vendored, or modified.
 
 ## Interoperability
 
@@ -62,7 +78,14 @@ This project communicates with **xemu** (https://xemu.app, GPLv2) as a separate
 process over the GDB Remote Serial Protocol, a publicly documented wire
 protocol. No xemu source is included, linked, or derived from.
 
+## Cheat tables
+
+The per-game files under `Tables/` and `cheats/` are the author's own reverse
+engineering results, produced with these tools. They are not derived from any
+existing cheat database.
+
 ## Disclaimer
 
-Not affiliated with, endorsed by, or sponsored by Microsoft. All trademarks are
-the property of their respective owners.
+Not affiliated with, endorsed by, or sponsored by Microsoft, or by any of the
+projects named above. All trademarks are the property of their respective
+owners.
