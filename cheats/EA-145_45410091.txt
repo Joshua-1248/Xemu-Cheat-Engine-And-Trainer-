@@ -7,125 +7,86 @@
 
 //group=Infinite\Ammo
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Infinite\Ammo\MP7 Grenades] {
-  7086858C 00000003
-  00000000 000005AC
+  6086858C 00000003
+  01000000 000005AC
 }
 
-//enabled=1
+//enabled=0
+; Author: Josh_7774
 [Infinite\Ammo\MP7 Ammo] {
-  7086858C 000000F0
-  00000000 00000598
+  6086858C 000000F0
+  01000000 00000598
 }
 
-//enabled=1
+//enabled=0
+; Author: Josh_7774
 [Infinite\Ammo\Rocket Launcher Ammo] {
-  7086858C 00000003
-  00000000 000005A8
+  6086858C 00000003
+  01000000 000005A8
 }
 
-//enabled=1
+//enabled=0
+; Author: Josh_7774
 [Infinite\Ammo\Shotgun Ammo] {
-  7086858C 0000000C
-  00000000 000005A4
+  6086858C 0000000C
+  01000000 000005A4
 }
 
-//enabled=1
+//enabled=0
+; Author: Josh_7774
 [Infinite\Ammo\Pulse Rifle Energy Ball Ammo] {
-  7086858C 0000000C
-  00000000 000005C0
+  6086858C 0000000C
+  01000000 000005C0
 }
 
-//enabled=1
+//enabled=0
+; Author: Josh_7774
 [Infinite\Ammo\Crossbow Ammo] {
-  7086858C 00000004
-  00000000 000005A0
-}
-
-//group=Infinite\Ammo In Clip
-
-//enabled=1
-; Author: Josh_7774
-[Infinite\Ammo In Clip\MP7] {
-  70868594 0000002D
-  00000003 00000148
-  000000D0 00000430
-}
-
-//enabled=1
-; Author: Josh_7774
-[Infinite\Ammo In Clip\Shotgun] {
-  70868594 00000006
-  00000003 00000148
-  000000C0 00000430
-}
-
-//enabled=1
-; Author: Josh_7774
-[Infinite\Ammo In Clip\.357 Magnum] {
-  70868594 00000006
-  00000003 00000148
-  00000120 00000430
-}
-
-//enabled=1
-[Infinite\Ammo In Clip\Pistol] {
-  70868594 00000012
-  00000003 00000148
-  00000000 00000430
-}
-
-//enabled=1
-[Infinite\Ammo In Clip\Crossbow] {
-  70868594 00000001
-  00000003 00000148
-  00000110 00000430
-}
-
-//enabled=1
-[Infinite\Ammo In Clip\Pulse Rifle] {
-  70868594 0000001E
-  00000003 00000148
-  000000E0 00000430
+  6086858C 00000004
+  01000000 000005A0
 }
 
 //enabled=0
 ; Author: Josh_7774
 [Infinite\Health] {
-  7086858C 000003E7
-  00010000 0000007C
-}
-
-//enabled=1
-; Author: Josh_7774
-[Infinite\AUX Power] {
-  7086858C 42C80000
-  00020000 00000CF8
-}
-
-//enabled=1
-[Infinite\Health (Alternate)] {
-  7086858C 0000270F
-  00010000 0000007C
+  6086858C 000003E7
+  01010000 0000007C
 }
 
 //enabled=0
-[Infinite\Suit] {
-  7086858C 000003E7
-  00010000 00000B48
+; Author: Josh_7774
+[Infinite\AUX Power] {
+  6086858C 42C80000
+  01020000 00000CF8
 }
 
-//enabled=1
+//enabled=0
+; Author: Josh_7774
+[Infinite\Health (Alternate)] {
+  6086858C 0000270F
+  01010000 0000007C
+}
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\Suit] {
+  6086858C 000003E7
+  01010000 00000B48
+}
+
+//enabled=0
+; Author: Josh_7774
 [Infinite\Suit (Alternate)] {
-  7086858C 0000270F
-  00010000 00000B48
+  6086858C 0000270F
+  01010000 00000B48
 }
 
 //group=Have
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Hold Jump Button To Moon Jump] {
   D095F25D 01000001
@@ -145,18 +106,19 @@
 }
 
 //enabled=0
+; Author: Josh_7774
 [[ASM]\Ammo Never Decreases\Shotgun (Alt-Fire) [ASM]] {
   80342132 00000000
 }
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [[ASM]\View Doesn't Tilt Around When Taking Damage [ASM]] {
   A02C05D6 90909090
   802C05DA 00000090
 }
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [City Scanners Don't Blind You] {
   D08D5AC0 01000001
