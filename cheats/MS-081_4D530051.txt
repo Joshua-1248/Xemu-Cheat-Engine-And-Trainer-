@@ -8,30 +8,30 @@
 //enabled=1
 ; Author: Josh_7774
 [Single Player\Infinite Health] {
-  7084A5F8 00000006
-  00010001 000003AE
+  6084A5F8 00000006
+  01010001 000003AE
 }
 
 //enabled=1
 ; Author: Josh_7774
 [Single Player\Infinite Time (Countdown)] {
-  70801908 00003F48
-  00010001 000007B0
+  60801908 00003F48
+  01010001 000007B0
 }
 
 //enabled=1
 ; Author: Josh_7774
-[Single Player\Infinite Ammo In Clip] {
-  7084A694 00000032
-  00020002 0000005C
+[Single Player\Infinite Ammo (SMG)] {
+  6084A694 00000032
+  01020002 0000005C
   000002A4 00000000
 }
 
 //enabled=1
 ; Author: Josh_7774
 [Single Player\Infinite Ammo (Rocket Launcher)] {
-  7084A694 00000003
-  00000002 0000005C
+  6084A694 00000003
+  01000002 0000005C
   00000040 00000000
 }
 
@@ -39,6 +39,6 @@
 ; Author: Josh_7774
 [Single Player\Hold Black To Moon Jump] {
   D00002A4 020000FF
-  7084A5F8 42800000
-  00020001 000000D0
+  6084A5F8 42800000
+  01020001 000000D0
 }
