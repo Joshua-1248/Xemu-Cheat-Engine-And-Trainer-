@@ -2,3 +2,21 @@
 //serial=AV-032
 //titleid=41560020
 //kind=patches
+
+//enabled=0
+; Author: Josh_7774
+[Widescreen 16:9] {
+  A04FB0FC 40D80000
+}
+
+//enabled=0
+; Author: Josh_7774
+[Widescreen 16:10] {
+  A04FB0FC 40F00000
+}
+
+//enabled=0
+; Author: Josh_7774
+[Widescreen 21:9] {
+  A04FB0FC 40A49249
+}
