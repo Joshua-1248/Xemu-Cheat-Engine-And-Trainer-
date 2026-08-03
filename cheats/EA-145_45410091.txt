@@ -1,65 +1,126 @@
-//game=Halo 2
-//serial=MS-100
-//titleid=4D530064
+//game=Half-Life 2
+//serial=EA-145
+//titleid=45410091
 //kind=cheats
 
-//group=Single Player
+//group=Infinite
 
-//group=Single Player\Infinite
+//group=Infinite\Ammo
 
 //enabled=0
 ; Author: Josh_7774
-[Single Player\Infinite\Shields] {
-  62D86098 3F800000
-  00020001 000000F0
+[Infinite\Ammo\MP7 Grenades] {
+  6086858C 00000003
+  01000000 000005AC
 }
 
 //enabled=0
 ; Author: Josh_7774
-[Single Player\Infinite\Shields (Alternate)] {
-  62D86098 7F7FFFFF
-  00020001 000000F0
-}
-
-//group=Single Player\Infinite\Ammo
-
-//group=Single Player\Infinite\Ammo In Clip
-
-//enabled=0
-; Author: Josh_7774
-[Single Player\Infinite\Ammo In Clip\Shotgun] {
-  62D8437C 0000000C
-  00000001 0000022C
+[Infinite\Ammo\MP7 Ammo] {
+  6086858C 000000F0
+  01000000 00000598
 }
 
 //enabled=0
 ; Author: Josh_7774
-[Single Player\Infinite\Grenades #1] {
-  62D86098 00000063
-  00000001 0000023E
+[Infinite\Ammo\Rocket Launcher Ammo] {
+  6086858C 00000003
+  01000000 000005A8
 }
 
 //enabled=0
 ; Author: Josh_7774
-[Single Player\Infinite\Grenades #2] {
-  62D86098 00000063
-  00000001 0000023F
+[Infinite\Ammo\Shotgun Ammo] {
+  6086858C 0000000C
+  01000000 000005A4
+}
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\Ammo\Pulse Rifle Energy Ball Ammo] {
+  6086858C 0000000C
+  01000000 000005C0
+}
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\Ammo\Crossbow Ammo] {
+  6086858C 00000004
+  01000000 000005A0
+}
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\Health] {
+  6086858C 000003E7
+  01010000 0000007C
+}
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\AUX Power] {
+  6086858C 42C80000
+  01020000 00000CF8
+}
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\Health (Alternate)] {
+  6086858C 0000270F
+  01010000 0000007C
+}
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\Suit] {
+  6086858C 000003E7
+  01010000 00000B48
+}
+
+//enabled=0
+; Author: Josh_7774
+[Infinite\Suit (Alternate)] {
+  6086858C 0000270F
+  01010000 00000B48
+}
+
+//group=Have
+
+//enabled=0
+; Author: Josh_7774
+[Hold Jump Button To Moon Jump] {
+  D095F25D 01000001
+  7086858C 43480000
+  00020001 000001B8
 }
 
 //group=[ASM]
 
+//group=[ASM]\Ammo Never Decreases
+//collapsed=[ASM]\Ammo Never Decreases
+
 //enabled=0
 ; Author: Josh_7774
-[[ASM]\Infinite Ammo - No Reload [ASM]] {
-  801031EA 00000090
-  801031EB 00000090
+[[ASM]\Ammo Never Decreases\.357 Magnum [ASM]] {
+  8032F7ED 00000000
 }
 
 //enabled=0
 ; Author: Josh_7774
-[Hold A To Moon Jump] {
-  D00001F4 030000FF
-  6047B8F0 40000000
-  01020002 00000020
-  00000048 00000000
+[[ASM]\Ammo Never Decreases\Shotgun (Alt-Fire) [ASM]] {
+  80342132 00000000
+}
+
+//enabled=0
+; Author: Josh_7774
+[[ASM]\View Doesn't Tilt Around When Taking Damage [ASM]] {
+  A02C05D6 90909090
+  802C05DA 00000090
+}
+
+//enabled=0
+; Author: Josh_7774
+[City Scanners Don't Blind You] {
+  D08D5AC0 01000001
+  008D5AC0 00000000
 }
