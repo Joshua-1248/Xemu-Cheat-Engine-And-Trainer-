@@ -14,7 +14,8 @@
   00020001 000000F0
 }
 
-//enabled=1
+//enabled=0
+; Author: Josh_7774
 [Single Player\Infinite\Shields (Alternate)] {
   62D86098 7F7FFFFF
   00020001 000000F0
@@ -24,21 +25,22 @@
 
 //group=Single Player\Infinite\Ammo In Clip
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Single Player\Infinite\Ammo In Clip\Shotgun] {
   62D8437C 0000000C
   00000001 0000022C
 }
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Single Player\Infinite\Grenades #1] {
   62D86098 00000063
   00000001 0000023E
 }
 
-//enabled=1
+//enabled=0
+; Author: Josh_7774
 [Single Player\Infinite\Grenades #2] {
   62D86098 00000063
   00000001 0000023F
@@ -53,11 +55,11 @@
   801031EB 00000090
 }
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Hold A To Moon Jump] {
   D00001F4 030000FF
-  7047B8F0 40000000
-  00020002 00000020
+  6047B8F0 40000000
+  01020002 00000020
   00000048 00000000
 }
