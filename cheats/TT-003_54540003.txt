@@ -6,45 +6,45 @@
 //enabled=0
 ; Author: Josh_7774
 [Bullets Cannot Hit You] {
-  70519DC0 00000000
-  00000000 00000249
+  60519DC0 00000000
+  01000000 00000249
 }
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Infinite Ammo In Clip] {
-  704E3890 00000063
-  00000003 00000364
+  604E3890 00000063
+  01000003 00000364
   0000000C 000001E3
 }
 
 //enabled=0
 ; Author: Josh_7774
 [Infinite Health] {
-  70519DC0 7F7FFFFF
-  00020000 000002CF
+  60519DC0 7F7FFFFF
+  01020000 000002CF
 }
 
 //enabled=0
 ; Author: Josh_7774
 [Infinite Painkillers] {
-  704E3890 00000063
-  00000003 00000364
+  604E3890 00000063
+  01000003 00000364
   00000010 00000152
 }
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Never Limp When Low On Health] {
-  70519DC0 00000000
-  00000000 00000253
+  60519DC0 00000000
+  01000000 00000253
 }
 
 //enabled=0
 ; Author: Josh_7774
 [Rapid Fire] {
-  70519DC0 00800000
-  00000000 00000370
+  60519DC0 00800000
+  01000000 00000370
 }
 
 //group=Immortality Cheat
@@ -52,22 +52,22 @@
 //enabled=0
 ; Author: Josh_7774
 [Immortality Cheat\Off] {
-  70519DC0 00000000
-  00000001 0000046C
+  60519DC0 00000000
+  01000001 0000046C
 }
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Immortality Cheat\On] {
-  70519DC0 00000001
-  00000001 0000046C
+  60519DC0 00000001
+  01000001 0000046C
 }
 
 //group=Invincibility Cheat
 
-//enabled=1
+//enabled=0
 ; Author: Josh_7774
 [Invincibility Cheat\Invincibility Cheat On] {
-  70519DC0 00000001
-  00000001 0000046E
+  60519DC0 00000001
+  01000001 0000046E
 }
