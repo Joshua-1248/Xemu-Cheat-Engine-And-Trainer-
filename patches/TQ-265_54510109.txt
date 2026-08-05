@@ -2,3 +2,11 @@
 //serial=TQ-265
 //titleid=54510109
 //kind=patches
+
+[Enable Debug Popup Menu]
+enabled=0
+author=LuC-iTA
+description=Always accessible by holding the Y button. Navigate and activate/deactivate with D-Pad.
+90247B1A 00009090
+A02478A0 90909090
+902478A4 00009090
