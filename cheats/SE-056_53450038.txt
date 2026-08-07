@@ -1,4 +1,51 @@
-//game=Super Monkey Ball Deluxe
-//serial=SE-056
-//titleid=53450038
-//kind=cheats
+gametitle=Super Monkey Ball Deluxe
+
+[Miscellaneous]
+
+[Miscellaneous\Debug Menu]
+enabled=0
+D0892118 01230003
+80892118 00000003
+
+[Miscellaneous\Infinite Time]
+author=Josh_7774
+enabled=0
+10813D04 00000E10
+
+[Miscellaneous\Infinite Time (Alternate)]
+author=Josh_7774
+enabled=0
+10813D04 0000549A
+
+[Hold B To Moon Jump]
+author=Josh_7774
+enabled=0
+D0000195 010200FF
+20884E10 3F000000
+
+[Hold X To Float]
+author=Josh_7774
+enabled=0
+D0000196 010200FF
+20884E10 3C209000
+
+[Infinite Lives]
+author=Josh_7774
+enabled=0
+00884DF2 00000064
+
+[Left Thumbstick To Reset XYZ Coordinates]
+author=Josh_7774
+enabled=0
+D0000192 03020040
+20884DF4 00000000
+20884DF8 00000000
+20884DFC 00000000
+
+[Hold Y Button To Freeze In Place]
+author=Josh_7774
+enabled=0
+D0000197 030200FF
+20884E0C 00000000
+20884E10 00000000
+20884E14 00000000
