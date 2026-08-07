@@ -120,3 +120,4 @@ def describe_address(va, sections, pagemap):
     if va >= 0xF0000000:
         return "GPU aperture / hardware registers"
     return "game heap - moves every load, needs a pointer chain"
+

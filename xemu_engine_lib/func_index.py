@@ -446,3 +446,4 @@ class FunctionIndex:
         bits = [f"{v} {k}" for k, v in sorted(self.stats.items())
                 if v]
         return f"{len(self.names)} functions (" + ", ".join(bits) + ")"
+

@@ -82,12 +82,25 @@ class Config:
                     tree, meta = cheatfiles.read_cheat_file(fp)
                 except Exception:              # noqa: BLE001
                     continue
+                # A line the parser could not place is a typo in a file
+                # someone hand-edited. Reporting it is the whole reason the
+                # format has no braces -- silently dropping it would be the
+                # old behaviour wearing new syntax.
+                for w in meta.get('warnings', ()):
+                    print(f"{os.path.basename(fp)}: {w}", file=sys.stderr)
                 trees[kind] = normalise_tree(tree)
                 name = name or (meta.get('game') or '').strip()
                 titleid = titleid or (meta.get('titleid') or '').strip()
                 serial = serial or (meta.get('serial') or '').strip()
             if not name:
                 name = stem
+            # Serial and title id come from the filename unless the file
+            # overrode them. They are not written into the file any more --
+            # SERIAL_TITLEID.txt already carries both, and duplicating them
+            # inside gives two sources that can disagree after a rename.
+            fn_serial, fn_titleid = cheatfiles.split_stem(stem)
+            titleid = titleid or fn_titleid
+            serial = serial or fn_serial
             if titleid and not serial:
                 serial = cheatfiles.serial_from_titleid(titleid)
             by_name[name] = {'name': name, 'path': '',
@@ -274,3 +287,4 @@ class Config:
         # file is never visible at its final name while still root-owned.
         xemu_privs.reclaim(tmp)
         os.replace(tmp, Config.FILE)
+

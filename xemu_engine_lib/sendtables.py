@@ -419,3 +419,4 @@ class SendTableIndex:
         picked = ", ".join(f"{n} ({t})" for t, n in cands[:limit])
         more = f" +{len(cands) - limit}" if len(cands) > limit else ""
         return f"{picked}{more} ?"
+

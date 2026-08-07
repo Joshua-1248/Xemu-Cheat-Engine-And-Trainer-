@@ -2313,3 +2313,4 @@ class DisassemblyWindow(tk.Toplevel):
             pass
         if self.winfo_exists():
             self.after(150, self._pump)
+

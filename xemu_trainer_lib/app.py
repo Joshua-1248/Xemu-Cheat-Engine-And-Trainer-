@@ -55,6 +55,9 @@ class CheatManagerApp(tk.Tk):
         # block it already translated; without that a code patch writes into
         # RAM and never executes.
         self.cheat_engine.gdb_enabled = Config.load_gdb_patching()
+        n = self.cheat_engine.online_guard.load_whitelist(Config.base_dir())
+        if n:
+            print(f"[*] online whitelist: {n} permitted code(s)")
         self.games.sort(key=lambda g: g['name'].lower())
         # Cheats are NOT sorted on load any more. The stored order is the order
         # they were added in, and the sort control below reorders the view
@@ -718,6 +721,10 @@ class CheatManagerApp(tk.Tk):
             return
         if game:
             tid = (game.get('titleid') or '').strip()
+            # The online whitelist is keyed per title, so the engine needs to
+            # know which game these cheats belong to. Set here because this
+            # runs whenever the selection changes.
+            self.cheat_engine.online_titleid = tid
             ser = (game.get('serial') or '').strip()
             if tid and not ser:
                 ser = cheatfiles.serial_from_titleid(tid)
@@ -1481,9 +1488,9 @@ class CheatManagerApp(tk.Tk):
         Put the selected cheat's codes on the clipboard.
 
         A single cheat copies as bare code lines, ready to paste into another
-        trainer or a forum post. A group copies as .cht blocks with full
-        Weapons\\Ammo\\Name paths, so pasting the result into a file and
-        loading it rebuilds the same nesting.
+        trainer or a forum post. A group copies as blocks with full
+        Weapons\\Ammo\\Name paths, in the same shape the files use, so
+        pasting the result into a file and loading it rebuilds the nesting.
         """
         picked = self._selected_nodes()
         if not picked:
@@ -1506,6 +1513,10 @@ class CheatManagerApp(tk.Tk):
             text = "\n".join(self._cht_blocks(node['children'], node['name']))
             label = f"{node['name']} ({count_tree(node['children'])[1]} cheats)"
         else:
+            # Left as `;` comments deliberately. This path exists to paste a
+            # code into a forum post or another trainer, where `;` is the
+            # understood comment marker; `author=` would read as data there.
+            # The parser still accepts `;` metadata, so it round-trips too.
             head = ""
             if node.get('author'):
                 head += f"; Author: {node['author']}\n"
@@ -1527,8 +1538,10 @@ class CheatManagerApp(tk.Tk):
         Two shapes are accepted, which between them cover copying from this
         trainer, from a .cht file, or from a forum post:
 
-          * full blocks - [Name] { ... }, group paths and ; Author: comments
-            included - which rebuild their own nesting under the target group;
+          * full blocks - a `[Name]` line with its author=/desc= keys and
+            group path - which rebuild their own nesting under the target
+            group. The older `[Name] { ... }` form is read too, so blocks
+            copied from forum posts still work;
           * bare "AAAAAAAA VVVVVVVV" lines, which become one cheat and prompt
             for a name.
         """
@@ -1547,7 +1560,10 @@ class CheatManagerApp(tk.Tk):
         if target is None:
             return "break"
 
-        if "[" in raw and "{" in raw:
+        # A block is marked by a bracketed name on a line of its own, not by
+        # a brace: the brace is optional now and absent from anything this
+        # trainer writes.
+        if re.search(r'(?m)^[ \t]*\[.*\][ \t]*\{?[ \t]*$', raw):
             tree = self.cheat_engine.parse_text(raw)
             if not tree:
                 messagebox.showerror(
@@ -1593,20 +1609,27 @@ class CheatManagerApp(tk.Tk):
                 target.append(node)
 
     def _cht_blocks(self, nodes, prefix=""):
+        """
+        Render nodes as clipboard blocks, in the same shape the files use.
+
+        Deliberately identical to render_cheat_text's block output, minus the
+        file-level header: copy here and paste there has to round-trip, and
+        two emitters with two shapes is how that stops being true.
+        """
         out = []
         for node in nodes:
             path = f"{prefix}\\{node['name']}" if prefix else node['name']
             if is_group(node):
                 out.extend(self._cht_blocks(node['children'], path))
             else:
-                body = "\n".join(f"  {c:08X} {v:08X}" for c, v in node['codes'])
-                head = ""
+                lines = [f"[{path}]"]
                 if node.get('author'):
-                    head += f"; Author: {node['author']}\n"
-                if node.get('desc'):
-                    head += "".join(f"; {line}\n"
-                                    for line in node['desc'].splitlines())
-                out.append(f"{head}[{path}] {{\n{body}\n}}")
+                    lines.append(f"author={node['author']}")
+                for ln in (node.get('desc') or '').splitlines():
+                    if ln.strip():
+                        lines.append(f"desc={ln.strip()}")
+                lines.extend(f"{c:08X} {v:08X}" for c, v in node['codes'])
+                out.append("\n".join(lines) + "\n")
         return out
 
     def _rename_selected(self):
@@ -1887,7 +1910,24 @@ class CheatManagerApp(tk.Tk):
         else:
             self._status_connected()
         self._update_gdb_status()
+        self._update_online_status()
         self.after(2000, self._check_connection)
+
+    def _update_online_status(self):
+        """
+        Say plainly when cheats are being held for online play.
+
+        Silence here would look like the tool is broken: cheats enabled, values
+        not changing, no explanation anywhere.
+        """
+        eng = self.cheat_engine
+        if not getattr(eng, 'online_blocked_names', None):
+            return
+        n = len(eng.online_blocked_names)
+        why = getattr(eng, 'online_block_reason', '')
+        self.status_label.config(
+            text=f"ONLINE - {n} cheat(s) held ({why})", fg="#f44336")
+        eng.online_blocked_names.clear()
 
     def _update_gdb_status(self):
         """
@@ -1948,3 +1988,4 @@ class CheatManagerApp(tk.Tk):
         if platform.system() == "Windows" and self.mem.win_process_handle:
             ctypes.windll.kernel32.CloseHandle(self.mem.win_process_handle)
         super().destroy()
+

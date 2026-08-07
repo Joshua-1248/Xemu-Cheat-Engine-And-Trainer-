@@ -551,3 +551,4 @@ class GdbWatchWindow(tk.Toplevel):
             values=(f"0x{eip:08X}", 1, text,
                     "  ".join(f"0x{c:08X}" for c in callers[:4])))
         self.hits[eip] = (item, 1, list(callers))
+

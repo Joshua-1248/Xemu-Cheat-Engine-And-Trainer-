@@ -3594,3 +3594,4 @@ class TrainerWindow(tk.Tk):
     def _on_hex_display_toggle(self):
         self._rebuild_table = True
         self.update_table_view()
+

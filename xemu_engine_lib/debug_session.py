@@ -938,3 +938,4 @@ class DebugSession:
                     if len(hits) >= max_hits:
                         return hits
         return hits
+

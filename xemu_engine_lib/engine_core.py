@@ -1232,3 +1232,4 @@ Address space facts this relies on:
   - The XBE loads at a fixed base (header field, almost always 0x00010000)
     with a fixed image size. Static pointers live in there and only there.
 """
+

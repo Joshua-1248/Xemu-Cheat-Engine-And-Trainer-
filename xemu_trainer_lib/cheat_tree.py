@@ -84,3 +84,4 @@ def all_game_nodes(game):
             n['_asm'] = is_patch
         out.extend(nodes)
     return out
+

@@ -282,3 +282,4 @@ class XemuMemory:
                     ctypes.windll.kernel32.VirtualProtectEx(
                         self.win_process_handle, ctypes.c_void_p(address),
                         len(data), old_prot, ctypes.byref(old_prot))
+

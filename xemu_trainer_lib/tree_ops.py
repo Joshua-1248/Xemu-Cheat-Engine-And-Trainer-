@@ -114,3 +114,4 @@ def count_tree(nodes):
         else:
             c += 1
     return g, c
+
