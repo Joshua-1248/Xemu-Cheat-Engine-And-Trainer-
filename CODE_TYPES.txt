@@ -1,0 +1,408 @@
+================================================================================
+  XEMU CHEATS TRAINER - RAW CODE TYPE REFERENCE
+  Original Xbox / xemu
+================================================================================
+
+A code is a pair of 32-bit words written as two hex groups:
+
+    AAAAAAAA VVVVVVVV
+    \______/ \______/
+      "cmd"    "val"
+
+The TYPE is the top nibble of the first word. The remaining 28 bits of the
+first word are almost always an address; the second word is almost always a
+value. Some types consume additional lines that follow.
+
+    0  8-bit constant write            8  8-bit constant write   (virtual)
+    1  16-bit constant write           9  16-bit constant write  (virtual)
+    2  32-bit constant write           A  32-bit constant write  (virtual)
+    3  Increment / Decrement           B  Boolean operation
+    4  32-bit serial write             C  Do all following if equal
+    5  Copy bytes                      D  Do N lines if conditional
+    6  Pointer write                   E  Conditional on/off switch
+    7  (free - unassigned)             F  Hook code (reserved, not implemented)
+
+--------------------------------------------------------------------------------
+ADDRESS SPACES - READ THIS FIRST
+--------------------------------------------------------------------------------
+
+This is the main thing that differs from the PS2 lineage these types come from.
+
+Original Xbox games use full x86 32-bit paging. A "guest virtual address" - the
+kind xemu's debugger shows you, the kind a disassembly listing shows you - is
+NOT the same as an offset into the console's RAM. Translating between them means
+walking the guest's page tables.
+
+    PHYSICAL   an offset into the 64/128 MB RAM image. No translation.
+               Fast, but a given game structure does not reliably sit at the
+               same physical offset across runs or level loads.
+
+    VIRTUAL    the address the game itself uses. Translated through the guest
+               page tables on use. This is what you normally want.
+
+Types 0/1/2 are physical. Types 8/9/A are their virtual equivalents and are the
+ones you will use most. Types 6 and D/E carry a flag selecting the space.
+
+The page tables are rebuilt by the guest on every level load. A cached
+translation from a previous level does not fail loudly - it silently resolves to
+the wrong physical address. Measured across real dumps, a stale map put the
+write 128 KB off target in 5 of 6 cross-level cases. The interpreter re-checks a
+page-directory entry each time and rebuilds when it changes, so this is handled
+for you, but it is why virtual writes cost slightly more than physical ones.
+
+--------------------------------------------------------------------------------
+LINE COUNTS
+--------------------------------------------------------------------------------
+
+Most types are one line. These are not:
+
+    type 3, param 4/5     2 lines
+    type 4                2 lines
+    type 5                2 lines
+    type 6                2 + (N / 2) lines, N = offset count
+    type D, E             1 line + the N lines it guards
+
+Getting a line count wrong is not a harmless no-op. A 3-offset type 6 chain
+parsed as 2 lines leaves its third line to be read as a fresh code - and
+`0000000C 000001E3` is a perfectly valid type-0 write of 0xE3 to physical
+address 0xC, which is inside the interrupt vector table.
+
+For the same reason, the retired type 7 and the unimplemented type F are still
+CONSUMED with the correct line count rather than skipped as a single line.
+
+
+================================================================================
+  CONSTANT WRITES
+================================================================================
+
+--------------------------------------------------------------------------------
+TYPE 0 - 8-bit constant write (physical)
+--------------------------------------------------------------------------------
+
+    0aaaaaaa 000000vv        a = 28-bit PHYSICAL address
+                             v = byte to write
+
+Writes one byte. Re-applied every tick while the cheat is enabled, so it holds
+the value against the game writing over it.
+
+    00120C48 00000063        write 0x63 to physical 0x120C48
+
+--------------------------------------------------------------------------------
+TYPE 1 - 16-bit constant write (physical)
+--------------------------------------------------------------------------------
+
+    1aaaaaaa 0000vvvv        a = 28-bit PHYSICAL address
+                             v = halfword to write
+
+Written little-endian.
+
+--------------------------------------------------------------------------------
+TYPE 2 - 32-bit constant write (physical)
+--------------------------------------------------------------------------------
+
+    2aaaaaaa vvvvvvvv        a = 28-bit PHYSICAL address
+                             v = word to write
+
+Written little-endian.
+
+--------------------------------------------------------------------------------
+TYPE 8 - 8-bit constant write (VIRTUAL)
+TYPE 9 - 16-bit constant write (VIRTUAL)
+TYPE A - 32-bit constant write (VIRTUAL)
+--------------------------------------------------------------------------------
+
+    8aaaaaaa 000000vv        a = 28-bit VIRTUAL address, v = byte
+    9aaaaaaa 0000vvvv        a = 28-bit VIRTUAL address, v = halfword
+    Aaaaaaaa vvvvvvvv        a = 28-bit VIRTUAL address, v = word
+
+Identical to 0/1/2 except the address is translated through the guest page
+tables first. These are the everyday writes.
+
+    80892118 00000003        write 3 to virtual 0x892118
+
+Note the 28-bit address field. A virtual address above 0x0FFFFFFF cannot be
+expressed. In practice game data lives well below that, but kernel-window
+addresses (0x80000000+) do not fit and need a pointer code instead.
+
+
+================================================================================
+  ARITHMETIC AND BITWISE
+================================================================================
+
+--------------------------------------------------------------------------------
+TYPE 3 - Increment / Decrement
+--------------------------------------------------------------------------------
+
+Adds to or subtracts from what is already in memory, rather than overwriting.
+The operation is selected by the upper bits of the value word.
+
+    3aaaaaaa 000000vv        8-bit  increment by v
+    3aaaaaaa 001000vv        8-bit  decrement by v
+    3aaaaaaa 0020vvvv        16-bit increment by v
+    3aaaaaaa 0030vvvv        16-bit decrement by v
+
+    3aaaaaaa 00400000        32-bit increment - value on the NEXT line
+    vvvvvvvv vvvvvvvv
+                             (the increment is the second word of line 2)
+
+    3aaaaaaa 00500000        32-bit decrement - value on the NEXT line
+    vvvvvvvv vvvvvvvv
+
+Addresses are PHYSICAL.
+
+APPLIED ONCE PER ACTIVATION, not once per tick. A type 3 in the freeze loop
+would otherwise add its value 60+ times a second. The interpreter tracks this
+per cheat block and re-arms it when the cheat is toggled off and on again.
+
+--------------------------------------------------------------------------------
+TYPE B - Boolean operation
+--------------------------------------------------------------------------------
+
+    Baaaaaaa 000000vv        8-bit  OR  with v
+    Baaaaaaa 0010vvvv        16-bit OR  with v
+    Baaaaaaa 002000vv        8-bit  AND with v
+    Baaaaaaa 0030vvvv        16-bit AND with v
+    Baaaaaaa 004000vv        8-bit  XOR with v
+    Baaaaaaa 0050vvvv        16-bit XOR with v
+
+The operation digit is digit 3 of the value word, counting from the left:
+
+    0 = 8-bit  OR      1 = 16-bit OR
+    2 = 8-bit  AND     3 = 16-bit AND
+    4 = 8-bit  XOR     5 = 16-bit XOR
+
+So the value word reads `00o0vvvv` for 16-bit ops and `00o000vv` for 8-bit.
+Addresses are PHYSICAL.
+
+Unlike type 3, this IS applied every tick - it is idempotent for OR and AND, so
+holding it is meaningful. XOR is not idempotent; a held XOR will flip the bit
+back and forth every tick, which is almost never what you want.
+
+--------------------------------------------------------------------------------
+TYPE 4 - 32-bit serial write
+--------------------------------------------------------------------------------
+
+    4aaaaaaa nnnnssss        a = 28-bit PHYSICAL start address
+    vvvvvvvv iiiiiiii        n = number of writes
+                             s = address step, in WORDS (not bytes)
+                             v = first value
+                             i = amount added to v each iteration
+
+Fills a strided range. Address advances by s*4 bytes per write, value increases
+by i per write.
+
+    40120000 000A0001        10 words, every 4 bytes,
+    00000001 00000000        all set to 1
+
+Use i = 0 for a constant fill, s = 1 for a contiguous run. This is the compact
+way to write an inventory array or clear a table.
+
+--------------------------------------------------------------------------------
+TYPE 5 - Copy bytes
+--------------------------------------------------------------------------------
+
+    5sssssss llllllll        s = 28-bit PHYSICAL source address
+    Xddddddd 00000000        l = length in bytes
+                             d = 28-bit PHYSICAL destination address
+                             X = top nibble of line 2, ignored
+
+Straight memory copy, source to destination, every tick.
+
+
+================================================================================
+  POINTERS
+================================================================================
+
+--------------------------------------------------------------------------------
+TYPE 6 - Pointer write
+--------------------------------------------------------------------------------
+
+    6aaaaaaa vvvvvvvv        a = 28-bit base address
+    XXSS00NN oooooooo        XX = 00 PHYSICAL base, 01 VIRTUAL base
+                             SS = write size: 00 = 8-bit
+                                              01 = 16-bit
+                                              02 = 32-bit
+                             NN = number of offsets, 1 to 8
+                             o  = offset 1
+    oooooooo oooooooo        offsets 2..N, two per line
+
+Resolves a pointer chain and writes v at the end of it:
+
+    addr = [[[base] + o0] + o1] ... + o_last
+
+Line count is 2 + (N / 2), integer division. One or two offsets is 2 lines;
+three or four is 3 lines; and so on.
+
+XX selects the address space for the base AND for every intermediate pointer
+dereference. This flag is what allowed the old virtual-pointer type 7 to be
+retired - the two types differed in nothing else.
+
+Backward compatible with the original type 6, which wrote `00SS0000 oooooooo`:
+XX reads as 00 (physical) and NN as 0, which clamps to a single offset. That is
+exactly what the old handler did.
+
+    60868594 00000063        base virtual 0x868594, write 0x63
+    01020003 00000148        virtual, 32-bit, 3 offsets, first is 0x148
+    000000D0 00000430        offsets 2 and 3
+
+--------------------------------------------------------------------------------
+TYPE 7 - free
+--------------------------------------------------------------------------------
+
+Unassigned. Formerly the virtual-base pointer write, now folded into type 6's
+XX flag.
+
+Codes of this type are consumed with type 6's line count (2 + N/2) and do
+nothing. They are not skipped as a single line - that would leave the chain's
+remaining lines to be misread as fresh codes.
+
+
+================================================================================
+  CONDITIONALS
+================================================================================
+
+--------------------------------------------------------------------------------
+TYPE C - Do all following codes if equal
+--------------------------------------------------------------------------------
+
+    Caaaaaaa vvvvvvvv        a = 28-bit PHYSICAL address
+                             v = 32-bit value to compare
+
+If the 32-bit value at a equals v, the rest of the block executes. If not, the
+rest of the block is skipped.
+
+Unlike D, this has no line count - it governs everything after it to the end of
+the block, and cannot be un-done partway through. Use D when you want to guard
+a specific number of lines.
+
+--------------------------------------------------------------------------------
+TYPE D - Do N lines if conditional
+--------------------------------------------------------------------------------
+
+    Daaaaaaa NNTavvvv        a(cmd) = 28-bit address, PHYSICAL or VIRTUAL
+                             N = number of lines guarded  (bits 24-31)
+                             T = test operator            (bits 20-22)
+                             a = size + address space     (bits 16-19)
+                             v = 16-bit compare value     (bits 0-15)
+
+The `a` digit is a WHOLE hex digit - digit 3 of the value word, counting from
+the left. Write the number you mean:
+
+    0 = 16-bit compare, PHYSICAL
+    1 = 16-bit compare, VIRTUAL
+    2 = 8-bit  compare, PHYSICAL
+    3 = 8-bit  compare, VIRTUAL
+
+High bit selects size, low bit selects space.
+
+Test operators (T):
+
+    0   mem == v
+    1   mem != v
+    2   mem <  v
+    3   mem >  v
+    4   (mem & v) == 0
+    5   (mem & v) != 0
+    6   (mem | v) == 0
+    7   (mem | v) != 0
+
+If the test passes, the next N lines execute. If it fails, they are skipped.
+
+    D0892118 01230003        if the BYTE at VIRTUAL 0x892118 is < 3,
+    80892118 00000003        then write 3 to it
+
+    Read the value word as: N=01, T=2 (less than), a=3 (8-bit virtual),
+    v=0003.
+
+The `<` test above is doing real work: it catches every partially-initialised
+state (0, 1, 2) and forces the flag complete, while leaving any value >= 3
+alone - so options the player ticks on later are not stomped back off.
+
+--------------------------------------------------------------------------------
+TYPE E - Conditional on/off switch
+--------------------------------------------------------------------------------
+
+    Eaaaaaaa NNTavvvv        Fields are IDENTICAL to type D, bit for bit.
+
+A D code becomes an E code by changing the type nibble and nothing else.
+
+The difference is that E treats the condition as an EDGE rather than a level:
+
+    D   the guarded lines run WHILE the condition holds.
+    E   the guarded lines run while the SWITCH is on. The switch flips on a
+        false -> true transition of the condition, and stays on when the
+        condition stops holding. The next false -> true transition flips it
+        back off.
+
+That is what turns a button press into a toggle rather than a hold. Point it at
+a controller button mask and the cheat toggles once per press.
+
+    E00A6B24 03020020        press the button with mask 0x20 to toggle
+    0012C4E0 00000063        the next 3 lines
+    0012C4E4 00000063
+    0012C4E8 00000063
+
+Switches always start OFF. State is tracked per (cheat block, line), so several
+switches in one cheat do not interfere, and it is cleared when the cheat is
+disabled - a switch never comes back on from a previous session.
+
+--------------------------------------------------------------------------------
+TYPE F - Hook code
+--------------------------------------------------------------------------------
+
+Reserved. Not implemented; consumed as a single line and does nothing.
+
+
+================================================================================
+  OLD CODES THAT NEED CONVERTING
+================================================================================
+
+Two format changes are not backward compatible. Both have converters.
+
+1. TYPE D/E SIZE NIBBLE
+
+   The size+space field used to be a single bit at position 19, always
+   physical, so digit 3 of the value word was 0 (16-bit) or 8 (8-bit).
+
+   Digit 0 still means 16-bit physical and is unchanged.
+   Digit 8 no longer decodes as 8-bit and must be rewritten as 2.
+
+       python3 convert_d_size_nibble.py --dry-run cheats/ patches/
+       python3 convert_d_size_nibble.py cheats/ patches/
+
+2. OLD TYPE E SEMANTICS
+
+   Type E originally meant the same thing as D with the fields laid out
+   differently. It has been REASSIGNED to the on/off switch above.
+
+   An old E code will now behave as a toggle, which is not what its author
+   meant. Convert it to D:
+
+       offset  = E_val & 0x0FFFFFFF
+       compare = E_cmd & 0xFFFF
+       test    = (E_val >> 28) & 7
+       is_8bit = ((E_cmd >> 24) & 0xF) == 1
+       n       = (E_cmd >> 16) & 0xFF
+
+       D_cmd = 0xD0000000 | offset
+       D_val = (n << 24) | (test << 20) | (is_8bit << 17) | compare
+
+   That produces the PHYSICAL variant. For virtual, OR in (1 << 16).
+
+
+================================================================================
+  NOTES ON PROVENANCE
+================================================================================
+
+The type system - types 0-F dispatched on the top nibble - follows the raw code
+format of the Action Replay / GameShark / CodeBreaker lineage, as documented by
+PS2rd (Mathias Lafeldt). The interpreter here is an independent Python
+implementation for the Original Xbox; no source was copied.
+
+Types 8/9/A (virtual writes), type 6's address-space flag, and type D's space
+flag have no counterpart on the PS2, which is not paged the way the Xbox is.
+Type E's switch behaviour is modelled on the Gecko (Wii/GameCube) CC
+button-activator concept; the field layout is this project's own.
+
+The authoritative version of this table is the module docstring in
+xemu_trainer_lib/codes.py. If the two ever disagree, the code is right.
