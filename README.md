@@ -75,8 +75,8 @@ authoritative version of this table in its module docstring.
 | `2` | 32-bit constant write | `A` | 32-bit constant write (virtual) |
 | `3` | Increment / Decrement | `B` | Boolean operation |
 | `4` | 32-bit constant serial write | `C` | 32-bit do-all-following-if-equal |
-| `5` | Copy bytes | `D` | Do multi-lines if conditional |
-| `6` | Pointer write (physical or virtual) | `E` | Conditional on/off switch |
+| `5` | Copy bytes | `D` | Do multi-lines if conditional (physical or virtual) |
+| `6` | Pointer write (physical or virtual) | `E` | Conditional on/off switch (physical or virtual) |
 | `7` | *free* | `F` | Hook code — reserved, unimplemented |
 
 Type 6 selects its address space with a flag byte in the header line — `00`
@@ -84,6 +84,17 @@ physical, `01` virtual — which is what allowed the old virtual-pointer type 7 
 be retired. Type E reuses type D's field layout exactly and differs only in
 treating the condition as an edge, so a D code becomes a button toggle by
 changing one nibble.
+
+Types D/E select their compare address's space and size with the nibble at
+bits 16-19 of the value word — hex digit 3, written as the literal value:
+`0` = 16-bit physical, `1` = 16-bit virtual, `2` = 8-bit physical, `3` =
+8-bit virtual. In `NNTavvvv`, `a` is exactly that digit.
+
+This replaces a single always-physical size bit at 19, whose only values were
+digit `0` and digit `8`. Digit `0` is unchanged; digit `8` must be rewritten
+as `2`. Run `convert_d_size_nibble.py` over `cheats/` and `patches/` to do
+that in one pass. See `_d_addr_space` in `codes.py` for the authoritative
+layout.
 
 Both retired types are still *consumed* with their old line counts rather than
 skipped as one line: an unhandled multi-line code leaves its tail to be read as
