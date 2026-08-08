@@ -89,6 +89,37 @@ class CodePatchWindow(tk.Toplevel):
         self.protocol("WM_DELETE_WINDOW", self._close)
 
     # ---- session ---------------------------------------------------------
+    def _read(self, va, n):
+        """
+        /proc-backed fallback read, same shape as disasm_window's.
+
+        DebugSession.read_mem only goes through the stub while the guest is
+        halted (self.stopped); the rest of the time it defers to whatever
+        read_fallback the session was built with. connect() resumes the
+        guest immediately unless something else asked to attach paused, so
+        by the time _apply() calls read_mem the session is normally NOT
+        halted - without a fallback here that call returns b"" every time,
+        which is the "could not read original bytes" error. Mirrors
+        disasm_window._read exactly so both windows agree on how a guest
+        virtual address resolves.
+        """
+        pm = self.engine.ensure_pagemap()
+        if pm is None:
+            return b""
+        out = bytearray()
+        while n > 0:
+            pa = pm.to_phys(va)
+            if pa is None:
+                break
+            step = min(n, 0x1000 - (va & 0xFFF))
+            chunk = self.engine.read_mem(self.engine.xbox_ram_base + pa, step)
+            if not chunk:
+                break
+            out += chunk
+            va += step
+            n -= step
+        return bytes(out)
+
     def _session(self):
         """
         Join the shared gdb session, or explain why we cannot.
@@ -98,6 +129,7 @@ class CodePatchWindow(tk.Toplevel):
         """
         try:
             return gdb_broker(self).acquire(self, self.engine,
+                                            read_fallback=self._read,
                                             label="Code patches")
         except (GdbStubError, OSError) as exc:
             messagebox.showerror(
